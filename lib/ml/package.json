@@ -1,0 +1,14 @@
+{
+  "name": "ml-ui",
+  "version": "1.0.1",
+  "description": "zdliu ui ml components",
+  "main": "index.js",
+  "files": [
+    "components",
+    "mixins",
+    "utils"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

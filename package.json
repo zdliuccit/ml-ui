@@ -1,0 +1,103 @@
+{
+  "name": "vue-webpack-config",
+  "version": "1.0.0",
+  "description": "This is vue2 and webpack2 Demo.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node config/index.js",
+    "prod": "cross-env NODE_ENV=production node config/index.js",
+    "build": "rimraf public && webpack --progress --hide-modules --config config/webpack.config.prod.js",
+    "fix-client": "eslint client --ext .js,.vue --fix",
+    "check-client": "eslint client --ext .js,.vue",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "pre-commit": [
+    "check-client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdliuccit/vue-webpack-config"
+  },
+  "keywords": [
+    "vue2",
+    "webpack"
+  ],
+  "author": "zdliu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zdliuccit/vue-webpack-config/issues"
+  },
+  "homepage": "https://github.com/zdliuccit/vue-webpack-config#readme",
+  "devDependencies": {
+    "autoprefixer": "7.1.3",
+    "axios": "0.16.2",
+    "babel-core": "6.26.0",
+    "babel-eslint": "7.2.3",
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
+    "babel-loader": "7.1.2",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.6.0",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "cross-env": "5.0.5",
+    "css-loader": "0.28.5",
+    "eslint": "3.19.0",
+    "eslint-config-standard": "10.2.1",
+    "eslint-friendly-formatter": "3.0.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-html": "3.2.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-node": "5.1.1",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "3.0.1",
+    "extract-text-webpack-plugin": "3.0.0",
+    "file-loader": "0.11.2",
+    "friendly-errors-webpack-plugin": "1.6.1",
+    "html-webpack-plugin": "2.30.1",
+    "ip": "1.1.5",
+    "json-loader": "0.5.7",
+    "koa": "2.3.0",
+    "koa-better-http-proxy": "0.2.2",
+    "koa-compress": "2.0.0",
+    "koa-convert": "1.2.0",
+    "koa-logger": "2.0.1",
+    "koa-router": "7.0.1",
+    "koa-static": "3.0.0",
+    "koa-webpack-dev-middleware": "1.4.4",
+    "koa-webpack-hot-middleware": "1.0.3",
+    "localforage": "1.5.0",
+    "markdown-it-anchor": "^4.0.0",
+    "markdown-it-container": "^2.0.0",
+    "opn": "5.1.0",
+    "optimize-css-assets-webpack-plugin": "3.1.1",
+    "postcss": "6.0.10",
+    "postcss-loader": "2.0.6",
+    "postcss-pxtorem": "4.0.1",
+    "postcss-salad": "^2.0.1",
+    "progressbar.js": "1.0.1",
+    "style-loader": "0.18.2",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.1",
+    "url-loader": "0.5.9",
+    "vue-loader": "13.0.4",
+    "vue-markdown-loader": "2.2.3",
+    "vue-style-loader": "3.0.1",
+    "webpack": "3.5.5",
+    "webpack-dev-middleware": "1.12.0",
+    "webpack-hot-middleware": "2.18.2",
+    "winston": "2.3.1"
+  },
+  "dependencies": {
+    "markdown-it-anchor": "4.0.0",
+    "markdown-it-container": "2.0.0",
+    "vue": "2.4.2",
+    "vue-router": "2.7.0",
+    "vue-template-compiler": "2.4.2",
+    "vuex": "3.0.1"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  }
+}

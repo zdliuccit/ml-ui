@@ -1,0 +1,14 @@
+{
+  "name": "ml-ui-styles",
+  "version": "1.0.1",
+  "description": "zdliu ui ml style",
+  "main": "index.styl",
+  "files": [
+    "components",
+    "font",
+    "images"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
