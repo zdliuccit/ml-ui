@@ -3,20 +3,26 @@
  */
 const path = require('path')
 const serverConfig = require('./server.config')
+import utils from './config/utils/StringUtils'
 
+// 基于饿了么vue-markdown-loader的组件库开发模式  配置md的加载
 const vueMarkdown = {
+  preprocess: (MarkdownIt, source) => {
+    MarkdownIt.renderer.rules.table_open = function () {
+      return '<table class="table">'
+    }
+    MarkdownIt.renderer.rules.fence = utils.wrapClass(MarkdownIt.renderer.rules.fence)
+    return source
+  },
   use: [
-    require('markdown-it-container'),
-    'demo',
-    {
+    [require('markdown-it-container'), 'demo', {
       validate: params => params.trim().match(/^demo\s*(.*)$/),
-
-      render: (tokens, idx) => {
+      render: function (tokens, idx) {
         let m = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
         if (tokens[idx].nesting === 1) {
           let description = (m && m.length > 1) ? m[1] : ''
           let content = tokens[idx + 1].content
-          let html = convert(striptags.strip(content, ['script', 'style'])).replace(/(<[^>]*)=""(?=.*>)/g, '$1')
+          let html = utils.convert(utils.strip(content, ['script', 'style'])).replace(/(<[^>]*)=""(?=.*>)/g, '$1')
 
           let descriptionHTML = description ? md.render(description) : ''
           return `<demo-block class="demo-box">
@@ -26,16 +32,8 @@ const vueMarkdown = {
         }
         return '</div></demo-block>\n'
       }
-    }
-  ],
-  preprocess: (MarkdownIt, source) => {
-    MarkdownIt.renderer.rules.table_open = function () {
-      return '<table class="table">'
-    }
-    MarkdownIt.renderer.rules.fence = wrap(MarkdownIt.renderer.rules.fence)
-
-    return source
-  }
+    }]
+  ]
 }
 
 module.exports = {
@@ -60,7 +58,7 @@ module.exports = {
       {
         test: /\.md$/,
         loader: 'vue-markdown-loader',
-        include: [path.join(__dirname, 'docs'), path.join(__dirname, 'client')],
+        include: [path.join(__dirname, 'docs')],
         options: vueMarkdown
       }
     ],
