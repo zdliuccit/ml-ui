@@ -7,6 +7,9 @@
     "start": "cross-env NODE_ENV=development node config/index.js",
     "prod": "cross-env NODE_ENV=production node config/index.js",
     "build": "rimraf public && webpack --progress --hide-modules --config config/webpack.config.prod.js",
+    "build-cpt": "npm run build-file & npm run build-style",
+    "build-file": "node ./build/build-components.js",
+    "build-style": "node ./build/build-style.js",
     "fix-client": "eslint client --ext .js,.vue --fix",
     "check-client": "eslint client --ext .js,.vue",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -74,7 +77,7 @@
     "postcss": "6.0.10",
     "postcss-loader": "2.0.6",
     "postcss-pxtorem": "4.0.1",
-    "postcss-salad": "^2.0.1",
+    "postcss-salad": "2.0.1",
     "progressbar.js": "1.0.1",
     "style-loader": "0.18.2",
     "stylus": "0.54.5",

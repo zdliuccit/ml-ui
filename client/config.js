@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 
 import mlUI from '@ml'
 // 引入http请求插件
@@ -16,7 +17,7 @@ Vue.use(mlUI)
 Vue.use(http)
 Vue.use(vueLogger)
 Vue.use(VueRouter)
-
+Vue.use(Vuex)
 
 // request前自动添加api配置
 addRequestInterceptor(
