@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((route) => {
   // 设置标题
-  doc.title = route.meta.title || '首页'
+  doc.title = route.meta.title || 'ml-ui'
   // 进度条结束
   if (line) {
     line.animate(1, {

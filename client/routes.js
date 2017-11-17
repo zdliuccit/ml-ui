@@ -8,9 +8,6 @@ const routes = [
   {
     path: '/',
     component: index,
-    meta: {
-      title: 'ml-ui组件库'
-    }
   },
   {
     path: '/component',
