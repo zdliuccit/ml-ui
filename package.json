@@ -6,6 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development node config/index.js",
     "prod": "cross-env NODE_ENV=production node config/index.js",
+    "build": "rimraf public && webpack --progress --hide-modules --config config/webpack.config.prod.js",
     "fix-client": "eslint client --ext .js,.vue --fix",
     "fix-lib": "eslint lib --ext .js,.vue --fix",
     "check-client": "eslint client --ext .js,.vue",
