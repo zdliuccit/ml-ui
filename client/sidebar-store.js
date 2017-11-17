@@ -1,8 +1,17 @@
 export default {
   sidebar: [
     {
-      text: '安装',
-      index: '/component/installation',
+      label: '安装',
+      link: '/component/installation',
+    },
+    {
+      label: 'base',
+      children: [
+        {
+          link: '/component/button',
+          label: 'Button'
+        }
+      ]
     },
   ]
 }
