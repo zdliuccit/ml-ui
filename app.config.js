@@ -2,6 +2,7 @@
  * 项目的一些定制化配置
  */
 const path = require('path')
+const md = require('markdown-it')()
 const serverConfig = require('./server.config')
 import utils from './config/utils/StringUtils'
 
@@ -58,7 +59,7 @@ module.exports = {
       {
         test: /\.md$/,
         loader: 'vue-markdown-loader',
-        include: [path.join(__dirname, 'docs')],
+        include: [path.join(__dirname, 'docs'), path.join(__dirname, 'client')],
         options: vueMarkdown
       }
     ],
