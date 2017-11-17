@@ -5,10 +5,10 @@ import demo from './md-components/demo-block.vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
 //  引入组件库样式
-import '@ml/ml-styles/index.styl'
-
+import '@ml/styles/index.styl'
+import './assets/css/layout.styl'
 // 引入markdown样式
-import './assets/markdown.css'
+import './assets/css/markdown.css'
 // vue config配置文件
 import './config'
 // 引入router

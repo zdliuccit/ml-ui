@@ -184,7 +184,6 @@
       }
 
       span {
-        position: absolute
         transform: translateX(-30px)
         font-size: 14px
         line-height: 36px

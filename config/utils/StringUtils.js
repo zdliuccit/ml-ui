@@ -49,8 +49,14 @@ module.exports = {
     })
     return str
   },
+  /**
+   * strip-tags <https://github.com/jonschlinkert/strip-tags>
+   * @param str
+   * @param tags
+   * @return {*}
+   */
   strip: function (str, tags) {
-    let $ = cheerio.load(str, {
+    let $ = require('cheerio').load(str, {
       decodeEntities: false
     })
 

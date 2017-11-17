@@ -1,6 +1,10 @@
 <template>
   <div class="ml-layout">
-    <div class="markdown-body">
+    <div class="ml-layout-warp">
+      <div class="ml-top">
+        <div class="ml-logo"></div>
+        <div class="logo-word">组件</div>
+      </div>
       <router-view></router-view>
     </div>
   </div>
@@ -13,6 +17,4 @@
   }
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
-  .ml-layout {
-  }
 </style>

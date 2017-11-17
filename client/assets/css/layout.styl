@@ -1,0 +1,85 @@
+.inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ml-layout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  .ml-layout-warp {
+    width: 1240px;
+    margin: 0 auto;
+  }
+  .ml-top {
+    height: 70px;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 220px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    .logo-word {
+      font-size: 18px;
+      color: #1085ff;
+      line-height: 70px;
+      float: left;
+    }
+    .ml-logo {
+      width: 160px;
+      height: 50px;
+      float: left;
+      background: url("./../images/ml-ui.png") no-repeat
+    }
+  }
+  .ml-body {
+    padding: 20px;
+    height: 100%;
+  }
+  .ml-sidebar {
+    width: 220px;
+    position: fixed;
+    height: 100%;
+    padding-top: 90px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    top: 0;
+    .side-nav {
+      width: 220px;
+      padding-right: 20px;
+      .nav-group-title {
+        font-size: 12px;
+        color: #999;
+        line-height: 26px;
+        margin-top: 15px;
+      }
+      .nav-item a {
+        font-size: 16px;
+        color: #333;
+        line-height: 40px;
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        transition: .15s ease-out;
+        font-weight: 700;
+      }
+      .pure-menu-list .nav-item a {
+        color: #444;
+        font-weight: 400;
+        font-size: 14px;
+      }
+      .nav-item a.active, .pure-menu-list .nav-item a.active {
+        color: #409eff;
+      }
+    }
+  }
+  .ml-content {
+    padding-left: 250px;
+    padding-top: 80px;
+  }
+}
