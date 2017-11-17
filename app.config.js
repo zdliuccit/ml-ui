@@ -4,7 +4,7 @@
 const path = require('path')
 const md = require('markdown-it')()
 const serverConfig = require('./server.config')
-import utils from './config/utils/StringUtils'
+const utils = require('./config/utils/StringUtils')
 
 // 基于饿了么vue-markdown-loader的组件库开发模式  配置md的加载
 const vueMarkdown = {
