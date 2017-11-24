@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleClick">
+  <button class="ml-button" @click="handleClick">
     测试
   </button>
 </template>
@@ -8,8 +8,8 @@
     name: 'button',
     props: {
       type: String,
+      size: String,
       disabled: Boolean,
-      plain: Boolean,
       icon: String,
       loading: Boolean,
       autofocus: Boolean,
@@ -17,7 +17,6 @@
         type: String,
         default: 'button',
       },
-      size: String,
     },
     methods: {
       /**
