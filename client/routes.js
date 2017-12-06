@@ -3,7 +3,8 @@ import index from './index.vue'
 import error404 from './error-404.vue'
 import installation from './docs/installation.md'
 import button from './docs/components/button.md'
-// import indexMd from './../docs/组件开发规范.md'
+import empty from './empty.vue'
+import demo from './demo/routes'
 
 const routes = [
   {
@@ -11,18 +12,29 @@ const routes = [
     component: index,
   },
   {
-    path: '/component',
+    path: '/docs',
     component: layout,
     children: [
       {
         path: 'installation',
         component: installation,
+        meta: {
+          demoLink: '/index'
+        }
       },
       {
         path: 'button',
-        component: button
+        component: button,
+        meta: {
+          demoLink: '/test'
+        }
       }
     ],
+  },
+  {
+    path: '/demo',
+    component: empty,
+    children: demo,
   },
   {
     path: '*',
