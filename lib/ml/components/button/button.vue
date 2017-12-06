@@ -1,6 +1,17 @@
 <template>
-  <button class="ml-button" @click="handleClick">
-    测试
+  <button class="ml-button"
+          @click="handleClick"
+          :disabled="disabled"
+          :autofocus="autofocus"
+          :type="nativeType"
+          :class="[
+            'ml-border',
+            type ? 'ml-button-' + type : '',
+            size ? 'ml-button-' + size : '',
+            {'is-disabled': disabled, }
+    ]"
+  >
+    <slot></slot>
   </button>
 </template>
 <script>
@@ -11,7 +22,6 @@
       size: String,
       disabled: Boolean,
       icon: String,
-      loading: Boolean,
       autofocus: Boolean,
       nativeType: {
         type: String,
