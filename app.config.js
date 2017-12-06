@@ -49,7 +49,7 @@ module.exports = {
       vendor: ['vue', 'vue-router'] // 拆分框架代码
     },
     // 是否对样式启用px到rem的转换,配合config/utils/responsive-design.js适配移动端开发， 默认不开启
-    enablePx2Rem: false,
+    enablePx2Rem: true,
     // 自定义Alias设置
     resolveAlias: {
       '@ml': path.join(__dirname, 'lib'),

@@ -44,7 +44,7 @@
         </div>
         <div class="ml-phone">
           <div class="phone-top"></div>
-          <iframe class="phone-content" src="/asdas"></iframe>
+          <iframe class="phone-content" :src="`/demo${$route.meta.demoLink||''}`"></iframe>
         </div>
       </div>
     </div>

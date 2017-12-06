@@ -10,6 +10,8 @@ import vueLogger from '@config/utils/logger/vue-logger'
 import { addRequestInterceptor, addResponseInterceptor } from '@config/utils/http/http'
 // 引入自定义业务组件
 
+// 开启响应式配置
+mlUI.responsiveDesign({})
 // 引入mlUI组件库
 Vue.use(mlUI)
 
