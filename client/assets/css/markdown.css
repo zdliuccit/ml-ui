@@ -18,8 +18,6 @@
   line-height: 1.6;
   word-wrap: break-word;
   background: #fff;
-  -webkit-border-radius: 0 0 3px 3px;
-  border-radius: 0 0 3px 3px;
 }
 
 .markdown-body > *:first-child {
@@ -46,16 +44,6 @@
   margin-bottom: 16px;
   font-weight: bold;
   line-height: 1.4;
-}
-
-.markdown-body h1:first-child,
-.markdown-body h2:first-child,
-.markdown-body h3:first-child,
-.markdown-body h4:first-child,
-.markdown-body h5:first-child,
-.markdown-body h6:first-child {
-  margin-top: 0;
-  padding-top: 0;
 }
 
 .markdown-body p,
@@ -139,7 +127,6 @@
 }
 
 .markdown-body table {
-  display: block;
   width: 100%;
   overflow: auto;
   word-break: normal;

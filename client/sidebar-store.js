@@ -7,10 +7,7 @@ export default {
     {
       label: 'base',
       children: [
-        {
-          link: '/component/button',
-          label: 'Button'
-        }
+        { link: '/component/button', label: 'Button' },
       ]
     },
   ]

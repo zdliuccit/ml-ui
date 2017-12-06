@@ -1,0 +1,47 @@
+/* ml-ui Variables*/
+
+/* Transition
+-------------------------- */
+$all-transition = all .3s cubic-bezier(.645, .045, .355, 1);
+$fade-transition = opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+$fade-linear-transition = opacity 200ms linear;
+$md-fade-transition = transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+$border-transition-base = border-color .2s cubic-bezier(.645, .045, .355, 1);
+$color-transition-base = color .2s cubic-bezier(.645, .045, .355, 1);
+
+/* Colors
+-------------------------- */
+$color-white = #fff;
+$color-black = #000;
+$color-font = #1f2d3d;
+$color-prompt1 = #666;
+$color-prompt2 = #999;
+$color-link = #66b1ff;
+$color-success = #67c23a;
+$color-warning = #eb9e05;
+$color-danger = #fa5555;
+$color-info = #878d99;
+$color-primary = #409EFF;
+$color-border = #bfcbd9;
+
+/* Font
+-------------------------- */
+$font-size = 28px;
+
+/* border
+-------------------------- */
+.ml-border {
+  border: 1px solid #999
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .ml-border {
+    border: 0.5px solid #999
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  .ml-border {
+    border-width: 0.333333px solid #999
+  }
+}
