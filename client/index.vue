@@ -172,8 +172,8 @@
     position: relative;
     top: 28PX;
     left: -24PX;
-    width: 5pc;
-    height: 5pc;
+    width: 80PX;
+    height: 80PX;
     -webkit-transform: rotate(16deg);
     transform: rotate(16deg);
     -webkit-transform-origin: 40PX 40PX;
@@ -184,8 +184,8 @@
 
   .gear-rolling .in-part {
     position: absolute;
-    width: 5pc;
-    height: 5pc;
+    width: 80PX;
+    height: 80PX;
     border-radius: 6PX;
     background-color: #3960ff
   }
