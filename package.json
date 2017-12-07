@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zdliuccit/vue-webpack-config"
+    "url": "git+https://github.com/zdliuccit/ml-ui"
   },
   "keywords": [
     "vue2",
