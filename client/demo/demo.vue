@@ -9,6 +9,6 @@
 <style lang="stylus" ref="stylesheet/stylus" scoped>
 
   .ml-demo {
-    font-size: 24px;
+    font-size: 24PX;
   }
 </style>
