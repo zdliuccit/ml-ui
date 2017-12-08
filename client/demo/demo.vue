@@ -1,10 +1,19 @@
 <template>
   <div class="ml-demo">
-    首页
+    <div class="ml-demo-title">
+      222
+    </div>
   </div>
 </template>
 <script type="text/babel">
-  export default {}
+  export default {
+    data() {
+      return {}
+    },
+    created() {
+      this.$toast({})
+    },
+  }
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
 
