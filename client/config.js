@@ -9,7 +9,7 @@ import http from '@config/utils/http'
 import vueLogger from '@config/utils/logger/vue-logger'
 import { addRequestInterceptor, addResponseInterceptor } from '@config/utils/http/http'
 // 引入自定义业务组件
-
+import dhead from './demo/d-head.vue'
 // 开启响应式配置
 mlUI.responsiveDesign({})
 // 引入mlUI组件库
@@ -20,6 +20,8 @@ Vue.use(http)
 Vue.use(vueLogger)
 Vue.use(VueRouter)
 Vue.use(Vuex)
+
+Vue.component('d-head', dhead)
 
 // request前自动添加api配置
 addRequestInterceptor(

@@ -1,4 +1,6 @@
-import test from './test.vue'
+import Icon from './components/d-icon.vue'
+import Layout from './components/d-layout.vue'
+import Toast from './components/d-toast.vue'
 import index from './demo.vue'
 
 export default [
@@ -8,8 +10,18 @@ export default [
     component: index,
   },
   {
-    path: 'test',
-    name: 'demoTest',
-    component: test,
+    path: 'icon',
+    name: 'd-icon',
+    component: Icon,
+  },
+  {
+    path: 'layout',
+    name: 'd-layout',
+    component: Layout,
+  },
+  {
+    path: 'toast',
+    name: 'd-toast',
+    component: Toast,
   }
 ]

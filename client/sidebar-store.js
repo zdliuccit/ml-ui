@@ -5,11 +5,24 @@ export default {
       link: '/docs/installation',
     },
     {
-      label: 'base',
+      label: 'BaseComponents',
       children: [
         {
-          link: '/docs/button',
-          label: 'Button',
+          link: '/docs/icon',
+          label: 'Icon',
+        },
+        {
+          link: '/docs/layout',
+          label: 'Layout',
+        },
+      ]
+    },
+    {
+      label: 'JsComponents',
+      children: [
+        {
+          link: '/docs/toast',
+          label: 'Toast',
         },
       ]
     },

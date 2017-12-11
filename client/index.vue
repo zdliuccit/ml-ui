@@ -1,7 +1,7 @@
 <template>
-  <div class="ml-layout">
-    <div class="ml-layout-warp">
-      <div class="ml-layout-top">
+  <div class="dd-layout">
+    <div class="dd-layout-warp">
+      <div class="dd-layout-top">
         <div class="ml-logo"></div>
         <div class="logo-word">组件</div>
         <a class="ml-git-link" href="https://github.com/zdliuccit/ml-ui" target="_blank">

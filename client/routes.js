@@ -2,9 +2,13 @@ import layout from './layout.vue'
 import index from './index.vue'
 import error404 from './error-404.vue'
 import installation from './docs/installation.md'
-import button from './docs/components/button.md'
 import empty from './empty.vue'
 import demo from './demo/routes'
+// baseComponents MD
+import Icon from './docs/components/icon.md'
+import Layout from './docs/components/layout.md'
+// jsComponents MD
+import Toast from './docs/components/toast.md'
 
 const routes = [
   {
@@ -23,10 +27,24 @@ const routes = [
         }
       },
       {
-        path: 'button',
-        component: button,
+        path: 'icon',
+        component: Icon,
         meta: {
-          demoLink: '/test'
+          demoLink: '/icon'
+        }
+      },
+      {
+        path: 'layout',
+        component: Layout,
+        meta: {
+          demoLink: '/layout'
+        }
+      },
+      {
+        path: 'toast',
+        component: Toast,
+        meta: {
+          demoLink: '/toast'
         }
       }
     ],

@@ -1,7 +1,7 @@
 <template>
-  <div class="ml-layout">
-    <div class="ml-layout-warp">
-      <div class="ml-layout-top">
+  <div class="dd-layout">
+    <div class="dd-layout-warp">
+      <div class="dd-layout-top">
         <router-link :to="{path:'/'}">
           <div class="ml-logo"></div>
           <div class="logo-word">组件</div>
@@ -39,12 +39,12 @@
         </div>
         <div class="ml-content">
           <div class="markdown-body ml-content-warp">
-            <router-view></router-view>
+            <!--<router-view></router-view>-->
           </div>
         </div>
         <div class="ml-phone">
           <div class="phone-top"></div>
-          <iframe class="phone-content" :src="`/demo${$route.meta.demoLink||''}`"></iframe>
+          <iframe class="phone-content" :src="`#/demo${$route.meta.demoLink||''}`"></iframe>
         </div>
       </div>
     </div>

@@ -1,8 +1,10 @@
 <template>
   <div class="ml-demo">
-    <div class="ml-demo-title">
-      222
-    </div>
+    <d-head title="BaseComponents"></d-head>
+    <ul class="ul-cpt">
+      <li></li>
+    </ul>
+    <d-head title="JSComponents"></d-head>
   </div>
 </template>
 <script type="text/babel">
