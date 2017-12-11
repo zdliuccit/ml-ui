@@ -39,7 +39,7 @@
         </div>
         <div class="ml-content">
           <div class="markdown-body ml-content-warp">
-            <!--<router-view></router-view>-->
+            <router-view></router-view>
           </div>
         </div>
         <div class="ml-phone">
