@@ -38,6 +38,9 @@
       position: absolute;
       top: 20px;
       left: 30px;
+      i {
+        font-size: 44px;
+      }
     }
     .demo-top-title {
       font-size: 44px;

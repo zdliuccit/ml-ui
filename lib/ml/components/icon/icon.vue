@@ -6,6 +6,6 @@
     props: {
       icon: String
     },
-    name: 'icon',
+    name: 'ml-icon',
   }
 </script>

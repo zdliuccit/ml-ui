@@ -4,6 +4,6 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'layout',
+    name: 'ml-layout',
   }
 </script>

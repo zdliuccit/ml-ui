@@ -13,7 +13,7 @@
 
 .markdown-body {
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16PX;
+  font-size: 14PX;
   color: #333;
   line-height: 1.6;
   word-wrap: break-word;
@@ -292,4 +292,35 @@
 
 .hljs-attribute {
   color: #e6550d
+}
+
+.markdown-body .table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 16PX;
+  table-layout: fixed;
+  font-size: 14PX;
+  background-color: #fff
+}
+
+.markdown-body .table td, .markdown-body .table th {
+  padding: 8PX;
+  vertical-align: top;
+  border: 1px solid #eee;
+  text-align: left;
+  color: #656b79
+}
+
+.markdown-body .table th {
+  font-weight: 400;
+  padding: 8PX;
+  background-color: #f4f5f7
+}
+
+.markdown-body .table .table-center, .markdown-body .table .table-center td, .markdown-body .table .table-center th {
+  text-align: center
+}
+
+.markdown-body .table-interleave tr:nth-child(2n) td {
+  background-color: #fafafa
 }
