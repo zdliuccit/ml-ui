@@ -36,9 +36,6 @@
         ]
       }
     },
-    created() {
-      this.$toast({})
-    },
     methods: {
       /**
        * 跳转

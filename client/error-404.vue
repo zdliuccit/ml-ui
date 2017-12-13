@@ -21,7 +21,7 @@
     }
   }
 </script>
-<style lang="stylus" ref="stylesheet/stylus" scoped="">
+<style lang="stylus" ref="stylesheet/stylus" scoped>
   .error-404 {
     position: absolute;
     top: 0;
@@ -30,27 +30,27 @@
     right: 0;
     .error-404-img {
       position: absolute;
-      width: 498px;
-      height: 226px;
+      width: 498PX;
+      height: 226PX;
       top: 50%;
       left: 50%;
       text-align: center;
-      margin: -113px 0 0 -249px;
+      margin: -113PX 0 0 -249PX;
       background: url("./assets/images/404.jpg") no-repeat;
     }
     .error-title {
-      top: -50px;
+      top: -50PX;
       position: relative;
       color: #34daed;
-      font-size: 20px;
+      font-size: 20PX;
     }
     .error-links {
-      top: 260px;
+      top: 260PX;
       position: relative;
-      font-size: 14px;
+      font-size: 14PX;
       a {
         color: #ea5d5d;
-        margin: 0 25px;
+        margin: 0 25PX;
       }
       .index {
         text-decoration: underline;
