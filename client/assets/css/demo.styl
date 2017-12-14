@@ -1,0 +1,28 @@
+.dd-body {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  .dd-warp {
+    flex: 1;
+    position: relative;
+    .warp-content {
+      padding: 0 40px;
+      top: 50%;
+      position: absolute;
+      width: 100%;
+      transform: translateY(-50%);
+    }
+  }
+  .dd-btn {
+    display: block;
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    border-color: #ccc;
+    background-color: #fff;
+    font-size: 32px;
+    box-shadow: 0 0 10px #b8bbbf;
+    margin-bottom: 20px;
+  }
+}

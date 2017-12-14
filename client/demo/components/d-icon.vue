@@ -1,14 +1,18 @@
 <template>
-  <div class="dd-icon">
+  <div class="dd-body">
     <d-head :back="true" title="Icon"></d-head>
-    <ul class="icon_lists ">
-      <li v-for="icon in icons">
-        <div class="icon">
-          <ml-icon :icon="`${icon}`"></ml-icon>
-        </div>
-        <div class="name">{{icon}}</div>
-      </li>
-    </ul>
+    <div class="dd-warp">
+      <div class="warp-content">
+        <ul class="icon-list ">
+          <li v-for="icon in icons">
+            <div class="icon">
+              <ml-icon :icon="`${icon}`"></ml-icon>
+            </div>
+            <div class="name">{{icon}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 <script type="text/babel">
@@ -24,7 +28,7 @@
   }
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
-  .icon_lists {
+  .icon-list {
     padding: 20px;
     word-break: break-all;
     li {
