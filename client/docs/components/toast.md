@@ -4,7 +4,7 @@
 ```js
 import { $toast } from 'ml-ui'
 
-Vue.prototype[$toast.nam]= $toast
+Vue.prototype[$toast.name]= $toast
 ```
 
 例子
