@@ -10,6 +10,7 @@
     "fix-client": "eslint client --ext .js,.vue --fix",
     "fix-lib": "eslint lib --ext .js,.vue --fix",
     "check-client": "eslint client --ext .js,.vue",
+    "package": "rimraf release && gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "pre-commit": [
@@ -55,6 +56,15 @@
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "0.11.2",
     "friendly-errors-webpack-plugin": "1.6.1",
+    "gulp": "3.9.1",
+    "gulp-babel": "7.0.0",
+    "gulp-clean-css": "3.9.0",
+    "gulp-concat": "2.6.1",
+    "gulp-eslint": "4.0.0",
+    "gulp-minify-css": "1.2.4",
+    "gulp-postcss": "7.0.0",
+    "gulp-stylus": "2.6.0",
+    "gulp-uglify": "3.0.0",
     "html-webpack-plugin": "2.30.1",
     "ip": "1.1.5",
     "json-loader": "0.5.7",

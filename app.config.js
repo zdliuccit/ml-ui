@@ -67,6 +67,7 @@ module.exports = {
     postcss: [
       // require('postcss-salad')
     ],
+    browsers: ['iOS >= 7', 'Android >= 4'], // 定义 autoprefixer 兼容
   },
   // 自定义中间件 async await函数写法
   middleWares: []
