@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 
-import mlUI from './../release/ml-ui'
+// import mlUI from './../release/ml-ui'
 // 引入http请求插件
 import http from '@config/utils/http'
 // 引入log日志插件
@@ -11,9 +11,9 @@ import { addRequestInterceptor, addResponseInterceptor } from '@config/utils/htt
 // 引入自定义业务组件
 import dhead from './demo/d-head.vue'
 // 开启响应式配置
-mlUI.responsiveDesign({})
+// mlUI.responsiveDesign({})
 // 引入mlUI组件库
-Vue.use(mlUI)
+// Vue.use(mlUI)
 
 // 注册插件
 Vue.use(http)
