@@ -8,7 +8,7 @@ Import all components.
 ```js
 import Vue from 'vue'
 import MlUi from 'ml-ui'
-import 'ml-ui/style/index.css'
+import 'ml-ui/styles/index.css'
 
 Vue.use(MlUi)
 ```
@@ -16,7 +16,10 @@ Or import specified component. (Use babel-plugin-component)
 ```js
 import { Test } from 'ml-ui'
 
-Vue.component(test.name, test)
+Vue.component(Test.name, Test)
+
+Vue.prototype[Test.name] = Test
+
 ```
 
 
