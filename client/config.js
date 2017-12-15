@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 
-import mlUI from '@ml/ml'
+import mlUI from './../release/ml-ui'
 // 引入http请求插件
 import http from '@config/utils/http'
 // 引入log日志插件

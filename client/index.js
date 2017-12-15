@@ -2,7 +2,8 @@ import 'babel-polyfill'
 // 引入demo样式
 import './assets/css/demo.styl'
 //  引入组件库样式
-import '@ml/styles/index.styl'
+// import '@ml/styles/index.styl'
+import './../release/styles/index.css'
 import './assets/css/layout.styl'
 // 引入markdown样式
 import './assets/css/markdown.css'
