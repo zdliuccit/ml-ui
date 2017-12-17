@@ -31,7 +31,7 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.0.8',
+  version: '1.1.0',
   install,
   responsiveDesign,
 }, components, jsComponents)

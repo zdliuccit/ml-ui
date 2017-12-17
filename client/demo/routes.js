@@ -15,13 +15,13 @@ export default [
     component: Icon,
   },
   {
+    path: 'toast',
+    name: 'd-toast',
+    component: Toast,
+  },
+  {
     path: 'layout',
     name: 'd-layout',
     component: Layout,
   },
-  {
-    path: 'toast',
-    name: 'd-toast',
-    component: Toast,
-  }
 ]

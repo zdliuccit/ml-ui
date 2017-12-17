@@ -1,6 +1,6 @@
 {
   "name": "ml-ui",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "zdliu ui ml components",
   "main": "ml-ui.js",
   "repository": {
@@ -19,7 +19,8 @@
   "files": [
     "components",
     "mixins",
-    "utils"
+    "utils",
+    "styles"
   ],
   "dependencies": {
     "vue": "2.5.9"
