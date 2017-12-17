@@ -9,11 +9,15 @@ export default {
       children: [
         {
           link: '/docs/icon',
-          label: 'Icon',
+          label: 'Icon 图标',
         },
         {
           link: '/docs/layout',
-          label: 'Layout',
+          label: 'Layout 布局',
+        },
+        {
+          link: '/docs/slide',
+          label: 'Slide 幻灯片',
         },
       ]
     },
@@ -22,7 +26,15 @@ export default {
       children: [
         {
           link: '/docs/toast',
-          label: 'Toast',
+          label: 'Toast 提示',
+        },
+        {
+          link: '/docs/message',
+          label: 'Message 消息',
+        },
+        {
+          link: '/docs/popup',
+          label: 'Popup 弹窗',
         },
       ]
     },
