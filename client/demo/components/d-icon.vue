@@ -22,6 +22,11 @@
         icons: [
           'back',
           'right',
+          'close',
+          'sigh',
+          'hook',
+          'fork',
+          'info',
         ]
       }
     }

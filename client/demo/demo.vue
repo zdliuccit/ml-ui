@@ -27,11 +27,23 @@
             label: 'Layout',
             link: '/demo/layout'
           },
+          {
+            label: 'Slide',
+            link: '/demo/slide'
+          },
         ],
         jsCpt: [
           {
             label: 'Toast',
             link: '/demo/toast'
+          },
+          {
+            label: 'Message',
+            link: '/demo/message'
+          },
+          {
+            label: 'Popup',
+            link: '/demo/popup'
           },
         ]
       }
