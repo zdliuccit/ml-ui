@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-layout">
+  <div class="ml-slide">
     <slot name="top"></slot>
     <div class="ml-layout-warp">
       <slot></slot>

@@ -1,12 +1,10 @@
 <template>
   <div class="dd-body">
-    <d-head :back="true" title="Message"></d-head>
+    <d-head :back="true" title="Popup"></d-head>
     <div class="dd-warp">
       <div class="warp-content">
-        <button class="dd-btn ml-border" @click="doClick('top')">Message显示在头部</button>
-        <button class="dd-btn ml-border" @click="doClick('middle')">Message显示在中间</button>
-        <button class="dd-btn ml-border" @click="doClick1()">Message1s消失</button>
-        <button class="dd-btn ml-border" @click="doClick('bottom')">Message显示在尾部</button>
+        <button class="dd-btn ml-border" @click="doClick()">打开alert提示框</button>
+        <button class="dd-btn ml-border" @click="doClick1()">打开confirm提示框</button>
       </div>
     </div>
   </div>
@@ -19,16 +17,28 @@
     methods: {
       /**
        * 提示
-       * @param {String} place 位置
        */
-      doClick(place) {
-        this.$toast({ message: `消息在${place}`, place: place })
+      doClick() {
+        this.$popup.alert({
+          message: '这是alert',
+          onConfirm: () => {
+            this.$message.success({ message: '这是alert' })
+          }
+        })
       },
       /**
        * 提示
        */
       doClick1() {
-        this.$toast({ message: '消息1s消失', duration: 1000 })
+        this.$popup.confirm({
+          message: '这是confirm',
+          onConfirm: () => {
+            this.$message.success({ message: 'confirm确定了' })
+          },
+          onClose: () => {
+            this.$message.warning({ message: 'confirm取消了' })
+          }
+        })
       },
     }
   }

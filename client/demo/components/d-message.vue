@@ -27,7 +27,12 @@
        * 提示
        */
       doClick1() {
-        this.$message.warning({ message: '警告消息' })
+        this.$message.warning({
+          message: '警告消息',
+          onClose: () => {
+            this.log(11)
+          }
+        })
       },
       /**
        * 提示

@@ -1,8 +1,11 @@
 // 引入基础组件
 import Icon from './components/icon/icon.vue'
 import Layout from './components/layout/layout.vue'
+import slide from './components/slide/slide.vue'
 // 引入JS组件
 import $toast from './components/toast'
+import $message from './components/message'
+import $popup from './components/popup'
 // 响应式JS
 import responsiveDesign from './utils/responsiveDesign'
 
@@ -10,10 +13,13 @@ import responsiveDesign from './utils/responsiveDesign'
 const components = {
   Icon,
   Layout,
+  slide
 }
 // JS组件
 const jsComponents = {
-  $toast
+  $toast,
+  $message,
+  $popup
 }
 const install = function (Vue) {
   // 全局注册普通组件
@@ -31,7 +37,7 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.1.0',
+  version: '1.1.1',
   install,
   responsiveDesign,
 }, components, jsComponents)

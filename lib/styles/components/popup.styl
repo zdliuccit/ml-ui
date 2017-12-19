@@ -1,0 +1,65 @@
+@import './../var.styl'
+.ml-popup-body {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  .ml-popup-title {
+    font-size: $font-max-size;
+    padding-top: 30px;
+  }
+  .ml-popup-content {
+    padding: 40px 30px;
+    font-size: $font-size;
+    color: $color-info;
+    word-break: break-all;
+    word-break: break-word;
+  }
+  .ml-popup-button {
+    height: 80px;
+    border-top-color: $color-border;
+    line-height: 80px;
+    font-size: $font-size;
+    button {
+      width: 100%;
+      height: 100%;
+      color: $color-prompt1;
+      background-color: #fff;
+    }
+    .ml-popup-confirm {
+      color: $color-primary;
+    }
+  }
+  .two-btn {
+    button {
+      width: 50%;
+    }
+    .ml-popup-confirm {
+      border-left-color: $color-border;
+    }
+  }
+  .ml-popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 76%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: $border-radius;
+    background-color: #fff;
+    overflow: hidden;
+    transition: $scale-fade-transition;
+    text-align: center;
+  }
+  .ml-scale-enter {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+  }
+
+  .ml-scale-leave-active {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.9);
+  }
+}
+
