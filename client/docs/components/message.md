@@ -36,9 +36,9 @@ this.$message({ message: '错误消息',type:'error' })
 API
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
-| message         | 内容   | String  | — | - |
+| message         | 内容   | String  | - | - |
 | type         | 类型   | String  | `info` `warning` `error` `success` |  `info`| 
 | showIcon         | 是否显示icon   | Boolean  | `true` `false` |  `true`| 
-| className         | 自定义class名称   | String  | — | - |
+| className         | 自定义class名称   | String  | - | - |
 | place         | 显示位置   | String  | `top` `middle` `bottom`  | `middle` |
-| duration         | 显示多久消失(ms)   | Number  | — | 3000 |
+| duration         | 显示多久消失(ms)   | Number  | - | 3000 |
