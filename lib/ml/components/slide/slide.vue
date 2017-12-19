@@ -9,16 +9,20 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'ml-layout',
+    name: 'ml-slide',
     props: {
-      fixTop: {
-        type: Boolean,
-        default: false
+      speed: {
+        type: Number,
+        default: 300
       },
-      fixBottom: {
-        type: Boolean,
-        default: true
-      }
+      autoInterval: {
+        type: Number,
+        default: 3000
+      },
+      defaultIndex: {
+        type: Number,
+        default: 0
+      },
     }
   }
 </script>
