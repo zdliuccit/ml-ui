@@ -23,6 +23,6 @@ API
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | title         | 标题   | String  | - | - |
 | message         | 内容(支持html片段)   | String  | - | - |
-| type         | 类型   | String  | `alert` `confirm`  |  `alert`| 
+| type         | 类型   | String  | alert、confirm  |  alert| 
 | onConfirm        | 确定事件   | Function  | - |  -| 
 | onClose         | 取消事件   | Function  | - | - |

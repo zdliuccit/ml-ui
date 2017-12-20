@@ -2,11 +2,21 @@
   <div class="dd-body">
     <d-head :back="true" title="Silde幻灯片"></d-head>
     <div class="dd-warp">
-      <div class="warp-content">
-        <button class="dd-btn ml-border" @click="doClick('top')">Message显示在头部</button>
-        <button class="dd-btn ml-border" @click="doClick('middle')">Message显示在中间</button>
-        <button class="dd-btn ml-border" @click="doClick1()">Message1s消失</button>
-        <button class="dd-btn ml-border" @click="doClick('bottom')">Message显示在尾部</button>
+      <div class="slide-demo1">
+        <ml-slide>
+          <ml-slide-item>
+            <div class="slide-dbg gbg1">第一页</div>
+          </ml-slide-item>
+          <ml-slide-item>
+            <div class="slide-dbg gbg2">第二页</div>
+          </ml-slide-item>
+          <ml-slide-item>
+            <div class="slide-dbg gbg3">第三页</div>
+          </ml-slide-item>
+          <ml-slide-item>
+            <div class="slide-dbg gbg4">第四页</div>
+          </ml-slide-item>
+        </ml-slide>
       </div>
     </div>
   </div>
@@ -33,3 +43,33 @@
     }
   }
 </script>
+<style lang="stylus" ref="stylesheet/stylus" scoped>
+  .slide-demo1 {
+    width: 100%;
+    height: 400px;
+  }
+
+  .slide-dbg {
+    line-height: 400px;
+    font-size: 40px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .gbg1 {
+    background-color: #00aeae;
+  }
+
+  .gbg2 {
+    background-color: #ff77ff;
+  }
+
+  .gbg3 {
+    background-color: #79ff79;
+  }
+
+  .gbg4 {
+    background-color: #ff7575;
+  }
+
+</style>
