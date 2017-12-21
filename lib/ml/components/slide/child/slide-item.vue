@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-slide-item test test1">
+  <div class="ml-slide-item">
     <slot></slot>
   </div>
 </template>

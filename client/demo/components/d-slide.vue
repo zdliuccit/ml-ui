@@ -3,7 +3,7 @@
     <d-head :back="true" title="Silde幻灯片"></d-head>
     <div class="dd-warp">
       <div class="slide-demo1">
-        <ml-slide>
+        <ml-slide :default-index="1">
           <ml-slide-item>
             <div class="slide-dbg gbg1">第一页</div>
           </ml-slide-item>
