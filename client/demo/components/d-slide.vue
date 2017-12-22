@@ -2,7 +2,7 @@
   <div class="dd-body">
     <d-head :back="true" title="Silde幻灯片"></d-head>
     <div class="dd-warp">
-      <div class="slide-demo1">
+      <div class="slide-demo">
         <ml-slide :default-index="1">
           <ml-slide-item>
             <div class="slide-dbg gbg1">第一页</div>
@@ -18,6 +18,16 @@
           </ml-slide-item>
         </ml-slide>
       </div>
+      <!--<div class="slide-demo">-->
+        <!--<ml-slide>-->
+          <!--<ml-slide-item>-->
+            <!--<div class="slide-dbg gbg1">第一页</div>-->
+          <!--</ml-slide-item>-->
+          <!--<ml-slide-item>-->
+            <!--<div class="slide-dbg gbg2">第二页</div>-->
+          <!--</ml-slide-item>-->
+        <!--</ml-slide>-->
+      <!--</div>-->
     </div>
   </div>
 </template>
@@ -44,9 +54,10 @@
   }
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
-  .slide-demo1 {
+  .slide-demo {
     width: 100%;
     height: 400px;
+    margin-bottom: 40px;
   }
 
   .slide-dbg {

@@ -1,4 +1,4 @@
-import mlMount from './../../mixins/ml-mount-body'
+import mlMount from '../../utils/ml-mount-body'
 import popup from './popup.vue'
 
 let $popup = (options = {}) => {

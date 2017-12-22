@@ -9,7 +9,7 @@
   </div>
 </template>
 <script type="text/babel">
-  import { addClass, removeClass } from './../../utils/ml-utils'
+  import { addClass, removeClass, animationFrame } from './../../utils/ml-utils'
 
   export default {
     name: 'ml-slide',
@@ -26,10 +26,6 @@
         type: Number,
         default: 0,
       },
-      animation: {
-        type: String,
-        default: 'left',
-      },
       showDots: {
         type: Boolean,
         default: true,
@@ -43,13 +39,11 @@
       return {
         pages: [], // dots数量
         index: 0, // 当前index索引
-        start: null, // 动画执行的开始时间
         timer: null, // 定时器
         animating: false, // 是否动画中
-        isDone: false,
-        dragging: false,
-        userScrolling: false,
-        dragState: {},
+        sliding: false, // 是否滑动中
+        isScroll: false, // 是否滚动
+        dragObject: {}, // 储存拖拽drag信息
       }
     },
     methods: {
@@ -58,10 +52,8 @@
        */
       initPages() {
         const children = this.$children
-        let pages = []
-        let intDefaultIndex = Math.floor(this.defaultIndex)
-        let defaultIndex = (intDefaultIndex >= 0 && intDefaultIndex < children.length) ? intDefaultIndex : 0
-        this.index = defaultIndex
+        const pages = []
+        this.index = Math.abs(this.defaultIndex) < children.length ? this.defaultIndex : 0
         children.forEach((child, $index) => {
           pages.push(child.$el)
           removeClass(child.$el, 'slide-active')
@@ -75,338 +67,204 @@
             if (!this.loop && (this.index >= this.pages.length - 1)) {
               return this.clearTimer()
             }
-            if (!this.dragging && !this.animating) {
-              this.next()
+            if (!this.sliding && !this.animating) {
+              this.runAnimate('next')
             }
           }, this.autoInterval)
-        }
-      },
-      rafTranslate(element, initOffset, offset, callback, nextElement) {
-        let ALPHA = 0.88
-        this.animating = true
-        let _offset = initOffset
-        let raf = 0
-
-        function animationLoop() {
-          if (Math.abs(_offset - offset) < 0.5) {
-            this.animating = false
-            _offset = offset
-            element.style.webkitTransform = ''
-            if (nextElement) {
-              nextElement.style.webkitTransform = ''
-            }
-            cancelAnimationFrame(raf)
-
-            if (callback) {
-              callback()
-            }
-
-            return
-          }
-
-          _offset = ALPHA * _offset + (1.0 - ALPHA) * offset
-          element.style.webkitTransform = `translateX(${_offset}px)`
-
-          if (nextElement) {
-            nextElement.style.webkitTransform = `translateX(${_offset - offset}px)`
-          }
-
-          raf = requestAnimationFrame(animationLoop.bind(this))
-        }
-
-        animationLoop.call(this)
-      },
-
-      translate(element, offset, speed, callback) {
-        if (speed) {
-          this.animating = true
-          element.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
-          setTimeout(() => {
-            element.style.webkitTransform = `translateX(${offset}px)`
-          }, 50)
-          let called = false
-
-          let transitionEndCallback = () => {
-            if (called) return
-            called = true
-            this.animating = false
-            element.style.webkitTransition = ''
-            element.style.webkitTransform = ''
-            if (callback) {
-              callback.apply(this, arguments)
-            }
-          }
-
-          setTimeout(transitionEndCallback, speed + 80)
-        } else {
-          element.style.webkitTransition = ''
-          element.style.webkitTransform = `translateX(${offset}px)`
         }
       },
       clearTimer() {
         clearInterval(this.timer)
         this.timer = null
       },
-      doAnimate(towards, options) {
-        if (this.$children.length === 0) return
-        if (!options && this.$children.length < 2) return
-
-        /*eslint-disable*/
-        let prevPage, nextPage, currentPage, pageWidth, offsetLeft, speedX
-        let speed = this.speed || 300
-        let index = this.index
-        let pages = this.pages
-        let pageCount = pages.length
-
-        if (!options) {
-          pageWidth = this.$el.clientWidth
-          currentPage = pages[index]
-          prevPage = pages[index - 1]
-          nextPage = pages[index + 1]
-          if (this.loop && pages.length > 1) {
-            if (!prevPage) {
-              prevPage = pages[pages.length - 1]
-            }
-            if (!nextPage) {
-              nextPage = pages[0]
-            }
+      /**
+       * 滑动距离后继续执行
+       * 采用requestAnimationFrame
+       */
+      continueTranslate($el, initOffset, offset, callback, $elNext) {
+        const ALPHA = 0.88
+        this.animating = true
+        let _offset = initOffset
+        const animationLoop = () => {
+          if (Math.abs(_offset - offset) < 0.5) {
+            this.animating = false
+            $el.style.webkitTransform = ''
+            $elNext.style.webkitTransform = ''
+            if (callback) callback()
+          } else {
+            _offset = ALPHA * _offset + (1.0 - ALPHA) * offset
+            $el.style.webkitTransform = `translateX(${_offset}px)`
+            $elNext.style.webkitTransform = `translateX(${_offset - offset}px)`
+            animationFrame(animationLoop)
           }
-          if (prevPage) {
-            prevPage.style.display = 'block'
-            this.translate(prevPage, -pageWidth)
+        }
+        animationLoop()
+      },
+      /**
+       * 动画
+       */
+      translate($el, offset, speed, callback) {
+        if (speed) {
+          this.animating = true
+          $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
+          setTimeout(() => {
+            $el.style.webkitTransform = `translateX(${offset}px)`
+          }, 60)
+          const transitionEndCallback = () => {
+            this.animating = false
+            $el.style.webkitTransition = ''
+            $el.style.webkitTransform = ''
+            if (callback) callback.apply({}, arguments)
           }
-          if (nextPage) {
-            nextPage.style.display = 'block'
-            this.translate(nextPage, pageWidth)
-          }
+          setTimeout(transitionEndCallback, speed + 30)
         } else {
-          prevPage = options.prevPage
-          currentPage = options.currentPage
-          nextPage = options.nextPage
-          pageWidth = options.pageWidth
-          offsetLeft = options.offsetLeft
-          speedX = options.speedX
+          $el.style.webkitTransition = ''
+          $el.style.webkitTransform = `translateX(${offset}px)`
         }
+      },
+      runAnimate(towards, options) {
+        if (this.pages.length < 2) return
+        let { prevPage, nextPage, currentPage, $elWidth, offsetLeft, distanceX } = options || {}
+        let speed = this.speed || 300
+        const index = this.index
+        const pages = this.pages
+        let pageCount = pages.length
+        if (!options) {
+          $elWidth = this.$el.clientWidth
+          const prevIndex = index - 1 < 0 ? pages.length - 1 : index - 1
+          const nextIndex = index + 1 > pages.length - 1 ? 0 : index + 1
+          currentPage = pages[index]
+          prevPage = pages[prevIndex]
+          nextPage = pages[nextIndex]
 
-        let newIndex
+          prevPage.style.display = 'block'
+          this.translate(prevPage, -$elWidth)
 
-        let oldPage = this.$children[index].$el
+          nextPage.style.display = 'block'
+          this.translate(nextPage, $elWidth)
+        }
+        if (!currentPage || !prevPage || !nextPage) return
 
+        let newIndex = null
         if (towards === 'prev') {
-          if (index > 0) {
-            newIndex = index - 1
-          }
-          if (this.loop && index === 0) {
-            newIndex = pageCount - 1
-          }
+          if (index > 0) newIndex = index - 1
+          if (this.loop && index === 0) newIndex = pageCount - 1
         } else if (towards === 'next') {
-          if (index < pageCount - 1) {
-            newIndex = index + 1
-          }
-          if (this.loop && index === pageCount - 1) {
-            newIndex = 0
-          }
+          if (index < pageCount - 1) newIndex = index + 1
+          if (this.loop && index === pageCount - 1) newIndex = 0
         }
-
         let callback = () => {
-          if (newIndex !== undefined) {
-            let newPage = this.$children[newIndex].$el
-            removeClass(oldPage, 'slide-active')
-            addClass(newPage, 'slide-active')
+          if (newIndex !== undefined && newIndex !== null) {
+            removeClass(currentPage, 'slide-active')
+            addClass(pages[newIndex], 'slide-active')
             this.index = newIndex
           }
-          if (prevPage) {
-            prevPage.style.display = ''
-          }
-          if (nextPage) {
-            nextPage.style.display = ''
-          }
+          prevPage.style.display = ''
+          nextPage.style.display = ''
         }
 
         setTimeout(() => {
           if (towards === 'next') {
-            this.isDone = true
-            if (speedX) {
-              this.rafTranslate(currentPage, offsetLeft, -pageWidth, callback, nextPage)
+            if (distanceX) {
+              this.continueTranslate(currentPage, offsetLeft, -$elWidth, callback, nextPage)
             } else {
-              this.translate(currentPage, -pageWidth, speed, callback)
-              if (nextPage) {
-                this.translate(nextPage, 0, speed)
-              }
+              this.translate(currentPage, -$elWidth, speed, callback)
+              this.translate(nextPage, 0, speed)
             }
           } else if (towards === 'prev') {
-            this.isDone = true
-            if (speedX) {
-              this.rafTranslate(currentPage, offsetLeft, pageWidth, callback, prevPage)
+            if (distanceX) {
+              this.continueTranslate(currentPage, offsetLeft, $elWidth, callback, prevPage)
             } else {
-              this.translate(currentPage, pageWidth, speed, callback)
-              if (prevPage) {
-                this.translate(prevPage, 0, speed)
-              }
+              this.translate(currentPage, $elWidth, speed, callback)
+              this.translate(prevPage, 0, speed)
             }
-          } else {
-            this.isDone = false
+          } else { // 滑动距离<5的回滚
             this.translate(currentPage, 0, speed, callback)
-            if (typeof offsetLeft !== 'undefined') {
-              if (prevPage && offsetLeft > 0) {
-                this.translate(prevPage, pageWidth * -1, speed)
-              }
-              if (nextPage && offsetLeft < 0) {
-                this.translate(nextPage, pageWidth, speed)
-              }
+            if (offsetLeft > 0) {
+              this.translate(prevPage, $elWidth * -1, speed)
             } else {
-              if (prevPage) {
-                this.translate(prevPage, pageWidth * -1, speed)
-              }
-              if (nextPage) {
-                this.translate(nextPage, pageWidth, speed)
-              }
+              this.translate(nextPage, $elWidth, speed)
             }
           }
         }, 10)
       },
-      next() {
-        this.doAnimate('next')
-      },
-      prev() {
-        this.doAnimate('prev')
-      },
       /**
        * 触发开发
        */
-      doOnTouchStart(event) {
-        let element = this.$el
-        let dragState = this.dragState
-        let touch = event.touches[0]
+      touchStart(e) {
+        const $el = this.$el
+        const dragObject = this.dragObject
+        const touch = e.touches ? e.touches[0] : e
+        if (!this.loop || this.pages.length < 2) return
 
-        dragState.startTime = new Date()
-        dragState.startLeft = touch.pageX
-        dragState.startTop = touch.pageY
-        dragState.startTopAbsolute = touch.clientY
+        dragObject.startTime = new Date() // 触发时间
+        dragObject.startLeft = touch.pageX // 开始left值
 
-        dragState.pageWidth = element.offsetWidth
-        dragState.pageHeight = element.offsetHeight
+        dragObject.$elWidth = $el.offsetWidth
+        const prevIndex = this.index - 1 < 0 ? this.pages.length - 1 : this.index - 1
+        const nextIndex = this.index + 1 > this.pages.length - 1 ? 0 : this.index + 1
 
-        let prevPage = this.$children[this.index - 1]
-        let dragPage = this.$children[this.index]
-        let nextPage = this.$children[this.index + 1]
-
-        if (this.loop && this.pages.length > 1) {
-          if (!prevPage) {
-            prevPage = this.$children[this.$children.length - 1]
-          }
-          if (!nextPage) {
-            nextPage = this.$children[0]
-          }
-        }
-
-        dragState.prevPage = prevPage ? prevPage.$el : null
-        dragState.dragPage = dragPage ? dragPage.$el : null
-        dragState.nextPage = nextPage ? nextPage.$el : null
-
-        if (dragState.prevPage) {
-          dragState.prevPage.style.display = 'block'
-        }
-
-        if (dragState.nextPage) {
-          dragState.nextPage.style.display = 'block'
-        }
+        dragObject.prevPage = this.$children[prevIndex].$el
+        dragObject.dragPage = this.$children[this.index].$el
+        dragObject.nextPage = this.$children[nextIndex].$el
+        dragObject.prevPage.style.display = 'block'
+        dragObject.nextPage.style.display = 'block'
       },
       /**
        * 触发移动
        */
-      doOnTouchMove(event) {
-        let dragState = this.dragState
-        let touch = event.touches[0]
+      touchMove(e) {
+        const dragObject = this.dragObject
+        const touch = e.touches ? e.touches[0] : e
 
-        dragState.speedX = touch.pageX - dragState.currentLeft
-        dragState.currentLeft = touch.pageX
-        dragState.currentTop = touch.pageY
-        dragState.currentTopAbsolute = touch.clientY
+        dragObject.distanceX = touch.pageX - dragObject.currentLeft
+        dragObject.currentLeft = touch.pageX
 
-        let offsetLeft = dragState.currentLeft - dragState.startLeft
-        let offsetTop = dragState.currentTopAbsolute - dragState.startTopAbsolute
-
-        let distanceX = Math.abs(offsetLeft)
-        let distanceY = Math.abs(offsetTop)
-        if (distanceX < 5 || (distanceX >= 5 && distanceY >= 1.73 * distanceX)) {
-          this.userScrolling = true
-          return
-        } else {
-          this.userScrolling = false
-          event.preventDefault()
+        let offsetLeft = dragObject.currentLeft - dragObject.startLeft
+        if (Math.abs(offsetLeft) < 5) return
+        this.isScroll = true
+        offsetLeft = Math.min(Math.max(-dragObject.$elWidth + 1, offsetLeft), dragObject.$elWidth - 1)
+        const towards = offsetLeft < 0 ? 'next' : 'prev'
+        if (dragObject.prevPage && towards === 'prev') {
+          this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
         }
-        offsetLeft = Math.min(Math.max(-dragState.pageWidth + 1, offsetLeft), dragState.pageWidth - 1)
-
-        let towards = offsetLeft < 0 ? 'next' : 'prev'
-
-        if (dragState.prevPage && towards === 'prev') {
-          this.translate(dragState.prevPage, offsetLeft - dragState.pageWidth)
-        }
-        this.translate(dragState.dragPage, offsetLeft)
-        if (dragState.nextPage && towards === 'next') {
-          this.translate(dragState.nextPage, offsetLeft + dragState.pageWidth)
+        this.translate(dragObject.dragPage, offsetLeft)
+        if (dragObject.nextPage && towards === 'next') {
+          this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
         }
       },
       /**
        * 触发结束
        */
-      doOnTouchEnd() {
-        const dragState = this.dragState
-        const dragDuration = new Date() - dragState.startTime
+      touchEnd() {
+        const dragObject = this.dragObject
+        const dragDuration = new Date() - dragObject.startTime // 间隔时长
         let towards = null
-        let offsetLeft = dragState.currentLeft - dragState.startLeft
-        let offsetTop = dragState.currentTop - dragState.startTop
-        let pageWidth = dragState.pageWidth
-        let index = this.index
-        let pageCount = this.pages.length
+        let offsetLeft = dragObject.currentLeft - dragObject.startLeft
+        const $elWidth = dragObject.$elWidth
 
-        if (dragDuration < 300) {
-          let fireTap = Math.abs(offsetLeft) < 5 && Math.abs(offsetTop) < 5
-          if (isNaN(offsetLeft) || isNaN(offsetTop)) {
-            fireTap = true
-          }
-          if (fireTap) {
-            this.$children[this.index].$emit('tap')
-          }
-        }
+        if (dragDuration < 300 && !offsetLeft) return
 
-        if (dragDuration < 300 && dragState.currentLeft === undefined) return
-
-        if (dragDuration < 300 || Math.abs(offsetLeft) > pageWidth / 2) {
+        if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 2) {
           towards = offsetLeft < 0 ? 'next' : 'prev'
         }
-
+        /*eslint-disable*/
         if (!this.loop) {
-          if ((index === 0 && towards === 'prev') || (index === pageCount - 1 && towards === 'next')) {
+          if (( this.index === 0 && towards === 'prev') || ( this.index === (this.pages.length - 1) && towards === 'next')) {
             towards = null
           }
         }
-
-        if (this.$children.length < 2) {
-          towards = null
-        }
-        this.doAnimate(towards, {
-          offsetLeft: offsetLeft,
-          pageWidth: dragState.pageWidth,
-          prevPage: dragState.prevPage,
-          currentPage: dragState.dragPage,
-          nextPage: dragState.nextPage,
-          speedX: dragState.speedX
+        /*eslint-disabled*/
+        if (this.$children.length < 2) towards = null
+        this.runAnimate(towards, {
+          offsetLeft,
+          $elWidth,
+          prevPage: dragObject.prevPage,
+          currentPage: dragObject.dragPage,
+          nextPage: dragObject.nextPage,
+          distanceX: dragObject.distanceX
         })
-        this.dragState = {}
-      },
-      initTimer() {
-        if (this.autoInterval > 0 && !this.timer) {
-          this.timer = setInterval(() => {
-            if (!this.loop && (this.index >= this.pages.length - 1)) {
-              return this.clearTimer()
-            }
-            if (!this.dragging && !this.animating) {
-              this.next()
-            }
-          }, this.autoInterval)
-        }
+        this.dragObject = {}
       },
     },
     created() {
@@ -416,37 +274,37 @@
       this.initTimer()
       this.initPages()
       const $el = this.$el
-      $el.addEventListener('touchstart', (event) => {
-        event.preventDefault()
-        event.stopPropagation()
+      $el.addEventListener('touchstart', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
         if (this.animating) return
-        this.dragging = true
-        this.userScrolling = false
-        this.doOnTouchStart(event)
+        this.sliding = true
+        this.isScroll = false
+        this.touchStart(e)
       })
-
-      $el.addEventListener('touchmove', (event) => {
-        if (!this.dragging) return
+      $el.addEventListener('touchmove', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        if (!this.sliding) return
         if (this.timer) this.clearTimer()
-        this.doOnTouchMove(event)
+        this.touchMove(e)
       })
-
-      $el.addEventListener('touchend', (event) => {
-        if (this.userScrolling) {
-          this.dragging = false
-          this.dragState = {}
+      $el.addEventListener('touchend', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        if (!this.isScroll) {
+          this.sliding = false
+          this.dragObject = {}
           return
         }
-        if (!this.dragging) return
+        if (!this.sliding) return
         this.initTimer()
-        this.doOnTouchEnd(event)
-        this.dragging = false
+        this.touchEnd(e)
+        this.sliding = false
       })
     },
     destroyed() {
-      if (this.timer) {
-        this.clearTimer()
-      }
+      if (this.timer) this.clearTimer()
     },
   }
 </script>

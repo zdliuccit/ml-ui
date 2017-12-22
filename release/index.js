@@ -2,6 +2,7 @@
 import Icon from './components/icon/icon.vue'
 import Layout from './components/layout/layout.vue'
 import slide from './components/slide/slide.vue'
+import slideItem from './components/slide/child/slide-item.vue'
 // 引入JS组件
 import $toast from './components/toast'
 import $message from './components/message'
@@ -13,7 +14,8 @@ import responsiveDesign from './utils/responsiveDesign'
 const components = {
   Icon,
   Layout,
-  slide
+  slide,
+  slideItem,
 }
 // JS组件
 const jsComponents = {
@@ -37,7 +39,7 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.1.1',
+  version: '1.1.2',
   install,
   responsiveDesign,
 }, components, jsComponents)
