@@ -61,20 +61,32 @@
         })
         this.pages = pages
       },
+      /**
+       * 初始化定时器
+       * 采用setTimeout替代setInterval
+       */
       initTimer() {
         if (this.autoInterval > 0 && !this.timer) {
-          this.timer = setInterval(() => {
-            if (!this.loop && (this.index >= this.pages.length - 1)) {
-              return this.clearTimer()
-            }
+          this.clearTimer()
+          if (!this.loop && (this.index >= this.pages.length - 1)) return
+          const timerFunc = (callback) => {
+            this.timer = setTimeout(() => {
+              callback()
+              timerFunc(callback)
+            }, this.autoInterval)
+          }
+          timerFunc(() => {
             if (!this.sliding && !this.animating) {
               this.runAnimate('next')
             }
-          }, this.autoInterval)
+          })
         }
       },
+      /**
+       * 清除定时器
+       */
       clearTimer() {
-        clearInterval(this.timer)
+        clearTimeout(this.timer)
         this.timer = null
       },
       /**
@@ -82,19 +94,17 @@
        * 采用requestAnimationFrame
        */
       continueTranslate($el, initOffset, offset, callback, $elNext) {
-        const ALPHA = 0.88
         this.animating = true
-        let _offset = initOffset
         const animationLoop = () => {
-          if (Math.abs(_offset - offset) < 0.5) {
+          if (Math.abs(initOffset - offset) < 0.5) {
             this.animating = false
             $el.style.webkitTransform = ''
             $elNext.style.webkitTransform = ''
             if (callback) callback()
           } else {
-            _offset = ALPHA * _offset + (1.0 - ALPHA) * offset
-            $el.style.webkitTransform = `translateX(${_offset}px)`
-            $elNext.style.webkitTransform = `translateX(${_offset - offset}px)`
+            initOffset = 0.87 * initOffset + 0.13 * offset
+            $el.style.webkitTransform = `translateX(${initOffset}px)`
+            $elNext.style.webkitTransform = `translateX(${initOffset - offset}px)`
             animationFrame(animationLoop)
           }
         }
@@ -295,9 +305,8 @@
         if (!this.isScroll) {
           this.sliding = false
           this.dragObject = {}
-          return
         }
-        if (!this.sliding) return
+        if (!this.sliding || !this.isScroll) return
         this.initTimer()
         this.touchEnd(e)
         this.sliding = false
