@@ -16,8 +16,28 @@ export default {
           label: 'Layout 布局',
         },
         {
+          link: '/docs/button',
+          label: 'Button 按钮',
+        },
+        {
+          link: '/docs/radio',
+          label: 'Radio 单选',
+        },
+        {
+          link: '/docs/checkbox',
+          label: 'Checkbox 多选',
+        },
+        {
           link: '/docs/slide',
           label: 'Slide 幻灯片',
+        },
+        {
+          link: '/docs/tab',
+          label: 'Tab 选项卡',
+        },
+        {
+          link: '/docs/progress',
+          label: 'Progress 进度条',
         },
       ]
     },
