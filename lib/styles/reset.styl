@@ -58,8 +58,7 @@ fieldset, img {
   border: 0;
 }
 
-button, input, select, textarea {
-  font-size: 100%;
+button:active, button, input, select, textarea {
   outline: none;
 }
 
@@ -70,4 +69,9 @@ table {
 
 div {
   box-sizing: border-box;
+}
+
+a, img, button, input, textarea {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }

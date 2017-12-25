@@ -1,0 +1,53 @@
+@import './../var.styl'
+.ml-button {
+  -webkit-appearance: none;
+  border-radius: $border-radius;
+  border-color: $color-border;
+  box-sizing: border-box;
+  color: $color-prompt1;
+  font-size: $font-size;
+  height: 80px;
+  display: inline-block;
+  overflow: hidden;
+  user-select: none;
+  padding: 0 20px;
+  text-align: center;
+  background-color: #fff;
+  outline: 0;
+}
+
+.ml-button-big {
+  display: block;
+  width: 100%;
+  font-size: $font-max-size;
+}
+
+.ml-button-small {
+  display: inline-block;
+  font-size: $font-min-size;
+  padding: 0 10px;
+  height: 66px;
+}
+
+.ml-button-primary {
+  color: #fff;
+  background-color: $color-primary;
+  border: 0;
+}
+
+.ml-button-danger {
+  color: #fff;
+  background-color: $color-danger;
+  border: 0;
+}
+
+.ml-button-submit {
+  color: #fff;
+  background-color: $color-success;
+  border: 0;
+}
+
+.ml-button-disabled {
+  opacity: .6
+}
+
