@@ -40,10 +40,10 @@ API
 | disabled         | 禁用状态	  | Boolean  | - | false |
 | type         | 按钮样式		  |   | - | default |
 | size         | 尺寸			  |   | - |  |
-| className         |  自定义class名			  |   | - |  |
+| className         |  自定义class名称			  |   | - |  |
 
 Slot
-| name | 面试 |
+| name | 描述 |
 | -- | --- | 
 | - | 默认文字 | 
 | icon | 图标icon | 
