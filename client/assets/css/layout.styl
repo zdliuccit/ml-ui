@@ -57,6 +57,24 @@ body, html {
     padding-top: 70PX;
     overflow: hidden;
     top: 0;
+    .ml-QRCode {
+      width: 70PX;
+      position: absolute;
+      right: 0;
+      top: 90PX;
+      z-index: 2;
+      .ml-QRCode-img {
+        width: 70PX;
+        height: 70PX;
+        background: url("./../images/mobile-src.png") no-repeat;
+        background-size: 100% 100%;
+      }
+      .ml-QRCode-word {
+        padding-top: 5PX;
+        text-align: center;
+        font-size: 12PX;
+      }
+    }
     .side-nav {
       border-top: 1PX solid #eee;
       width: 220PX;

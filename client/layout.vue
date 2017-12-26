@@ -16,6 +16,10 @@
       </div>
       <div class="ml-body">
         <div class="ml-sidebar">
+          <div class="ml-QRCode">
+            <div class="ml-QRCode-img"></div>
+            <div class="ml-QRCode-word">手机预览</div>
+          </div>
           <ul class="side-nav">
             <li class="nav-item">
               <a href="javascript:;" changelog>更新日志</a>
