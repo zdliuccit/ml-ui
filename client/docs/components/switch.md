@@ -18,11 +18,12 @@ Demo
   <div slot="left">ON</div>
   <div slot="right">OFF</div>
 </ml-switch>
-
+// left、right字数一样最好
 <ml-switch v-model="switchValue">
   <div slot="left">开</div>
   <div slot="right">关</div>
 </ml-switch>
+
 
 // 禁止
 <ml-switch v-model="switchValue" :disabled="true"></ml-switch>
@@ -32,3 +33,9 @@ Props
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model         | 绑定值		  | Boolean  | - | - |
 | disabled         | 是否禁用	  | Boolean  |  true、false  | false |
+
+Slot
+| 参数          | 说明            |
+|-------------  |---------------- |
+|left  |左侧slot |
+|right  |右侧slot |
