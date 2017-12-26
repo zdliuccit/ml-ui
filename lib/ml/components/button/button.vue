@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleClick" class="ml-button" :disabled="disabled"
+  <button @click="handleClick" class="ml-button ml-border" :disabled="disabled"
           :class="[
             className,
             `ml-button-${type}`,

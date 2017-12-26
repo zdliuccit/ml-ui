@@ -31,6 +31,26 @@
             label: 'Slide',
             link: '/demo/slide'
           },
+          {
+            label: 'Button',
+            link: '/demo/button'
+          },
+          {
+            label: 'Radio',
+            link: '/demo/radio'
+          },
+          {
+            label: 'Checkbox',
+            link: '/demo/checkbox'
+          },
+          {
+            label: 'Tab',
+            link: '/demo/tab'
+          },
+          {
+            label: 'Progress',
+            link: '/demo/progress'
+          },
         ],
         jsCpt: [
           {

@@ -1,13 +1,13 @@
 # Button
 
-基础布局
+按钮
 ```js
 import { Button } from 'ml-ui'
 
 Vue.component(Layout.name, Layout)
 ```
 
-例子
+Demo
 
 
 ```html
@@ -34,7 +34,7 @@ Vue.component(Layout.name, Layout)
 
 
 ```
-API
+Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | disabled         | 禁用状态	  | Boolean  | - | false |

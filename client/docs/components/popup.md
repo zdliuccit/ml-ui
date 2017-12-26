@@ -18,7 +18,7 @@ this.$popup({type:'alert',message: '这是alert' })
 
 this.$popup({type:'confirm', message: '这是confirm' }) 
 ```
-API
+Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | title         | 标题   | String  | - | - |
