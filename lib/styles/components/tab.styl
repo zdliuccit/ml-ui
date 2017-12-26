@@ -1,0 +1,21 @@
+@import './../var.styl'
+.ml-tab, .ml-tab-item, .ml-tab-items-wrap {
+  position: relative;
+  height: 100%;
+  overflow: hidden
+}
+
+.ml-tab-items-wrap .ml-tab-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  display: none;
+}
+
+.ml-tab-items-wrap .tab-active {
+  display: block;
+  transform: none;
+}

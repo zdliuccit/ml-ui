@@ -1,0 +1,54 @@
+@import './../var.styl'
+.ml-switch {
+  position: relative;
+  min-width: 116px;
+  height: 68px;
+  background-color: $color-aaa;
+  border-radius: 34px;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  transition: $all-transition;
+  .ml-switch-circle {
+    position: absolute;
+    height: 56px;
+    width: 56px;
+    left: 6px;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 50%;
+    background-color: #fff;
+    transition: $all-transition;
+  }
+  .ml-switch-left {
+    display: none;
+    padding-right: 52px;
+    line-height: 40px;
+    font-size: $font-max-size;
+    color: #fff;
+  }
+  .ml-switch-right {
+    display: block;
+    line-height: 40px;
+    padding-left: 52px;
+    font-size: $font-max-size;
+    color: #333;
+  }
+}
+
+.switch-disabled {
+  opacity: .6;
+}
+
+.ml-switch-check {
+  background-color: $color-primary
+  .ml-switch-circle {
+    left: calc(100% - 62px);
+  }
+  .ml-switch-left {
+    display: block;
+    color: #fff;
+  }
+  .ml-switch-right {
+    display: none;
+  }
+}

@@ -20,6 +20,10 @@ export default {
           label: 'Button 按钮',
         },
         {
+          link: '/docs/switch',
+          label: 'Switch 开关'
+        },
+        {
           link: '/docs/radio',
           label: 'Radio 单选',
         },

@@ -25,7 +25,7 @@ Demo
 ml-radio Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
-| v-model         | 值	  | Boolean、String、Number  | - | - |
+| v-model         | 绑定值		  | Boolean、String、Number  | - | - |
 
 ml-radio-item Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |

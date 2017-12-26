@@ -1,10 +1,7 @@
 <template>
-  <div class="ml-tab">
-    <div class="ml-tab-nav">
-      <slot name="content"></slot>
-    </div>
-    <div class="ml-tab-wrap" ref="mlTabs">
-      <slot name="content"></slot>
+  <div class="ml-tab-content">
+    <div class="ml-tab-ctt-wrap" ref="mlTabCtts">
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -14,6 +11,7 @@
   export default {
     name: 'ml-tab',
     props: {
+      value: [String, Number],
       speed: {
         type: Number,
         default: 300,

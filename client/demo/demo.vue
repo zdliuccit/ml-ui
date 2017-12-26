@@ -48,6 +48,10 @@
             link: '/demo/tab'
           },
           {
+            label: 'Switch',
+            link: '/demo/switch'
+          },
+          {
             label: 'Progress',
             link: '/demo/progress'
           },
