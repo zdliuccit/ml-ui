@@ -18,16 +18,16 @@
           </ml-slide-item>
         </ml-slide>
       </div>
-      <div class="slide-demo">
-        <ml-slide>
-          <ml-slide-item>
-            <div class="slide-dbg gbg1">第一页</div>
-          </ml-slide-item>
-          <ml-slide-item>
-            <div class="slide-dbg gbg2">第二页</div>
-          </ml-slide-item>
-        </ml-slide>
-      </div>
+      <!--<div class="slide-demo">-->
+        <!--<ml-slide>-->
+          <!--<ml-slide-item>-->
+            <!--<div class="slide-dbg gbg1">第一页</div>-->
+          <!--</ml-slide-item>-->
+          <!--<ml-slide-item>-->
+            <!--<div class="slide-dbg gbg2">第二页</div>-->
+          <!--</ml-slide-item>-->
+        <!--</ml-slide>-->
+      <!--</div>-->
     </div>
   </div>
 </template>

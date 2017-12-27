@@ -6,9 +6,10 @@
 <script type="text/babel">
   export default {
     name: 'ml-tab-item',
-    methods: {
-      doClick() {
-      },
+    data() {
+      return {}
+    },
+    mounted() {
     }
   }
 </script>

@@ -94,17 +94,21 @@
        * 采用requestAnimationFrame
        */
       continueTranslate($el, initOffset, offset, callback, $elNext) {
+        let ALPHA = 0.88
         this.animating = true
         const animationLoop = () => {
-          if (Math.abs(initOffset - offset) < 0.5) {
+          ALPHA = ALPHA * (0.98)
+          if (Math.abs(initOffset - offset) < 2) {
             this.animating = false
             $el.style.webkitTransform = ''
             $elNext.style.webkitTransform = ''
-            if (callback) callback()
           } else {
-            initOffset = 0.87 * initOffset + 0.13 * offset
+            initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
             $el.style.webkitTransform = `translateX(${initOffset}px)`
             $elNext.style.webkitTransform = `translateX(${initOffset - offset}px)`
+            if (Math.abs(initOffset - offset) < 2) {
+              if (callback) callback.apply({}, arguments)
+            }
             animationFrame(animationLoop)
           }
         }

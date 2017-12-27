@@ -1,21 +1,23 @@
 @import './../var.styl'
-.ml-tab, .ml-tab-item, .ml-tab-items-wrap {
+.ml-tab {
   position: relative;
   height: 100%;
-  overflow: hidden
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  .ml-tab-nav {
+    height: 100px;
+    display: flex;
+    border-bottom-color: $color-border;
+  }
+  .ml-tab-wrap {
+    flex: 1;
+    > div {
+      position: relative;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
 }
 
-.ml-tab-items-wrap .ml-tab-item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateX(-100%);
-  display: none;
-}
-
-.ml-tab-items-wrap .tab-active {
-  display: block;
-  transform: none;
-}

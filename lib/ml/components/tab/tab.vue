@@ -1,10 +1,9 @@
 <template>
   <div class="ml-tab">
-    <div class="ml-tab-nav">
-      <slot name="content"></slot>
+    <div class="ml-tab-nav ml-border">
     </div>
     <div class="ml-tab-wrap" ref="mlTabs">
-      <slot name="content"></slot>
+      <slot name="item"></slot>
     </div>
   </div>
 </template>
@@ -42,6 +41,7 @@
         const pages = []
         this.index = Math.abs(this.defaultIndex) < children.length ? this.defaultIndex : 0
         children.forEach((child, $index) => {
+          console.log(child)
           pages.push(child.$el)
           removeClass(child.$el, 'tab-active')
           addClass(child.$el, `tab-${$index} ${$index === this.index ? 'tab-active' : ''}`)
@@ -61,7 +61,7 @@
             $elNext.style.webkitTransform = ''
             if (callback) callback()
           } else {
-            initOffset = 0.87 * initOffset + 0.13 * offset
+            initOffset = 0.87 * initOffset + 0.3 * offset
             $el.style.webkitTransform = `translateX(${initOffset}px)`
             $elNext.style.webkitTransform = `translateX(${initOffset - offset}px)`
             animationFrame(animationLoop)
@@ -235,7 +235,8 @@
     },
     mounted() {
       this.initPages()
-      const $el = this.$el
+      const $el = this.$refs.mlTabs
+      console.log($el)
       $el.addEventListener('touchstart', (e) => {
         e.preventDefault()
         e.stopPropagation()
