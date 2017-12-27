@@ -10,7 +10,7 @@ Vue.component(Checkbox.name, Checkbox)
 Demo
 
 ```html
-<ml-checkbox v-model="checkboxValue">
+<ml-checkbox v-model="checkboxValue" @on-change="doChange">
   <ml-checkbox-item value="11">单选1南京</ml-checkbox-item>
   <ml-checkbox-item value="22">单选2杭州</ml-checkbox-item>
   <ml-checkbox-item value="33">单选3上海</ml-checkbox-item>
@@ -22,12 +22,17 @@ Demo
   <ml-checkbox-item :disabled="true" value="22">单选2杭州</ml-checkbox-item>
 </ml-checkbox>
 ```
-ml-checkbox Props
+Checkbox Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model         | 绑定值	  | String(`,`隔开)、Array  | - | - |
 
-ml-checkbox-item Props
+Checkbox events
+| 事件名称          | 说明            | 返回值 |
+|-------------  |---------------- | ---- |
+|on-change	  |开关变化时触发，返回当前的状态	 | true|false |
+
+Checkbox-item Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | value         | 值	  | -  | - | - |

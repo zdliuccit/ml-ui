@@ -28,14 +28,19 @@ Demo
 // 禁止
 <ml-switch v-model="switchValue" :disabled="true"></ml-switch>
 ```
-Props
+Switch Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model         | 绑定值		  | Boolean  | - | - |
 | disabled         | 是否禁用	  | Boolean  |  true、false  | false |
 
-Slot
-| 参数          | 说明            |
+Switch events
+| 事件名称          | 说明            | 返回值 |
+|-------------  |---------------- | ---- |
+|on-change	  |开关变化时触发，返回当前的状态	 | true|false |
+
+Switch Slot
+| 名称          | 说明            |
 |-------------  |---------------- |
 |left  |左侧slot |
 |right  |右侧slot |

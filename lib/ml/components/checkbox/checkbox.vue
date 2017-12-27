@@ -23,6 +23,7 @@
        */
       currentValue(val) {
         this.$emit('input', val)
+        this.$emit('on-change', val)
       }
     },
     data() {

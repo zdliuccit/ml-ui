@@ -4,7 +4,7 @@
     <div class="dd-warp">
       <div class="warp-ctt">
         <div class="dd-label">默认{{switchValue}}</div>
-        <ml-switch v-model="switchValue"></ml-switch>
+        <ml-switch v-model="switchValue" @on-change="doChange"></ml-switch>
         <div class="dd-label">slot插槽 {{switchValue1}}</div>
         <ml-switch v-model="switchValue1">
           <div slot="left">ON</div>
@@ -33,6 +33,14 @@
         switchValue3: false,
       }
     },
-    methods: {}
+    methods: {
+      /**
+       *
+       * @param v
+       */
+      doChange(v) {
+        this.log(v)
+      }
+    }
   }
 </script>
