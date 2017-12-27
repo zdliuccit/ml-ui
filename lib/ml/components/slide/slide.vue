@@ -104,7 +104,6 @@
             $elNext.style.webkitTransform = ''
           } else {
             initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
-            console.log(Math.abs(initOffset - offset))
             $el.style.webkitTransform = `translateX(${initOffset}px)`
             $elNext.style.webkitTransform = `translateX(${initOffset - offset}px)`
             if (Math.abs(initOffset - offset) < 3) {
