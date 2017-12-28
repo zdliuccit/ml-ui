@@ -38,20 +38,21 @@
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .icon-list {
-    padding: 20px;
+    padding: 10px 0;
     word-break: break-all;
     li {
-      width: 20%;
+      width: 25%;
       text-align: center;
       float: left;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       .icon {
         i {
-          font-size: 44px;
+          font-size: 20px;
         }
       }
       .name {
-        padding-top: 20px;
+        padding-top: 10px;
+        font-size: 12px;
       }
     }
   }

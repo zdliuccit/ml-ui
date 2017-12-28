@@ -1,8 +1,17 @@
 // 引入基础组件
 import Icon from './components/icon/icon.vue'
 import Layout from './components/layout/layout.vue'
-import slide from './components/slide/slide.vue'
-import slideItem from './components/slide/child/slide-item.vue'
+import Slide from './components/slide/slide.vue'
+import SlideItem from './components/slide/child/slide-item.vue'
+import Button from './components/button/button.vue'
+import Checkbox from './components/checkbox/checkbox.vue'
+import CheckboxItem from './components/checkbox/child/checkbox-item.vue'
+import Progress from './components/progress/progress.vue'
+import Switch from './components/switch/switch.vue'
+import Radio from './components/radio/radio.vue'
+import RadioItem from './components/radio/child/radio-item.vue'
+import Tab from './components/tab/tab.vue'
+import TabItem from './components/tab/child/tab-item.vue'
 // 引入JS组件
 import $toast from './components/toast'
 import $message from './components/message'
@@ -12,10 +21,19 @@ import responsiveDesign from './utils/responsiveDesign'
 
 // 普通组件
 const components = {
+  Tab,
+  TabItem,
   Icon,
+  Radio,
+  RadioItem,
+  Button,
   Layout,
-  slide,
-  slideItem,
+  Switch,
+  Checkbox,
+  CheckboxItem,
+  Progress,
+  Slide,
+  SlideItem,
 }
 // JS组件
 const jsComponents = {

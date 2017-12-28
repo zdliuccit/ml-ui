@@ -41,7 +41,6 @@
         const pages = []
         this.index = Math.abs(this.defaultIndex) < children.length ? this.defaultIndex : 0
         children.forEach((child, $index) => {
-          console.log(child)
           pages.push(child.$el)
           removeClass(child.$el, 'tab-active')
           addClass(child.$el, `tab-${$index} ${$index === this.index ? 'tab-active' : ''}`)
@@ -236,7 +235,6 @@
     mounted() {
       this.initPages()
       const $el = this.$refs.mlTabs
-      console.log($el)
       $el.addEventListener('touchstart', (e) => {
         e.preventDefault()
         e.stopPropagation()

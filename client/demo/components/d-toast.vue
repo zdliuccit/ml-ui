@@ -9,12 +9,15 @@
         <button class="dd-btn ml-border" @click="doClick('bottom')">Toast显示在尾部</button>
       </div>
     </div>
+    <ml-model v-model="aa"></ml-model>
   </div>
 </template>
 <script type="text/babel">
   export default {
     data() {
-      return {}
+      return {
+        aa: false,
+      }
     },
     methods: {
       /**
@@ -22,6 +25,7 @@
        * @param {String} place 位置
        */
       doClick(place) {
+        this.aa = !this.aa
         this.$toast({ message: `消息在${place}`, place: place })
       },
       /**

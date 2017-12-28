@@ -11,7 +11,6 @@ import { addRequestInterceptor, addResponseInterceptor } from '@config/utils/htt
 // 引入自定义业务组件
 import dhead from './demo/d-head.vue'
 // 开启响应式配置
-mlUI.responsiveDesign({})
 // 引入mlUI组件库
 Vue.use(mlUI)
 

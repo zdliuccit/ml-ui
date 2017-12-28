@@ -50,17 +50,17 @@
 </style>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .dd-layout-demo {
-    height: 400px;
+    height: 200px;
     overflow: auto;
-    padding: 0 40px;
+    padding: 0 20px;
   }
 
   .slot-ctt {
-    font-size: 32px;
+    font-size: 16px;
   }
 
   .slot-hh {
-    height: 60px;
+    height: 30px;
     background-color cornflowerblue;
   }
 

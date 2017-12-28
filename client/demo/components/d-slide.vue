@@ -56,13 +56,13 @@
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .slide-demo {
     width: 100%;
-    height: 400px;
-    margin-bottom: 40px;
+    height: 200px;
+    margin-bottom: 20px;
   }
 
   .slide-dbg {
-    line-height: 400px;
-    font-size: 40px;
+    line-height: 200px;
+    font-size: 20px;
     text-align: center;
     color: #fff;
   }

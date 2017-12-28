@@ -57,31 +57,31 @@
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .dd-button-warp {
-    padding: 10px 30px;
+    padding: 5px 15px;
     overflow-x: hidden;
     overflow-y: auto;
   }
 
   .icon-button {
     .iconfont {
-      font-size: 38px;
-      margin-right: 10px;
+      font-size: 18px;
+      margin-right: 5px;
     }
   }
 
   .dd-warp {
     .label {
       text-align: center;
-      margin-bottom: 40px;
-      font-size: 36px;
+      margin-bottom: 20px;
+      font-size: 18px;
     }
     button {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
   }
 
   .big-button, .default-button, .small-button, .icon-button {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .default-button {
@@ -92,7 +92,7 @@
 
   .small-button, .icon-button {
     button {
-      margin-right: 10px;
+      margin-right: 5px;
     }
   }
 </style>

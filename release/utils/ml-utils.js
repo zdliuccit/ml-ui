@@ -64,4 +64,14 @@ module.exports = {
       $el.className = classes.join(' ')
     }
   },
+  /**
+   *  兼容requestAnimationFrame
+   *  @param  {Function } callback
+   */
+  animationFrame: function (callback) {
+    requestAnimationFrame(callback) ||
+    webkitRequestAnimationFrame(callback) ||
+    mozRequestAnimationFrame(callback) ||
+    setTimeout(callback, 60)
+  }
 }

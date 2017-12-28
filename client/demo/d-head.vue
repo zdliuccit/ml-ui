@@ -31,19 +31,19 @@
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .demo-top {
-    padding: 20px;
+    padding: 10px;
     position: relative;
-    line-height: 40px;
+    line-height: 20px;
     .demo-back {
       position: absolute;
-      top: 20px;
-      left: 30px;
+      top: 10px;
+      left: 15px;
       i {
-        font-size: 44px;
+        font-size: 22px;
       }
     }
     .demo-top-title {
-      font-size: 44px;
+      font-size: 22px;
       text-align: center;
     }
   }

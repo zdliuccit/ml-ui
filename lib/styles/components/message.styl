@@ -44,7 +44,7 @@
 }
 
 .ml-message.place-bottom {
-  bottom: 100px;
+  bottom: 50px;
   left: 50%;
   transform: translate(-50%, 0)
 }
@@ -56,7 +56,7 @@
 }
 
 .ml-message.place-top {
-  top: 100px;
+  top: 50px;
   left: 50%;
   transform: translate(-50%, 0)
 }
@@ -65,20 +65,18 @@
   position: fixed;
   max-width: 80%;
   border-radius: $border-radius;
-  line-height: 36px;
-  box-shadow: 0 0 2px transparent;
-  box-sizing: border-box;
-  padding: 20px 30px 0;
+  line-height: 18px;
+  padding: 8px 12px 0;
   text-align: center;
   transition: $fade-transition;
   .ml-message-text {
-    font-size: $font-min-size;
+    font-size: $font-size;
     word-break: break-all;
     word-break: break-word;
-    padding-bottom: 20px;
+    padding-bottom: 8px;
   }
   i {
-    margin-right: 10px;
-    margin-bottom: 20px;
+    margin-right: 5px;
+    margin-bottom: 8px;
   }
 }

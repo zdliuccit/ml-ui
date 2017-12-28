@@ -13,7 +13,7 @@
 
 .markdown-body {
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14PX;
+  font-size: 14px;
   color: #333;
   line-height: 1.6;
   word-wrap: break-word;
@@ -41,7 +41,7 @@
 .markdown-body h5,
 .markdown-body h6 {
   margin-top: 1em;
-  margin-bottom: 16PX;
+  margin-bottom: 16px;
   font-weight: bold;
   line-height: 1.4;
 }
@@ -54,7 +54,7 @@
 .markdown-body table,
 .markdown-body pre {
   margin-top: 0;
-  margin-bottom: 16PX;
+  margin-bottom: 16px;
 }
 
 .markdown-body h1 {
@@ -62,14 +62,14 @@
   padding-bottom: 0.3em;
   font-size: 2.25em;
   line-height: 1.2;
-  border-bottom: 1PX solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .markdown-body h2 {
   padding-bottom: 0.3em;
   font-size: 1.75em;
   line-height: 1.225;
-  border-bottom: 1PX solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .markdown-body h3 {
@@ -121,9 +121,9 @@
 .markdown-body blockquote {
   margin-left: 0;
   margin-right: 0;
-  padding: 0 15PX;
+  padding: 0 15px;
   color: #777;
-  border-left: 4PX solid #ddd;
+  border-left: 4px solid #ddd;
 }
 
 .markdown-body table {
@@ -137,7 +137,7 @@
 
 .markdown-body table tr {
   background-color: #fff;
-  border-top: 1PX solid #ccc;
+  border-top: 1px solid #ccc;
 }
 
 .markdown-body table tr:nth-child(2n) {
@@ -146,19 +146,19 @@
 
 .markdown-body table th,
 .markdown-body table td {
-  padding: 6PX 13PX;
-  border: 1PX solid #ddd;
+  padding: 6px 13px;
+  border: 1px solid #ddd;
 }
 
 .markdown-body pre {
   word-wrap: normal;
-  padding: 16PX;
+  padding: 16px;
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
   background-color: #f7f7f7;
-  -webkit-border-radius: 3PX;
-  border-radius: 3PX;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .markdown-body pre code {
@@ -172,8 +172,8 @@
   word-wrap: normal;
   white-space: pre;
   border: 0;
-  -webkit-border-radius: 3PX;
-  border-radius: 3PX;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   background-color: transparent;
 }
 
@@ -190,8 +190,8 @@
   margin: 0;
   font-size: 85%;
   background-color: rgba(0, 0, 0, 0.04);
-  -webkit-border-radius: 3PX;
-  border-radius: 3PX;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .markdown-body code:before,
@@ -209,10 +209,10 @@
 .markdown-body img {
   max-width: 100%;
   max-height: 100%;
-  -webkit-border-radius: 4PX;
-  border-radius: 4PX;
-  -webkit-box-shadow: 0 0 10PX #555;
-  box-shadow: 0 0 10PX #555;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 10px #555;
+  box-shadow: 0 0 10px #555;
 }
 
 .markdown-body strong {
@@ -232,7 +232,7 @@
 }
 
 .task-list-item input {
-  font: 13PX/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   margin: 0 0.35em 0.25em -1.6em;
   vertical-align: middle;
 }
@@ -297,14 +297,14 @@
 .markdown-body .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 16PX;
+  margin-bottom: 16px;
   table-layout: fixed;
-  font-size: 14PX;
+  font-size: 14px;
   background-color: #fff
 }
 
 .markdown-body .table td, .markdown-body .table th {
-  padding: 8PX;
+  padding: 8px;
   vertical-align: top;
   border: 1px solid #eee;
   text-align: left;
@@ -313,7 +313,7 @@
 
 .markdown-body .table th {
   font-weight: 400;
-  padding: 8PX;
+  padding: 8px;
   background-color: #f4f5f7
 }
 

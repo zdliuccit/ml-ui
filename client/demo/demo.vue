@@ -84,15 +84,15 @@
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .ml-demo {
-    font-size: 36px;
+    font-size: 18px;
     .ul-cpt {
-      margin-bottom: 30px;
-      padding: 0 20px 20px;
+      margin-bottom: 15px;
+      padding: 0 10px 10px;
       li {
         border-bottom-color: #ddd;
         a {
           display: block;
-          padding: 20px;
+          padding: 10px;
         }
         a:hover {
           color: #0090fb;

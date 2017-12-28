@@ -1,18 +1,19 @@
 @import './../var.styl'
 .ml-switch {
   position: relative;
-  min-width: 116px;
-  height: 68px;
+  min-width: 50px;
+  height: 30px;
   background-color: $color-aaa;
-  border-radius: 34px;
-  padding: 14px 20px;
+  border-radius: 17px;
+  padding: 5px 8px;
   box-sizing: border-box;
   transition: $all-transition;
+  font-size: $font-size;
   .ml-switch-circle {
     position: absolute;
-    height: 56px;
-    width: 56px;
-    left: 6px;
+    height: 26px;
+    width: 26px;
+    left: 2px;
     top: 50%;
     transform: translate(0, -50%);
     border-radius: 50%;
@@ -21,16 +22,14 @@
   }
   .ml-switch-left {
     display: none;
-    padding-right: 52px;
-    line-height: 40px;
-    font-size: $font-max-size;
+    padding-right: 24px;
+    line-height: 20px;
     color: #fff;
   }
   .ml-switch-right {
     display: block;
-    line-height: 40px;
-    padding-left: 52px;
-    font-size: $font-max-size;
+    line-height: 20px;
+    padding-left: 24px;
     color: #333;
   }
 }
@@ -42,7 +41,7 @@
 .ml-switch-check {
   background-color: $color-primary
   .ml-switch-circle {
-    left: calc(100% - 62px);
+    left: calc(100% - 28px);
   }
   .ml-switch-left {
     display: block;
