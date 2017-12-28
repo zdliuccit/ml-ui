@@ -1,11 +1,12 @@
-.ml-model {
-  .ml-scale-enter {
-    opacity: 0;
-    transform: translate3d(-50%, -50%, 0) scale(0.7);
-  }
+@import './../var.styl'
 
-  .ml-scale-leave-active {
-    opacity: 0;
-    transform: translate3d(-50%, -50%, 0) scale(0.9);
-  }
+.ml-model {
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: $border-radius;
+  font-size: 14px;
+  padding: 15px;
 }

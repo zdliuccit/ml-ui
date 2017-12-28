@@ -43,6 +43,10 @@ export default {
           link: '/docs/progress',
           label: 'Progress 进度条',
         },
+        {
+          link: '/docs/model',
+          label: 'Model',
+        },
       ]
     },
     {

@@ -3,7 +3,7 @@
 /* Transition
 -------------------------- */
 $all-transition = all .3s cubic-bezier(.645, .045, .355, 1);
-$scale-fade-transition = all .2s ease-out;
+$scale-fade-transition = opacity .2s ease-out, transform .2s ease-out;
 $fade-transition = opacity .3s cubic-bezier(0.23, 1, 0.32, 1);
 
 .ml-opacity-leave-active {
@@ -37,6 +37,28 @@ $border-radius = 5px;
 .inline-block {
   display: inline-block;
   vertical-align: middle;
+}
+
+/* Mask
+-------------------------- */
+.dg-mask-layer {
+  position: fixed;
+  z-index: 1200;
+}
+
+.dg-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.show-mask {
+  display: block;
 }
 
 /* border

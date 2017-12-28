@@ -55,6 +55,10 @@
             label: 'Progress',
             link: '/demo/progress'
           },
+          {
+            label: 'Model',
+            link: '/demo/model'
+          },
         ],
         jsCpt: [
           {

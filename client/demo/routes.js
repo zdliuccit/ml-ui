@@ -10,6 +10,7 @@ import Radio from './components/d-radio.vue'
 import Progress from './components/d-progress.vue'
 import Checkbox from './components/d-checkbox.vue'
 import Button from './components/d-button.vue'
+import Model from './components/d-model.vue'
 import index from './demo.vue'
 
 export default [
@@ -77,5 +78,10 @@ export default [
     path: 'tab',
     name: 'd-tab',
     component: Tab,
+  },
+  {
+    path: 'model',
+    name: 'd-model',
+    component: Model,
   },
 ]

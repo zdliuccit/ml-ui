@@ -1,21 +1,26 @@
 <template>
-  <div class="ml-popup-body" :style="{ 'z-index':$index }">
-    <transition name="ml-scale">
-      <div class="ml-popup" v-show="visible">
-        <div class="ml-popup-title">{{title}}</div>
-        <div class="ml-popup-content" v-html="message">
-        </div>
-        <div class="ml-popup-button ml-border" :class="{'two-btn':type==='confirm'}">
-          <button @click="doClose" class="ml-border" v-if="type==='confirm'">取消</button>
-          <button @click="doConfirm" class="ml-border ml-popup-confirm">确定</button>
-        </div>
+  <transition name="ml-scale">
+    <div class="ml-popup" v-show="value" :style="{ 'z-index':$index }">
+      <div class="ml-popup-title">{{title}}</div>
+      <div class="ml-popup-content" v-html="message">
       </div>
-    </transition>
-  </div>
+      <div class="ml-popup-button ml-border" :class="{'two-btn':type==='confirm'}">
+        <button @click="doClose" class="ml-border" v-if="type==='confirm'">取消</button>
+        <button @click="doConfirm" class="ml-border ml-popup-confirm">确定</button>
+      </div>
+    </div>
+  </transition>
 </template>
 <script type="text/babel">
+  import maskMixin from './../../mixins/mask-mixins'
+
   export default {
+    mixins: [maskMixin],
     props: {
+      value: {
+        type: Boolean,
+        default: false
+      },
       title: {
         type: String,
         default: '提示'
@@ -38,21 +43,17 @@
       $index: Number,
     },
     data() {
-      return {
-        visible: false
-      }
+      return {}
     },
     methods: {
       /**
        * 窗口关闭移除DOM
        */
       removeDom() {
-        this.visible = false
-        this.$el.addEventListener('transitionend', () => {
-          if (this.$el.parentNode) {
-            document.body.removeChild(this.$el)
-          }
-        })
+        this.value = false
+        if (this.$el.parentNode) {
+          document.body.removeChild(this.$el)
+        }
       },
       /**
        * 取消事件

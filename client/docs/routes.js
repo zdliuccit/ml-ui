@@ -9,6 +9,7 @@ import Switch from './components/switch.md'
 import Radio from './components/radio.md'
 import Checkbox from './components/checkbox.md'
 import Progress from './components/progress.md'
+import Model from './components/model.md'
 // jsComponents MD
 import Toast from './components/toast.md'
 import Message from './components/message.md'
@@ -104,6 +105,13 @@ export default [
     component: Progress,
     meta: {
       demoLink: '/progress'
+    }
+  },
+  {
+    path: 'model',
+    component: Model,
+    meta: {
+      demoLink: '/model'
     }
   },
 ]

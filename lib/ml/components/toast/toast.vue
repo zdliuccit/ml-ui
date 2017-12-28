@@ -1,6 +1,7 @@
 <template>
   <transition name="ml-opacity">
-    <div class="ml-toast" v-show="visible" :class="[`place-${place}`,className]" :style="{ 'z-index':$index }">
+    <div class="ml-toast dg-no-layer " v-show="visible" :class="[`place-${place}`,className]"
+         :style="{ 'z-index':$index }">
       <span class="ml-toast-text">{{ message}}</span>
     </div>
   </transition>
