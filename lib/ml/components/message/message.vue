@@ -1,6 +1,7 @@
 <template>
   <transition name="ml-opacity">
-    <div class="ml-message dg-no-layer ml-border" :class="[`place-${place}`,`ml-msg-${type}`]" :style="{ 'z-index':$index }"
+    <div class="ml-message dg-mask-layer ml-border" :class="[`place-${place}`,`ml-msg-${type}`]"
+         :style="{ 'z-index':$index }"
          v-show="visible">
       <ml-icon ref="mlMsgIcon" v-if="showIcon" :icon="iconClass"></ml-icon>
       <p ref="mlMsgText" class="ml-message-text inline-block">{{message}}</p>

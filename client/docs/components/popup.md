@@ -26,3 +26,4 @@ Props
 | type         | 类型   | String  | alert、confirm  |  alert| 
 | onConfirm        | 确定事件   | Function  | - |  -| 
 | onClose         | 取消事件   | Function  | - | - |
+| prevent    | 点击外层是否关闭   | Boolean  | true、false | false |

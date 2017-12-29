@@ -1,21 +1,20 @@
 <template>
-  <transition name="ml-scale">
-    <div class="ml-popup" v-show="value" :style="{ 'z-index':$index }">
-      <div class="ml-popup-title">{{title}}</div>
-      <div class="ml-popup-content" v-html="message">
+  <ml-model v-model="value" :mask="true" :prevent="prevent">
+    <transition name="ml-scale">
+      <div class="ml-popup" v-show="value">
+        <div class="ml-popup-title">{{title}}</div>
+        <div class="ml-popup-content" v-html="message">
+        </div>
+        <div class="ml-popup-button ml-border" :class="{'two-btn':type==='confirm'}">
+          <button @click="doClose" class="ml-border" v-if="type==='confirm'">取消</button>
+          <button @click="doConfirm" class="ml-border ml-popup-confirm">确定</button>
+        </div>
       </div>
-      <div class="ml-popup-button ml-border" :class="{'two-btn':type==='confirm'}">
-        <button @click="doClose" class="ml-border" v-if="type==='confirm'">取消</button>
-        <button @click="doConfirm" class="ml-border ml-popup-confirm">确定</button>
-      </div>
-    </div>
-  </transition>
+    </transition>
+  </ml-model>
 </template>
 <script type="text/babel">
-  import maskMixin from './../../mixins/mask-mixins'
-
   export default {
-    mixins: [maskMixin],
     props: {
       value: {
         type: Boolean,
@@ -40,7 +39,10 @@
         type: String,
         default: 'alert'
       },
-      $index: Number,
+      prevent: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {}
