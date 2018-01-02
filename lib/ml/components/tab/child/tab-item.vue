@@ -5,7 +5,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'ml-tab-item',
+    name: 'tab-item',
     data() {
       return {}
     },

@@ -9,7 +9,7 @@
   import maskMixin from './../../mixins/mask-mixins'
 
   export default {
-    name: 'ml-model',
+    name: 'model',
     mixins: [maskMixin],
     props: {
       value: {
@@ -51,11 +51,13 @@
        * 遮罩层click事件
        */
       doClickMask() {
-        if (this.prevent) this.$emit('input', false)
+        if (!this.prevent) this.$emit('input', false)
       },
     },
     mounted() {
-      document.body.appendChild(this.$el)
+      const fragment = document.createDocumentFragment()
+      fragment.appendChild(this.$el)
+      document.body.appendChild(fragment)
     },
   }
 </script>

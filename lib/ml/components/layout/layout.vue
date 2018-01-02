@@ -9,7 +9,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'ml-layout',
+    name: 'layout',
     props: {
       fixTop: {
         type: Boolean,

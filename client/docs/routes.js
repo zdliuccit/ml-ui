@@ -10,6 +10,7 @@ import Radio from './components/radio.md'
 import Checkbox from './components/checkbox.md'
 import Progress from './components/progress.md'
 import Model from './components/model.md'
+import Pull from './components/pull.md'
 // jsComponents MD
 import Toast from './components/toast.md'
 import Message from './components/message.md'
@@ -112,6 +113,13 @@ export default [
     component: Model,
     meta: {
       demoLink: '/model'
+    }
+  },
+  {
+    path: 'pull',
+    component: Pull,
+    meta: {
+      demoLink: '/pull'
     }
   },
 ]

@@ -3,9 +3,9 @@
 </template>
 <script type="text/babel">
   export default {
+    name: 'icon',
     props: {
       icon: String
     },
-    name: 'ml-icon',
   }
 </script>

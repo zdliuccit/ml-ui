@@ -34,6 +34,7 @@
     padding: 10px;
     position: relative;
     line-height: 20px;
+    background-color: #fff;
     .demo-back {
       position: absolute;
       top: 10px;

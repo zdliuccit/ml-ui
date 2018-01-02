@@ -1,0 +1,34 @@
+.ml-pull-layout {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ml-pull {
+  position: relative;
+  height: 100%;
+  .ml-pull-wrapper {
+    overflow: scroll;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .ml-pull-up {
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: red;
+  }
+  .ml-pull-down {
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: red;
+  }
+}

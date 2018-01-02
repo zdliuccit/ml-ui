@@ -13,7 +13,7 @@
 
 .ml-border {
   border: 1px solid transparent;
-  box-shadow: 0 0 2px transform
+  box-shadow: 0 0 2px transparent;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 2) {
@@ -42,19 +42,19 @@
 .ml-toast.place-bottom {
   bottom: 100px;
   left: 50%;
-  transform: translate(-50%, 0)
+  transform: translate3d(-50%, 0, 0)
 }
 
 .ml-toast.place-middle {
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate3d(-50%, -50%, 0)
 }
 
 .ml-toast.place-top {
   top: 100px;
   left: 50%;
-  transform: translate(-50%, 0)
+  transform: translate3d(-50%, 0, 0)
 }
 
 .ml-toast-text {

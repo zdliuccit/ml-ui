@@ -17,7 +17,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'ml-checkbox-item',
+    name: 'checkbox-item',
     props: {
       value: {
         type: [String, Number, Boolean],

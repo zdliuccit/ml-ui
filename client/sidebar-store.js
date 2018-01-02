@@ -11,10 +11,10 @@ export default {
           link: '/docs/icon',
           label: 'Icon 图标',
         },
-        {
-          link: '/docs/layout',
-          label: 'Layout 布局',
-        },
+        // {
+        //   link: '/docs/layout',
+        //   label: 'Layout 布局',
+        // },
         {
           link: '/docs/button',
           label: 'Button 按钮',
@@ -45,7 +45,11 @@ export default {
         },
         {
           link: '/docs/model',
-          label: 'Model',
+          label: 'Model 遮罩层',
+        },
+        {
+          link: '/docs/pull',
+          label: 'Pull 上拉加载 下拉刷新',
         },
       ]
     },

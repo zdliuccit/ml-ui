@@ -4,7 +4,7 @@
     <div class="dd-warp">
       <div class="warp-content">
         <button class="dd-btn ml-border" @click="doClick">打开弹窗1</button>
-        <ml-model v-model="show" :onClose="doClose">
+        <ml-model v-model="show" :onClose="doClose" :prevent="false">
           <transition name="ml-scale">
             <div class="test-cc" v-show="show">
               <button class="dd-btn ml-border" @click="doClick11">打开alert提示框</button>

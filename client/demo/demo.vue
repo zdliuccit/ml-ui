@@ -23,10 +23,10 @@
             label: 'Icon',
             link: '/demo/icon'
           },
-          {
-            label: 'Layout',
-            link: '/demo/layout'
-          },
+//          {
+//            label: 'Layout',
+//            link: '/demo/layout'
+//          },
           {
             label: 'Slide',
             link: '/demo/slide'
@@ -58,6 +58,14 @@
           {
             label: 'Model',
             link: '/demo/model'
+          },
+          {
+            label: 'PullUp',
+            link: '/demo/pull'
+          },
+          {
+            label: 'PullDown',
+            link: '/demo/pull-down'
           },
         ],
         jsCpt: [

@@ -11,7 +11,7 @@
   import { addClass, removeClass, animationFrame } from './../../utils/ml-utils'
 
   export default {
-    name: 'ml-tab',
+    name: 'tab',
     props: {
       speed: {
         type: Number,
