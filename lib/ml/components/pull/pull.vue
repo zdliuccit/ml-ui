@@ -13,10 +13,6 @@
   export default {
     name: 'pull',
     props: {
-      value: {
-        type: Boolean,
-        default: false,
-      },
       pullUp: {
         type: Boolean,
         default: true,
@@ -25,28 +21,36 @@
         type: Boolean,
         default: true,
       },
-      loading: {
-        type: Function,
-        default: () => {
-        },
-      }
+      loading: Function,
+      refresh: Function,
     },
     data() {
       return {
         dragObject: {},
-        upLoad: this.value,
-        downLoad: this.value,
+        upLoad: false,
+        downLoad: false,
         elWrap: null,
         elContent: null,
       }
     },
     methods: {
+      /**
+       * 执行加载事件
+       */
       doLoading() {
-        setTimeout(() => {
+        new Promise((resolve, reject) => {
+          if (this.loading && this.upLoad) {
+            this.loading(resolve, reject)
+          } else if (this.downLoad && this.refresh) {
+            this.refresh(resolve, reject)
+          } else {
+            resolve()
+          }
+        }).then(() => {
           this.upLoad = false
           this.downLoad = false
           this.translate(this.elWrap, 0, 80)
-        }, 2000)
+        })
       },
       /**
        * 动画
@@ -83,9 +87,13 @@
         dragObject.distanceY = touch.pageY - dragObject.currentTop
         dragObject.currentTop = touch.pageY
         const offsetTop = dragObject.currentTop - dragObject.startTop
-        this.upLoad = false
-        this.downLoad = false
-        if (Math.abs(offsetTop) > 5) this.translate(this.elWrap, offsetTop)
+        if ((offsetTop < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp) ||
+          (offsetTop > 0 && dragObject.scrollTop === 0 && this.pullDown)) {
+          e.preventDefault()
+          this.upLoad = false
+          this.downLoad = false
+          if (Math.abs(offsetTop) > 5) this.translate(this.elWrap, offsetTop)
+        }
       },
       /**
        * 触发结束
@@ -95,8 +103,8 @@
         if (!dragObject.startTop) return
         let offsetTop = dragObject.currentTop - dragObject.startTop
         if (Math.abs(offsetTop) < 5) return
-        if (offsetTop > 0 && this.dragObject.scrollTop === 0) this.downLoad = true
-        if (offsetTop < 0 && this.dragObject.diff === this.dragObject.scrollTop) this.upLoad = true
+        if (offsetTop > 0 && this.dragObject.scrollTop === 0 && this.pullDown) this.downLoad = true
+        if (offsetTop < 0 && this.dragObject.diff === this.dragObject.scrollTop && this.pullUp) this.upLoad = true
         let offsetH = 0
         if (this.downLoad) {
           offsetH = this.$refs.elPullDown.offsetHeight
@@ -114,18 +122,13 @@
       this.elContent = this.$refs.elContent
       if (!this.pullUp && !this.pullUp) return
       this.elWrap.addEventListener('touchstart', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
         this.touchStart(e)
       })
       this.elWrap.addEventListener('touchmove', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
         this.touchMove(e)
       })
       this.elWrap.addEventListener('touchend', (e) => {
         e.preventDefault()
-        e.stopPropagation()
         this.touchEnd(e)
       })
     },

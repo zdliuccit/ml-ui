@@ -7,7 +7,7 @@ import { $message } from 'ml-ui'
 Vue.prototype[$message.name]= $message
 ```
 
-方式1
+Demo1
 ```js
 this.$message({ message: '测试消息' }) 
 or 
@@ -20,7 +20,7 @@ this.$message.success({ message: '成功消息'})
 this.$message.error({ message: '错误消息'})
 
 ```
-方式2 
+Demo2 
 ```js
 this.$message({ message: '测试消息',type:'info' }) 
 

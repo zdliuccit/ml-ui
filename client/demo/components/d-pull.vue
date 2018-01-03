@@ -2,7 +2,7 @@
   <div class="dd-body">
     <d-head :back="true" title="Pull上拉加载下拉刷新"></d-head>
     <div class="dd-warp">
-      <ml-pull>
+      <ml-pull :loading="doLoad" :refresh="doLoad">
         <ul class="test-ul ml-border">
           <li class="ml-border" v-for="ii in dataList">{{ii}}</li>
         </ul>
@@ -14,10 +14,17 @@
   export default {
     data() {
       return {
-        dataList: 7,
+        dataList: 20,
       }
     },
-    methods: {}
+    methods: {
+      doLoad(resolve, reject) {
+        setTimeout(() => {
+          this.dataList += 10
+          resolve()
+        }, 1000)
+      }
+    }
   }
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>

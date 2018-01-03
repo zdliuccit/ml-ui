@@ -6,13 +6,13 @@ import { $popup } from 'ml-ui'
 
 Vue.prototype[$popup.name]= $popup
 ```
-方式1
+Demo1
 ```js
 this.$popup.alert({message: '这是alert' }) 
 
 this.$popup.confirm({ message: '这是confirm' }) 
 ```
-方式2 
+Demo2 
 ```js
 this.$popup({type:'alert',message: '这是alert' }) 
 
