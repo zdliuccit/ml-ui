@@ -12,6 +12,7 @@ import Progress from './components/progress.md'
 import Model from './components/model.md'
 import Pull from './components/pull.md'
 import AutoLoad from './components/auto-load.md'
+import Loading from './components/loading.md'
 // jsComponents MD
 import Toast from './components/toast.md'
 import Message from './components/message.md'
@@ -130,4 +131,11 @@ export default [
       demoLink: '/auto-load'
     }
   },
+  {
+    path: 'loading',
+    component: Loading,
+    meta: {
+      demoLink: '/loading'
+    }
+  }
 ]

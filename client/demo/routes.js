@@ -13,6 +13,7 @@ import Button from './components/d-button.vue'
 import Model from './components/d-model.vue'
 import Pull from './components/d-pull.vue'
 import AutoLoad from './components/d-auto-load.vue'
+import Loading from './components/d-loading.vue'
 import index from './demo.vue'
 
 export default [
@@ -95,5 +96,10 @@ export default [
     path: 'auto-load',
     name: 'd-auto-load',
     component: AutoLoad,
+  },
+  {
+    path: 'loading',
+    name: 'd-loading',
+    component: Loading,
   },
 ]

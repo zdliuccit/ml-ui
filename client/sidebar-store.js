@@ -55,6 +55,10 @@ export default {
           link: '/docs/auto-load',
           label: 'AutoLoad 底部自动加载',
         },
+        {
+          link: '/docs/loading',
+          label: 'Loading 正在加载...',
+        },
       ]
     },
     {

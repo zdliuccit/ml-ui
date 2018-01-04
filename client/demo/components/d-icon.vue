@@ -31,6 +31,7 @@
           'radio-on',
           'checkbox-on',
           'checkbox-no',
+          'pull-up',
         ]
       }
     }
