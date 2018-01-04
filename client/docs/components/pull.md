@@ -8,30 +8,36 @@ Vue.prototype[Pull.name]= Pull
 ```
 Demo
 ```html
-<ml-pull :loading="doLoad" :refresh="doRefresh">
+<ml-pull :loading="doLoad" :refresh="doRefresh" v-model="paging">
   <ul class="test-ul ml-border">
     <li class="ml-border" v-for="ii in dataList">{{ii}}</li>
+    <li class="ml-border">paging: {{paging}}</li>
   </ul>
 </ml-pull>
 <script type="text/babel">
   export default {
     data() {
-         return {
-           dataList: 20,
-       }
+      return {
+        dataList: 20,
+        paging: false,
+      }
+    },
+    mounted() {
+      this.paging = true
     },
     methods: {
       doLoad(resolve) {
         setTimeout(() => {
           this.dataList += 10
+          if (this.dataList >= 50) this.paging = false
           resolve()
         }, 1000)
       },
       doRefresh(resolve) {
         setTimeout(() => {
-          this.dataList = 10
+          this.dataList = 20
           resolve()
-        }, 1000)  
+        }, 1000)
       }
     }
   }
@@ -40,6 +46,7 @@ Demo
 Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
+| v-model        |绑定值 是否执行底部自动加载(内容高度小于外层高度时无法上拉加载) | Boolean  | - |  true| 
 | pullUp         | 是否开启上拉刷新   | Boolean  | - | true |
 | pullDown         |  是否开启下拉刷新  | Boolean  | - | true |
 | loading         | 上拉加载event  | Function  | - |  -| 

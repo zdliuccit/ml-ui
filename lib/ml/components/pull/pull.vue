@@ -1,11 +1,27 @@
 <template>
   <div class="ml-pull-layout">
     <div class="ml-pull" ref="elWrap">
-      <div v-if="pullDown" class="ml-pull-down" ref="elPullDown"></div>
+      <div v-if="pullDown" class="ml-pull-down" :class="{'satisfy-down':downLoad}" ref="elPullDown">
+        <div class="inline-block ml-pd-icon" v-show="!satisfy">
+          <ml-icon icon="pull-up"></ml-icon>
+        </div>
+        <div class="inline-block ml-pd-load " v-show="satisfy">
+          <ml-loading :width="16" :height="16" :value="true"></ml-loading>
+        </div>
+        <span class="inline-block">{{satisfy ? '正在刷新...' : '下拉刷新'}}</span>
+      </div>
       <div class="ml-pull-wrapper" ref="elContent">
         <slot></slot>
       </div>
-      <div v-if="pullUp" class="ml-pull-up" ref="elPullUp"></div>
+      <div v-if="pullUp" class="ml-pull-up" :class="{'satisfy-up':upLoad}" ref="elPullUp">
+        <div class="inline-block ml-pd-icon" v-show="!satisfy">
+          <ml-icon icon="pull-up"></ml-icon>
+        </div>
+        <div class="inline-block ml-pd-load" v-show="satisfy">
+          <ml-loading :width="16" :height="16" :value="true"></ml-loading>
+        </div>
+        <span class="inline-block">{{satisfy ? '正在加载...' : '上拉刷新'}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +39,20 @@
       },
       loading: Function,
       refresh: Function,
+      value: {
+        type: Boolean,
+        default: true,
+      },
+    },
+    watch: {
+      /**
+       * 监听
+       */
+      value() {
+        if (this.value && this.$refs.elWrap.offsetHeight >= this.$refs.elContent.scrollHeight) {
+          this.$emit('input', false)
+        }
+      },
     },
     data() {
       return {
@@ -31,6 +61,7 @@
         downLoad: false,
         elWrap: null,
         elContent: null,
+        satisfy: false,
       }
     },
     methods: {
@@ -47,20 +78,26 @@
             resolve()
           }
         }).then(() => {
-          this.upLoad = false
-          this.downLoad = false
-          this.translate(this.elWrap, 0, 80)
+          this.translate(this.elWrap, 0, 100, () => {
+            this.upLoad = false
+            this.downLoad = false
+            this.satisfy = false
+          })
         })
       },
       /**
        * 动画
        */
-      translate($el, offset, speed) {
+      translate($el, offset, speed, callback) {
         if (speed) {
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-out'
           setTimeout(() => {
             $el.style.webkitTransform = `translate3d(0,${offset}px,0)`
           }, 60)
+          const transitionEndCallback = () => {
+            if (callback) callback.apply({}, arguments)
+          }
+          setTimeout(transitionEndCallback, speed + 30)
         } else {
           $el.style.webkitTransition = ''
           $el.style.webkitTransform = `translate3d(0,${offset}px,0)`
@@ -81,18 +118,31 @@
        * 触发移动
        */
       touchMove(e) {
+        this.downLoad = false
+        this.upLoad = false
         const dragObject = this.dragObject
         if (!dragObject.startTop) return
         const touch = e.touches ? e.touches[0] : e
         dragObject.distanceY = touch.pageY - dragObject.currentTop
         dragObject.currentTop = touch.pageY
-        const offsetTop = dragObject.currentTop - dragObject.startTop
-        if ((offsetTop < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp) ||
-          (offsetTop > 0 && dragObject.scrollTop === 0 && this.pullDown)) {
+        let offsetTop = dragObject.currentTop - dragObject.startTop
+        /*eslint-disable*/
+        dragObject.ALPHA = dragObject.ALPHA ? dragObject.ALPHA * 0.99 : 0.88
+        if (offsetTop < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp && this.value) {
           e.preventDefault()
-          this.upLoad = false
-          this.downLoad = false
-          if (Math.abs(offsetTop) > 5) this.translate(this.elWrap, offsetTop)
+          if (Math.abs(offsetTop) > 5) {
+            offsetTop = -5 * (1.0 - dragObject.ALPHA ) + dragObject.ALPHA * offsetTop
+            this.translate(this.elWrap, offsetTop)
+          }
+          if (Math.abs(offsetTop) > this.$refs.elPullUp.offsetHeight) this.upLoad = true
+        }
+        if (offsetTop > 0 && dragObject.scrollTop === 0 && this.pullDown) {
+          e.preventDefault()
+          if (offsetTop > 5) {
+            offsetTop = 5 * (1.0 - dragObject.ALPHA ) + dragObject.ALPHA * offsetTop
+            this.translate(this.elWrap, offsetTop)
+          }
+          if (offsetTop > this.$refs.elPullDown.offsetHeight) this.downLoad = true
         }
       },
       /**
@@ -103,17 +153,16 @@
         if (!dragObject.startTop) return
         let offsetTop = dragObject.currentTop - dragObject.startTop
         if (Math.abs(offsetTop) < 5) return
-        if (offsetTop > 0 && this.dragObject.scrollTop === 0 && this.pullDown) this.downLoad = true
-        if (offsetTop < 0 && this.dragObject.diff === this.dragObject.scrollTop && this.pullUp) this.upLoad = true
         let offsetH = 0
+        this.satisfy = this.downLoad || this.upLoad
         if (this.downLoad) {
           offsetH = this.$refs.elPullDown.offsetHeight
         }
         if (this.upLoad) {
           offsetH = -this.$refs.elPullUp.offsetHeight
         }
-        this.translate(this.elWrap, offsetH, 200)
-        this.doLoading()
+        this.translate(this.elWrap, offsetH, 160)
+        if (offsetH !== 0) this.doLoading()
         this.dragObject = {}
       },
     },

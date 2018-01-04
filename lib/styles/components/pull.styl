@@ -7,6 +7,7 @@
 .ml-pull {
   position: relative;
   height: 100%;
+  font-size: 14px;
   .ml-pull-wrapper {
     overflow: scroll;
     position: absolute;
@@ -16,20 +17,43 @@
     left: 0;
     -webkit-overflow-scrolling: touch;
   }
-  .ml-pull-up {
+  .ml-pull-down, .ml-pull-up {
     height: 50px;
     width: 100%;
+    text-align: center;
+    line-height: 50px;
     position: absolute;
+    span {
+      margin-left: 6px;
+    }
+    .ml-pd-icon {
+      transition: $all-transition;
+    }
+    .ml-pd-load {
+      width: 16px;
+      height: 16px;
+      position: relative;
+    }
+  }
+  .ml-pull-up {
     top: 100%;
     left: 0;
-    background-color: red;
+    .ml-pd-icon {
+      transform: rotate(180deg)
+    }
+  }
+  .ml-pull-up.satisfy-up {
+    .ml-pd-icon {
+      transform: rotate(0deg)
+    }
+  }
+  .ml-pull-down.satisfy-down {
+    .ml-pd-icon {
+      transform: rotate(180deg)
+    }
   }
   .ml-pull-down {
-    height: 50px;
-    width: 100%;
-    position: absolute;
     bottom: 100%;
     left: 0;
-    background-color: red;
   }
 }
