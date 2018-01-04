@@ -12,7 +12,7 @@
   import { addClass, removeClass, animationFrame } from './../../utils/ml-utils'
 
   export default {
-    name: 'ml-slide',
+    name: 'slide',
     props: {
       speed: {
         type: Number,
@@ -104,8 +104,8 @@
             $elNext.style.webkitTransform = ''
           } else {
             initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
-            $el.style.webkitTransform = `translateX(${initOffset}px)`
-            $elNext.style.webkitTransform = `translateX(${initOffset - offset}px)`
+            $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
+            $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
             if (Math.abs(initOffset - offset) < 3) {
               if (callback) callback.apply({}, arguments)
             }
@@ -122,7 +122,7 @@
           this.animating = true
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
           setTimeout(() => {
-            $el.style.webkitTransform = `translateX(${offset}px)`
+            $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
           }, 60)
           const transitionEndCallback = () => {
             this.animating = false
@@ -133,7 +133,7 @@
           setTimeout(transitionEndCallback, speed + 30)
         } else {
           $el.style.webkitTransition = ''
-          $el.style.webkitTransform = `translateX(${offset}px)`
+          $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
         }
       },
       runAnimate(towards, options) {

@@ -1,7 +1,7 @@
 import mlMount from '../../utils/ml-mount-body'
 import popup from './popup.vue'
 
-let $popup = (options = {}) => {
+const $popup = (options = {}) => {
   mlMount({ component: popup, options: Object.assign(options, { automatic: true }) })
 }
 $popup.alert = (options = {}) => {

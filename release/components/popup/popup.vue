@@ -1,7 +1,7 @@
 <template>
-  <div class="ml-popup-body" :style="{ 'z-index':$index }">
+  <ml-model v-model="value" :mask="true" :prevent="prevent" :transition="false">
     <transition name="ml-scale">
-      <div class="ml-popup" v-show="visible">
+      <div class="ml-popup" v-show="value">
         <div class="ml-popup-title">{{title}}</div>
         <div class="ml-popup-content" v-html="message">
         </div>
@@ -11,11 +11,15 @@
         </div>
       </div>
     </transition>
-  </div>
+  </ml-model>
 </template>
 <script type="text/babel">
   export default {
     props: {
+      value: {
+        type: Boolean,
+        default: false
+      },
       title: {
         type: String,
         default: '提示'
@@ -35,24 +39,23 @@
         type: String,
         default: 'alert'
       },
-      $index: Number,
+      prevent: {
+        type: Boolean,
+        default: true,
+      },
     },
     data() {
-      return {
-        visible: false
-      }
+      return {}
     },
     methods: {
       /**
        * 窗口关闭移除DOM
        */
       removeDom() {
-        this.visible = false
-        this.$el.addEventListener('transitionend', () => {
-          if (this.$el.parentNode) {
-            document.body.removeChild(this.$el)
-          }
-        })
+        this.value = false
+        if (this.$el.parentNode) {
+          document.body.removeChild(this.$el)
+        }
       },
       /**
        * 取消事件

@@ -65,6 +65,22 @@ module.exports = {
     }
   },
   /**
+   * 判断class名称是否存在
+   * @param $el
+   * @param className
+   * @return {boolean}
+   */
+  checkClass($el, className) {
+    let result = false
+    if (Object.prototype.toString.apply(className) === '[object String]') {
+      let classes = $el.className.split(' ')
+      className.split(' ').forEach(cl => {
+        result = classes.findIndex(al => al === cl) > -1
+      })
+    }
+    return result
+  },
+  /**
    *  兼容requestAnimationFrame
    *  @param  {Function } callback
    */

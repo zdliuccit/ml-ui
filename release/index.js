@@ -12,12 +12,14 @@ import Radio from './components/radio/radio.vue'
 import RadioItem from './components/radio/child/radio-item.vue'
 import Tab from './components/tab/tab.vue'
 import TabItem from './components/tab/child/tab-item.vue'
+import Model from './components/model/model.vue'
+import Pull from './components/pull/pull.vue'
+import AutoLoad from './components/auto-load/auto-load.vue'
+import Loading from './components/loading/loading.vue'
 // 引入JS组件
 import $toast from './components/toast'
 import $message from './components/message'
 import $popup from './components/popup'
-// 响应式JS
-import responsiveDesign from './utils/responsiveDesign'
 
 // 普通组件
 const components = {
@@ -34,6 +36,10 @@ const components = {
   Progress,
   Slide,
   SlideItem,
+  Model,
+  Pull,
+  AutoLoad,
+  Loading,
 }
 // JS组件
 const jsComponents = {
@@ -43,7 +49,7 @@ const jsComponents = {
 }
 const install = function (Vue) {
   // 全局注册普通组件
-  Object.keys(components).map(key => Vue.component(`${components[key].name}`, components[key]))
+  Object.keys(components).map(key => Vue.component(`ml-${components[key].name}`, components[key]))
   // 全局注册JS组件
   Object.assign(Vue.prototype, jsComponents)
 }
@@ -52,12 +58,10 @@ const install = function (Vue) {
  *
  * @param version 版本号
  * @param install 注册方法
- * @param responsiveDesign Function 响应式JS回调
  * @param components 基础组件
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.1.2',
+  version: '1.1.3',
   install,
-  responsiveDesign,
 }, components, jsComponents)

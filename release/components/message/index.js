@@ -1,7 +1,7 @@
 import mlMount from '../../utils/ml-mount-body'
 import message from './message.vue'
 
-let $message = (options = {}) => {
+const $message = (options = {}) => {
   mlMount({ component: message, options })
 }
 $message.error = (options = {}) => {
