@@ -51,6 +51,10 @@ export default {
           link: '/docs/pull',
           label: 'Pull 上拉加载 下拉刷新',
         },
+        {
+          link: '/docs/auto-load',
+          label: 'AutoLoad 底部自动加载',
+        },
       ]
     },
     {

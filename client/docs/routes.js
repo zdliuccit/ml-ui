@@ -11,6 +11,7 @@ import Checkbox from './components/checkbox.md'
 import Progress from './components/progress.md'
 import Model from './components/model.md'
 import Pull from './components/pull.md'
+import AutoLoad from './components/auto-load.md'
 // jsComponents MD
 import Toast from './components/toast.md'
 import Message from './components/message.md'
@@ -120,6 +121,13 @@ export default [
     component: Pull,
     meta: {
       demoLink: '/pull'
+    }
+  },
+  {
+    path: 'auto-load',
+    component: AutoLoad,
+    meta: {
+      demoLink: '/auto-load'
     }
   },
 ]

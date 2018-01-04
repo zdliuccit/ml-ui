@@ -60,12 +60,12 @@
             link: '/demo/model'
           },
           {
-            label: 'PullUp',
+            label: 'Pull',
             link: '/demo/pull'
           },
           {
-            label: 'PullDown',
-            link: '/demo/pull-down'
+            label: 'AutoLoad',
+            link: '/demo/auto-load'
           },
         ],
         jsCpt: [
