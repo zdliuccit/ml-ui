@@ -4,19 +4,20 @@
 ```js
 import { Radio } from 'ml-ui'
 
-Vue.component(Radio.name, Radio)
+Vue.component(`ml-${Radio.name}`, Radio)
 ```
 
 Demo
 
 ```html
+默认
 <ml-radio v-model="radioValue" @on-change="doChange">
   <ml-radio-item value="11">单选1南京</ml-radio-item>
   <ml-radio-item value="22">单选2杭州</ml-radio-item>
   <ml-radio-item value="33">单选3上海</ml-radio-item>
 </ml-radio>
 
-// 禁止选中
+禁止选中
 <ml-radio v-model="radioValue">
   <ml-radio-item :disabled="true" value="11">单选1南京</ml-radio-item>
   <ml-radio-item :disabled="true" value="22">单选2杭州</ml-radio-item>
@@ -38,5 +39,4 @@ Radio-item Props
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | value         | 值	  | -  | - | - |
 | disabled         | 是否禁止选中	  | Boolean  |  true、false  | false |
-| className         | 自定义	  | String  | - | - |
 | inline         | 是否行内元素	  | Boolean  |  true、false | false |

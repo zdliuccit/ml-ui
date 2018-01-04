@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-checkbox-item" :class="{className,'inline-block':inline}">
+  <div class="ml-checkbox-item" :class="{'inline-block':inline}">
     <div class="ml-checkbox-icon">
       <transition name="ml-checkbox-scale">
         <div class="ml-checkbox-on" v-show="isCheck" :class="{'is-disabled':disabled}">
@@ -27,7 +27,6 @@
         type: Boolean,
         default: false,
       },
-      className: String,
       inline: {
         type: Boolean,
         default: false,

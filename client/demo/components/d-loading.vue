@@ -20,5 +20,6 @@
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .dd-load {
     height: 160px;
+    position: relative;
   }
 </style>

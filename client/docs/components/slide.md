@@ -4,7 +4,7 @@
 ```js
 import { Slide } from 'ml-ui'
 
-Vue.component(Slide.name, Slide)
+Vue.component(`ml-${Slide.name}`, Slide)
 ```
 Demo
 ```html
@@ -33,7 +33,6 @@ Demo
   </ml-slide-item>
 </ml-slide>
 ```
-
 
 Props
 

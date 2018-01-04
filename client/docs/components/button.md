@@ -4,34 +4,47 @@
 ```js
 import { Button } from 'ml-ui'
 
-Vue.component(Layout.name, Layout)
+Vue.component(`ml-${Button.name}`, Layout)
 ```
 
 Demo
 
 
 ```html
-// 样式
+样式
 <ml-button type="default">default</ml-button>
 <ml-button type="primary">primary</ml-button>
 <ml-button type="danger">danger</ml-button>
 
-// Size大小
+Size
 <ml-button type="small">default</ml-button>
 <ml-button >primary</ml-button>
 <ml-button type="big">danger</ml-button>
 
-// 禁用
+禁用
 <ml-button disabled>disabled</ml-button>
 
-// 带图标
+带图标
 <ml-button>
   <i class="iconfont icon-info" slot="icon"></i>默认按钮
 </ml-button>
 
-// 事件绑定
-<ml-button @click.native="handleClick">点击触发 handleClick</ml-button>
+事件绑定
+<ml-button @click="onClick">点击触发onClick</ml-button>
 
+<script type="text/babel">
+  export default {
+    data() {
+      return {}
+    },
+    methods: {
+      onClick() {
+        /*eslint-disable*/
+        this.log('点击了')
+      }
+    }
+  }
+</script>
 
 ```
 Props
@@ -40,7 +53,6 @@ Props
 | disabled         | 禁用状态	  | Boolean  | - | false |
 | type         | 按钮样式		  |   | - | default |
 | size         | 尺寸			  |   | - |  |
-| className         |  自定义class名称			  |   | - |  |
 
 Slot
 | name | 描述 |

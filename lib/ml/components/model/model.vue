@@ -1,6 +1,15 @@
 <template>
   <div class="ml-model dg-mask-layer" v-show="value" :style="{ 'z-index':currentIndex||zIndex }">
-    <slot></slot>
+    <template v-if="transition">
+      <transition name="ml-model">
+        <div class="ml-model-transition" v-show="value">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-if="!transition">
+      <slot></slot>
+    </template>
     <div class="ml-mask-bg" :class="{maskClass,'ml-mask-clarity':!mask}" v-show="value"
          @click="doClickMask"></div>
   </div>
@@ -28,7 +37,11 @@
       onClose: {
         type: Function,
         default: () => {
-        }
+        },
+      },
+      transition: {
+        type: Boolean,
+        default: true,
       }
     },
     watch: {

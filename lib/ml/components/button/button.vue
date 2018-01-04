@@ -1,11 +1,10 @@
 <template>
   <button @click="handleClick" class="ml-button ml-border" :disabled="disabled"
           :class="[
-            className,
             `ml-button-${type}`,
             {
             'ml-button-disabled': disabled,
-            [`ml-button-${size}`]: size,
+            [`ml-button-${size}`]: size
           }]">
     <div class="inline-block">
       <slot name="icon"></slot>
@@ -27,7 +26,6 @@
         type: String,
         default: 'default',
       },
-      className: String,
       size: String,
     },
     methods: {

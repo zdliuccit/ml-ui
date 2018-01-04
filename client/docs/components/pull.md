@@ -4,7 +4,7 @@
 ```js
 import { Pull } from 'ml-ui'
 
-Vue.prototype[Pull.name]= Pull
+Vue.prototype[`ml-${Pull.name}`]= Pull
 ```
 Demo
 ```html

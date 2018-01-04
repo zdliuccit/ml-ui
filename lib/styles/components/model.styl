@@ -7,6 +7,21 @@
   transform: translate3d(-50%, -50%, 0);
   background-color: transparent;
   z-index: 1002;
+  .ml-model-transition {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    padding: 15px;
+    transform: translate3d(0, -50%, 0);
+    background-color: #fff;
+    transition: $scale-fade-transition;
+  }
+
+  .ml-model-enter {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0) scale(0.7);
+  }
 }
 
 .ml-mask-bg {

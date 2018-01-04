@@ -9,9 +9,7 @@ Vue.prototype[$message.name]= $message
 
 Demo1
 ```js
-this.$message({ message: '测试消息' }) 
-or 
-this.$message.info({ message: '测试消息' }) 
+this.$message({ message: '测试消息' }) 或 this.$message.info({ message: '测试消息' }) 
 
 this.$message.warning({ message: '警告消息' })
 
@@ -39,6 +37,5 @@ Props
 | message         | 内容   | String  | - | - |
 | type         | 类型   | String  | info、warning、error、success |  info| 
 | showIcon         | 是否显示icon   | Boolean  | true、false |  true| 
-| className         | 自定义class名称   | String  | - | - |
 | place         | 显示位置   | String  | top、middle、bottom  | middle |
 | duration         | 显示多久消失(ms)   | Number  | - | 3000 |

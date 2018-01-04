@@ -1,5 +1,5 @@
 <template>
-  <ml-model v-model="value" :mask="true" :prevent="prevent">
+  <ml-model v-model="value" :mask="true" :prevent="prevent" :transition="false">
     <transition name="ml-scale">
       <div class="ml-popup" v-show="value">
         <div class="ml-popup-title">{{title}}</div>

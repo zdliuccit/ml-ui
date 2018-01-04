@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-radio-item" :class="{className,'inline-block':inline}">
+  <div class="ml-radio-item" :class="{'inline-block':inline}">
     <div class="ml-radio-icon">
       <transition name="ml-radio-scale">
         <div class="ml-radio-on" v-show="isCheck" :class="{'is-disabled':disabled}">
@@ -27,7 +27,6 @@
         type: Boolean,
         default: false,
       },
-      className: String,
       inline: {
         type: Boolean,
         default: false,

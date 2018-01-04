@@ -23,10 +23,6 @@
         type: Boolean,
         default: true,
       },
-      className: {
-        type: String,
-        default: '',
-      },
       place: {
         type: String,
         default: 'middle',

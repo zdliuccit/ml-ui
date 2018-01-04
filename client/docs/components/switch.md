@@ -4,28 +4,28 @@
 ```js
 import { Switch } from 'ml-ui'
 
-Vue.component(Switch.name, Switch)
+Vue.component(`ml-${Switch.name}`, Switch)
 ```
 
 Demo
 
 ```html
-// 默认
+默认
 <ml-switch v-model="switchValue"></ml-switch>
 
-// 带slot
+带slot
 <ml-switch v-model="switchValue">
   <div slot="left">ON</div>
   <div slot="right">OFF</div>
 </ml-switch>
-// left、right字数一样最好
+
+注:eft、right字数一样最好
 <ml-switch v-model="switchValue">
   <div slot="left">开</div>
   <div slot="right">关</div>
 </ml-switch>
 
-
-// 禁止
+禁止
 <ml-switch v-model="switchValue" :disabled="true"></ml-switch>
 ```
 Switch Props

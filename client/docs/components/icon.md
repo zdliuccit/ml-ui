@@ -4,7 +4,7 @@ icon图标库
 ```js
 import { Icon } from 'ml-ui'
 
-Vue.component(Icon.name, Icon)
+Vue.component(`ml-${Icon.name}`, Icon)
 ```
 
 Demo
