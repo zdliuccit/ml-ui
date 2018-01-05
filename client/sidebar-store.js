@@ -59,6 +59,10 @@ export default {
           link: '/docs/loading',
           label: 'Loading 正在加载...',
         },
+        {
+          link: '/docs/left-slip',
+          label: 'LeftSlip 左滑',
+        },
       ]
     },
     {

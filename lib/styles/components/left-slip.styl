@@ -1,0 +1,22 @@
+.ml-left-slip {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  .left-slip-warp {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  transition: $all-transition;
+  .left-slip-left {
+    height: 100%;
+  }
+  .left-slip-right {
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    left: 100%;
+    top: 0;
+  }
+}

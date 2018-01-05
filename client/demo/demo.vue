@@ -67,6 +67,10 @@
             label: 'AutoLoad',
             link: '/demo/auto-load'
           },
+          {
+            label: 'LeftSlip',
+            link: '/demo/left-slip'
+          },
         ],
         jsCpt: [
           {
@@ -82,6 +86,17 @@
             link: '/demo/popup'
           },
         ]
+      }
+    },
+    watch: {
+      $route(to, from) {
+        if (to.path !== from.path) {
+          const layers = document.getElementsByClassName('dg-mask-layer')
+          this.log(layers)
+          Array.from(layers).forEach(vv => {
+            vv.parent.removeChild(vv)
+          })
+        }
       }
     },
     methods: {

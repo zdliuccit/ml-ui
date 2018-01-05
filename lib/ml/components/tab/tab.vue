@@ -236,8 +236,6 @@
       this.initPages()
       const $el = this.$refs.mlTabs
       $el.addEventListener('touchstart', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
         if (this.animating) return
         this.sliding = true
         this.isScroll = false
@@ -245,14 +243,11 @@
       })
       $el.addEventListener('touchmove', (e) => {
         e.preventDefault()
-        e.stopPropagation()
         if (!this.sliding) return
         if (this.timer) this.clearTimer()
         this.touchMove(e)
       })
       $el.addEventListener('touchend', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
         if (!this.isScroll) {
           this.sliding = false
           this.dragObject = {}

@@ -14,6 +14,7 @@ import Model from './components/d-model.vue'
 import Pull from './components/d-pull.vue'
 import AutoLoad from './components/d-auto-load.vue'
 import Loading from './components/d-loading.vue'
+import LeftSlip from './components/d-left-slip.vue'
 import index from './demo.vue'
 
 export default [
@@ -102,4 +103,9 @@ export default [
     name: 'd-loading',
     component: Loading,
   },
+  {
+    path: 'left-slip',
+    name: 'd-left-slip',
+    component: LeftSlip,
+  }
 ]

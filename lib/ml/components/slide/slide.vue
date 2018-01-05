@@ -236,6 +236,8 @@
 
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
         if (Math.abs(offsetLeft) < 5) return
+        e.preventDefault()
+        e.stopPropagation()
         this.isScroll = true
         offsetLeft = Math.min(Math.max(-dragObject.$elWidth + 1, offsetLeft), dragObject.$elWidth - 1)
         const towards = offsetLeft < 0 ? 'next' : 'prev'
@@ -289,23 +291,17 @@
       this.initPages()
       const $el = this.$el
       $el.addEventListener('touchstart', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
         if (this.animating) return
         this.sliding = true
         this.isScroll = false
         this.touchStart(e)
       })
       $el.addEventListener('touchmove', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
         if (!this.sliding) return
         if (this.timer) this.clearTimer()
         this.touchMove(e)
       })
       $el.addEventListener('touchend', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
         if (!this.isScroll) {
           this.sliding = false
           this.dragObject = {}

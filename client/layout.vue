@@ -25,13 +25,13 @@
               <a href="javascript:;" changelog>更新日志</a>
             </li>
             <li class="nav-item" v-for="side in sideJson">
-              <a href="javascript:;" :class="{'active':side.link==$route.fullPath}"
+              <a href="javascript:;" :class="{'active':side.link==$route.path}"
                  v-if="side.link" @click="goToComp(side.link)">安装</a>
               <div class="nav-group" v-if="side.children&&side.children.length>0">
                 <div class="nav-group-title">{{side.label}}</div>
                 <ul class="pure-menu-list">
                   <li class="nav-item" v-for="component in side.children">
-                    <a href="javascript:;" :class="{'active':component.link==$route.fullPath}"
+                    <a href="javascript:;" :class="{'active':component.link==$route.path}"
                        @click="goToComp(component.link)">
                       {{component.label}}
                     </a>

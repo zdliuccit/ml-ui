@@ -127,7 +127,7 @@
         dragObject.currentTop = touch.pageY
         let offsetTop = dragObject.currentTop - dragObject.startTop
         /*eslint-disable*/
-        dragObject.ALPHA = dragObject.ALPHA ? dragObject.ALPHA * 0.99 : 0.88
+        dragObject.ALPHA = dragObject.ALPHA ? dragObject.ALPHA * 0.985 : 0.88
         if (offsetTop < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp && this.value) {
           e.preventDefault()
           if (Math.abs(offsetTop) > 5) {
@@ -177,7 +177,6 @@
         this.touchMove(e)
       })
       this.elWrap.addEventListener('touchend', (e) => {
-        e.preventDefault()
         this.touchEnd(e)
       })
     },
