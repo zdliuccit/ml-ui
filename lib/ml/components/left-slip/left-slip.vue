@@ -11,7 +11,7 @@
   </div>
 </template>
 <script type="text/babel">
-  import { animationFrame } from './../../utils/ml-utils'
+  import { animationFrame, checkTargetNode } from './../../utils/ml-utils'
 
   export default {
     name: 'left-slip',
@@ -20,6 +20,7 @@
       return {
         dragObject: {},
         slipLeft: 0,
+        animating: false,
       }
     },
     methods: {
@@ -52,10 +53,10 @@
       continueTranslate($el, initOffset, offset, callback) {
         let ALPHA = 0.88
         this.animating = true
-        if (initOffset > 0) initOffset = initOffset - offset
         const animationLoop = () => {
           if (Math.abs(initOffset - offset) < 2 || Math.abs(initOffset) < 2) {
             if (callback) callback.apply({}, arguments)
+            this.animating = false
             if (offset < 0) {
               $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
             } else {
@@ -66,6 +67,7 @@
               ALPHA = ALPHA * (0.98)
               initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
             } else {
+              ALPHA = ALPHA * (0.995)
               initOffset = ALPHA * initOffset - (1.0 - ALPHA) * initOffset
             }
             $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
@@ -82,7 +84,7 @@
         const $elRight = this.$refs.rightSlipRight
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
-        if ($elRight.offsetWidth < 0) return
+        if ($elRight.offsetWidth < 0 || this.animating) return
         dragObject.startLeft = touch.pageX // 开始left值
         dragObject.$elWidth = $el.offsetWidth
         dragObject.maxWidth = $elRight.offsetWidth
@@ -96,17 +98,17 @@
         dragObject.distanceX = touch.pageX - dragObject.currentLeft
         dragObject.currentLeft = touch.pageX
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
-        if (Math.abs(offsetLeft) < 5) return
+        if (Math.abs(offsetLeft) < 5 || this.animating) return
+        if (offsetLeft < 0 && this.slipLeft !== 0) return
         e.preventDefault()
-        if (offsetLeft > 0 && this.slipLeft === dragObject.maxWidth) {
-          offsetLeft = this.slipLeft - offsetLeft
-          if (offsetLeft <= 0) offsetLeft = 0
-          this.translate(this.$refs.warpSlip, -offsetLeft)
+        offsetLeft = this.slipLeft + offsetLeft
+        if (offsetLeft >= 0) {
+          offsetLeft = 0
         }
-        if (offsetLeft < 0 && this.slipLeft === 0) {
-          if (Math.abs(offsetLeft) >= dragObject.maxWidth) offsetLeft = -dragObject.maxWidth
-          this.translate(this.$refs.warpSlip, offsetLeft)
+        if (Math.abs(offsetLeft) >= this.dragObject.maxWidth) {
+          offsetLeft = -this.dragObject.maxWidth
         }
+        this.translate(this.$refs.warpSlip, offsetLeft)
       },
       /**
        * 触发结束
@@ -114,40 +116,32 @@
       touchEnd() {
         const dragObject = this.dragObject
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
-        if (Math.abs(offsetLeft) < 5) return
-        if (offsetLeft > 0 && this.slipLeft === dragObject.maxWidth) {
-          offsetLeft = this.slipLeft - offsetLeft
-          if (offsetLeft <= 0) offsetLeft = 0
-          this.continueTranslate(this.$refs.warpSlip, offsetLeft, dragObject.maxWidth, () => {
+        if (offsetLeft > 0 && this.slipLeft + offsetLeft >= 0) {
+          this.slipLeft = 0
+          return
+        }
+        if (offsetLeft > 0 && this.slipLeft !== 0) {
+          this.continueTranslate(this.$refs.warpSlip, this.slipLeft + offsetLeft, dragObject.maxWidth, () => {
             this.slipLeft = 0
             document.body.removeEventListener('touchstart', this.reduction, false)
           })
         }
         if (offsetLeft < 0 && this.slipLeft === 0) {
-          if (Math.abs(offsetLeft) >= dragObject.maxWidth) offsetLeft = -dragObject.maxWidth
+          if (Math.abs(offsetLeft) >= this.dragObject.maxWidth) offsetLeft = -this.dragObject.maxWidth
           this.continueTranslate(this.$refs.warpSlip, offsetLeft, -dragObject.maxWidth, () => {
-            this.slipLeft = dragObject.maxWidth
             document.body.addEventListener('touchstart', this.reduction, false)
+            this.slipLeft = offsetLeft
           })
         }
+
         this.dragObject = {}
-      },
-      /**
-       * 判断元素包含元素
-       * @param el
-       * @param target
-       * @return {boolean}
-       */
-      getTargetNode(el, target) {
-        if (!el || el === document) return false
-        return el === target ? true : this.getTargetNode(el.parentNode, target)
       },
       /**
        * 还原
        * @param {Object} e
        */
       reduction(e) {
-        if (!this.getTargetNode(e.target, this.$el)) {
+        if (!checkTargetNode(e.target, this.$el)) {
           document.body.removeEventListener('touchstart', this.reduction, false)
           this.translate(this.$refs.warpSlip, 0, 200, () => {
             this.slipLeft = 0

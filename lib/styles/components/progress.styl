@@ -1,0 +1,23 @@
+.ml-progress {
+  position: relative;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  transform: translate3d(0, -50%, 0);
+  background-color: #ccc;
+  border-radius: 1px;
+  .ml-progress-circle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate3d(-100%, -50%, 0);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    border-color: $color-border;
+    box-shadow: 0 0 4px $color-border;
+    cursor: pointer;
+  }
+}
