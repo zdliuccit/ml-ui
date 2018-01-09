@@ -79,10 +79,9 @@
       touchStart(e) {
         const maxWidth = this.$refs.rightSlip.offsetWidth
         if (maxWidth < 0 || this.animating) return
-        const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
-        dragObject.startLeft = touch.pageX // 开始left值
-        dragObject.maxWidth = maxWidth
+        this.dragObject.startLeft = touch.pageX
+        this.dragObject.maxWidth = maxWidth
       },
       /**
        * 触发移动
