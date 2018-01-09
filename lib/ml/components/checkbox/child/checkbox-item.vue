@@ -1,13 +1,12 @@
 <template>
   <div class="ml-checkbox-item" :class="{'inline-block':inline}">
-    <div class="ml-checkbox-icon">
+    <div class="ml-checkbox-icon" @click="doCheck">
       <transition name="ml-checkbox-scale">
         <div class="ml-checkbox-on" v-show="isCheck" :class="{'is-disabled':disabled}">
-          <ml-icon icon="checkbox-on" @click.native="doCheck"></ml-icon>
+          <ml-icon icon="checkbox-on"></ml-icon>
         </div>
       </transition>
-      <div class="ml-checkbox-no" :class="{'is-disabled':disabled}" v-show="!isCheck">
-        <ml-icon icon="checkbox-no" @click.native="doCheck"></ml-icon>
+      <div class="ml-checkbox-no ml-border" :class="{'is-disabled':disabled}" v-show="!isCheck">
       </div>
     </div>
     <div class="ml-checkbox-label" @click="doCheck">

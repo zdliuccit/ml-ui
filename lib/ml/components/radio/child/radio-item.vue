@@ -1,14 +1,12 @@
 <template>
   <div class="ml-radio-item" :class="{'inline-block':inline}">
-    <div class="ml-radio-icon">
+    <div class="ml-radio-icon" @click="doCheck">
       <transition name="ml-radio-scale">
         <div class="ml-radio-on" v-show="isCheck" :class="{'is-disabled':disabled}">
-          <ml-icon icon="radio-on" @click.native="doCheck"></ml-icon>
+          <ml-icon icon="radio-on"></ml-icon>
         </div>
       </transition>
-      <div class="ml-radio-no" :class="{'is-disabled':disabled}" v-show="!isCheck">
-        <ml-icon icon="radio-no" @click.native="doCheck"></ml-icon>
-      </div>
+      <div class="ml-radio-no ml-border" :class="{'is-disabled':disabled}" v-show="!isCheck"></div>
     </div>
     <div class="ml-radio-label" @click="doCheck">
       <slot></slot>
