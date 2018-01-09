@@ -76,9 +76,7 @@
             }, this.autoInterval)
           }
           timerFunc(() => {
-            if (!this.sliding && !this.animating) {
-              this.runAnimate('next')
-            }
+            if (!this.sliding && !this.animating) this.runAnimate('next')
           })
         }
       },
@@ -235,7 +233,8 @@
         dragObject.currentLeft = touch.pageX
 
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
-        if (Math.abs(offsetLeft) < 5) return
+        if (!this.animating && Math.abs(offsetLeft) < 5) return
+        this.animating = true
         e.preventDefault()
         e.stopPropagation()
         this.isScroll = true
@@ -258,7 +257,7 @@
         let towards = null
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
         const $elWidth = dragObject.$elWidth
-
+        this.animating = false
         if (dragDuration < 300 && !offsetLeft) return
 
         if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 2) {

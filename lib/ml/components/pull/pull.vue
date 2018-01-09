@@ -79,9 +79,7 @@
           }
         }).then(() => {
           this.translate(this.elWrap, 0, 100, () => {
-            this.upLoad = false
-            this.downLoad = false
-            this.satisfy = false
+            this.upLoad = this.downLoad = this.satisfy = false
           })
         })
       },
@@ -108,22 +106,19 @@
        */
       touchStart(e) {
         if (this.upLoad || this.downLoad) return
-        const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
-        dragObject.startTop = touch.pageY // 开始left值
-        dragObject.scrollTop = this.elContent.scrollTop
-        dragObject.diff = this.elContent.scrollHeight - this.elWrap.offsetHeight
+        this.dragObject.startTop = touch.pageY // 开始left值
+        this.dragObject.scrollTop = this.elContent.scrollTop
+        this.dragObject.diff = this.elContent.scrollHeight - this.elWrap.offsetHeight
       },
       /**
        * 触发移动
        */
       touchMove(e) {
-        this.downLoad = false
-        this.upLoad = false
+        this.downLoad = this.upLoad = false
         const dragObject = this.dragObject
         if (!dragObject.startTop) return
         const touch = e.touches ? e.touches[0] : e
-        dragObject.distanceY = touch.pageY - dragObject.currentTop
         dragObject.currentTop = touch.pageY
         let offsetTop = dragObject.currentTop - dragObject.startTop
         /*eslint-disable*/
@@ -155,12 +150,8 @@
         if (Math.abs(offsetTop) < 5) return
         let offsetH = 0
         this.satisfy = this.downLoad || this.upLoad
-        if (this.downLoad) {
-          offsetH = this.$refs.elPullDown.offsetHeight
-        }
-        if (this.upLoad) {
-          offsetH = -this.$refs.elPullUp.offsetHeight
-        }
+        if (this.downLoad) offsetH = this.$refs.elPullDown.offsetHeight
+        if (this.upLoad) offsetH = -this.$refs.elPullUp.offsetHeight
         this.translate(this.elWrap, offsetH, 160)
         if (offsetH !== 0) this.doLoading()
         this.dragObject = {}
@@ -169,7 +160,7 @@
     mounted() {
       this.elWrap = this.$refs.elWrap
       this.elContent = this.$refs.elContent
-      if (!this.pullUp && !this.pullUp) return
+      if (!this.pullUp && !this.pullDown) return
       this.elWrap.addEventListener('touchstart', (e) => {
         this.touchStart(e)
       })
