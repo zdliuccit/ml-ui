@@ -27,10 +27,8 @@
           'hook',
           'fork',
           'info',
-          'radio-no',
           'radio-on',
           'checkbox-on',
-          'checkbox-no',
           'pull-up',
         ]
       }

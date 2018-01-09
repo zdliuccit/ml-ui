@@ -24,7 +24,7 @@
        */
       translate($el, offset, callback) {
         $el.style.webkitTransition = ''
-        $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
+        $el.style.webkitTransform = `translate3d(${offset}px,-50%,0)`
         if (callback) callback.apply({}, arguments)
       },
       /**
@@ -41,23 +41,16 @@
        * 触发移动
        */
       touchMove(e) {
-        this.log(dragObject)
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
         dragObject.distanceX = touch.pageX - dragObject.currentLeft
         dragObject.currentLeft = touch.pageX
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
-        if (Math.abs(offsetLeft) < 5) return
+        if (Math.abs(offsetLeft) < 2) return
+        this.log(offsetLeft)
         e.preventDefault()
-        if (offsetLeft > 0 && this.slipLeft === dragObject.maxWidth) {
-          offsetLeft = this.slipLeft - offsetLeft
-          if (offsetLeft <= 0) offsetLeft = 0
-          this.translate(this.$refs.progressCircle, -offsetLeft)
-        }
-        if (offsetLeft < 0 && this.slipLeft === 0) {
-          if (Math.abs(offsetLeft) >= dragObject.maxWidth) offsetLeft = -dragObject.maxWidth
-          this.translate(this.$refs.progressCircle, offsetLeft)
-        }
+        e.stopPropagation()
+        this.translate(this.$refs.progressCircle, offsetLeft)
       },
       /**
        * 触发结束

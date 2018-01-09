@@ -30,9 +30,11 @@
        * 监听
        */
       value() {
-        if (this.value && this.$refs.autoLoad.offsetHeight >= this.$refs.autoContent.offsetHeight) {
-          this.$emit('input', false)
-        }
+        this.$nextTick(() => {
+          if (this.value && this.$refs.autoLoad.offsetHeight >= this.$refs.autoContent.offsetHeight) {
+            this.$emit('input', false)
+          }
+        })
       },
     },
     data() {
