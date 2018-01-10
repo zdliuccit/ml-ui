@@ -58,24 +58,16 @@
         const currentPage = this.pages[this.index]
         const newPage = this.pages[this.value]
         const $elWidth = this.$el.offsetWidth
-
-        const callback = () => {
+        const than = (this.value - this.index) / Math.abs(this.value - this.index)
+        newPage.style.webkitTransform = `translate3d(${than * $elWidth}px,0,0)`
+        newPage.style.display = 'block'
+        this.translate(currentPage, -than * $elWidth, 300)
+        this.translate(newPage, 0, 300, () => {
           newPage.style.display = ''
           removeClass(currentPage, 'tab-active')
           addClass(newPage, 'tab-active')
           this.index = this.value
-        }
-        if (this.value > this.index) {
-          newPage.style.webkitTransform = `translate3d(${$elWidth}px,0,0)`
-          newPage.style.display = 'block'
-          this.translate(currentPage, -$elWidth, 300, callback)
-          this.translate(newPage, 0, 300)
-        } else {
-          newPage.style.webkitTransform = `translate3d(-${$elWidth}px,0,0)`
-          newPage.style.display = 'block'
-          this.translate(currentPage, $elWidth, 300, callback)
-          this.translate(newPage, 0, 300)
-        }
+        })
       },
       /**
        * 初始化子组件
@@ -87,7 +79,7 @@
         children.forEach((child, $index) => {
           pages.push(child.$el)
           removeClass(child.$el, 'tab-active')
-          addClass(child.$el, `tab-${$index} ${$index === this.index ? 'tab-active' : ''}`)
+          if ($index === this.index) addClass(child.$el, 'tab-active')
         })
         this.pages = pages
       },
@@ -99,7 +91,7 @@
         this.animating = true
         let ALPHA = 0.88
         const animationLoop = () => {
-          ALPHA = ALPHA * (0.98)
+          ALPHA *= (0.98)
           if (Math.abs(initOffset - offset) < 1) {
             this.animating = false
             $el.style.webkitTransform = ''
@@ -108,9 +100,7 @@
             initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
             $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
             $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
-            if (Math.abs(initOffset - offset) < 1) {
-              if (callback) callback.apply({}, arguments)
-            }
+            if (Math.abs(initOffset - offset) < 1 && callback) callback()
             animationFrame(animationLoop)
           }
         }
@@ -130,7 +120,7 @@
             this.animating = false
             $el.style.webkitTransition = ''
             $el.style.webkitTransform = ''
-            if (callback) callback.apply({}, arguments)
+            if (callback) callback()
           }
           setTimeout(transitionEndCallback, speed + 30)
         } else {

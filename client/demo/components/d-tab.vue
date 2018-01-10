@@ -70,25 +70,23 @@
     }
     .dd-tab-content {
       flex: 1;
+      color: #fff;
     }
     .warp-content {
       text-align: center;
       font-size: 40px;
     }
     .dd-tab-c1 {
-      background-color: #fff
+      background-color: #eb9e05
     }
     .dd-tab-c2 {
       background-color: #31a354;
-      color: #fff;
     }
     .dd-tab-c3 {
       background-color: #df5000;
-      color: #fff;
     }
     .dd-tab-c4 {
       background-color: #3182bd;
-      color: #fff;
     }
   }
 

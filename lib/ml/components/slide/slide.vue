@@ -57,7 +57,7 @@
         children.forEach((child, $index) => {
           pages.push(child.$el)
           removeClass(child.$el, 'slide-active')
-          addClass(child.$el, `slide-${$index} ${$index === this.index ? 'slide-active' : ''}`)
+          if ($index === this.index) addClass(child.$el, 'slide-active')
         })
         this.pages = pages
       },
