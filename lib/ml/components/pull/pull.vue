@@ -158,6 +158,7 @@
       },
     },
     mounted() {
+      this.$el.parentNode.style.position = 'relative'
       this.elWrap = this.$refs.elWrap
       this.elContent = this.$refs.elContent
       if (!this.pullUp && !this.pullDown) return

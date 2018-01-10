@@ -1,28 +1,22 @@
 .ml-pull-layout {
-  position: relative;
+  position: absolute;
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
 .ml-pull {
-  position: relative;
   height: 100%;
   font-size: 14px;
   .ml-pull-wrapper {
     overflow: scroll;
-    position: absolute;
     height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
     -webkit-overflow-scrolling: touch;
   }
   .ml-pull-down, .ml-pull-up {
     height: 50px;
-    width: 100%;
     text-align: center;
     line-height: 50px;
-    position: absolute;
     span {
       margin-left: 6px;
     }
@@ -36,8 +30,7 @@
     }
   }
   .ml-pull-up {
-    top: 100%;
-    left: 0;
+    margin-bottom: -50px;
     .ml-pd-icon {
       transform: rotate(180deg)
     }
@@ -53,7 +46,6 @@
     }
   }
   .ml-pull-down {
-    bottom: 100%;
-    left: 0;
+    margin-top: -50px;
   }
 }

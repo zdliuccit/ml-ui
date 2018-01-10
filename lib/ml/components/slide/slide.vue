@@ -96,7 +96,7 @@
         this.animating = true
         const animationLoop = () => {
           ALPHA = ALPHA * (0.98)
-          if (Math.abs(initOffset - offset) < 3) {
+          if (Math.abs(initOffset - offset) < 1) {
             this.animating = false
             $el.style.webkitTransform = ''
             $elNext.style.webkitTransform = ''
@@ -104,7 +104,7 @@
             initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
             $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
             $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
-            if (Math.abs(initOffset - offset) < 3) {
+            if (Math.abs(initOffset - offset) < 1) {
               if (callback) callback.apply({}, arguments)
             }
             animationFrame(animationLoop)
@@ -137,68 +137,55 @@
       runAnimate(towards, options) {
         if (this.pages.length < 2) return
         let { prevPage, nextPage, currentPage, $elWidth, offsetLeft, distanceX } = options || {}
-        let speed = this.speed || 300
+        const speed = this.speed || 300
         const index = this.index
         const pages = this.pages
-        let pageCount = pages.length
+        const prevIndex = index - 1 < 0 ? pages.length - 1 : index - 1
+        const nextIndex = index + 1 > pages.length - 1 ? 0 : index + 1
         if (!options) {
-          $elWidth = this.$el.clientWidth
-          const prevIndex = index - 1 < 0 ? pages.length - 1 : index - 1
-          const nextIndex = index + 1 > pages.length - 1 ? 0 : index + 1
+          $elWidth = this.$el.offsetWidth
           currentPage = pages[index]
           prevPage = pages[prevIndex]
           nextPage = pages[nextIndex]
-
           prevPage.style.display = 'block'
           this.translate(prevPage, -$elWidth)
-
           nextPage.style.display = 'block'
           this.translate(nextPage, $elWidth)
         }
-        if (!currentPage || !prevPage || !nextPage) return
-
         let newIndex = null
-        if (towards === 'prev') {
-          if (index > 0) newIndex = index - 1
-          if (this.loop && index === 0) newIndex = pageCount - 1
-        } else if (towards === 'next') {
-          if (index < pageCount - 1) newIndex = index + 1
-          if (this.loop && index === pageCount - 1) newIndex = 0
-        }
-        let callback = () => {
-          if (newIndex !== undefined && newIndex !== null) {
+        if (towards === 'next') newIndex = nextIndex
+        if (towards === 'prev') newIndex = prevIndex
+        const callback = () => {
+          prevPage.style.display = ''
+          nextPage.style.display = ''
+          if (newIndex !== null) {
             removeClass(currentPage, 'slide-active')
             addClass(pages[newIndex], 'slide-active')
             this.index = newIndex
           }
-          prevPage.style.display = ''
-          nextPage.style.display = ''
         }
-
-        setTimeout(() => {
-          if (towards === 'next') {
-            if (distanceX) {
-              this.continueTranslate(currentPage, offsetLeft, -$elWidth, callback, nextPage)
-            } else {
-              this.translate(currentPage, -$elWidth, speed, callback)
-              this.translate(nextPage, 0, speed)
-            }
-          } else if (towards === 'prev') {
-            if (distanceX) {
-              this.continueTranslate(currentPage, offsetLeft, $elWidth, callback, prevPage)
-            } else {
-              this.translate(currentPage, $elWidth, speed, callback)
-              this.translate(prevPage, 0, speed)
-            }
-          } else { // 滑动距离<5的回滚
-            this.translate(currentPage, 0, speed, callback)
-            if (offsetLeft > 0) {
-              this.translate(prevPage, $elWidth * -1, speed)
-            } else {
-              this.translate(nextPage, $elWidth, speed)
-            }
+        if (towards === 'next') {
+          if (distanceX) {
+            this.continueTranslate(currentPage, offsetLeft, -$elWidth, callback, nextPage)
+          } else {
+            this.translate(currentPage, -$elWidth, speed, callback)
+            this.translate(nextPage, 0, speed)
           }
-        }, 10)
+        } else if (towards === 'prev') {
+          if (distanceX) {
+            this.continueTranslate(currentPage, offsetLeft, $elWidth, callback, prevPage)
+          } else {
+            this.translate(currentPage, $elWidth, speed, callback)
+            this.translate(prevPage, 0, speed)
+          }
+        } else { // 滑动距离<5的回滚
+          this.translate(currentPage, 0, speed, callback)
+          if (offsetLeft > 0) {
+            this.translate(prevPage, -$elWidth, speed)
+          } else {
+            this.translate(nextPage, $elWidth, speed)
+          }
+        }
       },
       /**
        * 触发开发
@@ -286,6 +273,7 @@
       this.index = this.defaultIndex
     },
     mounted() {
+      this.$el.parentNode.style.position = 'relative'
       this.initTimer()
       this.initPages()
       const $el = this.$el

@@ -15,6 +15,7 @@
     },
     data() {
       return {
+        slipLeft: 0,
         dragObject: {},
       }
     },

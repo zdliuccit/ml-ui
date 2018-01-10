@@ -75,8 +75,8 @@
       },
     },
     mounted() {
-      const $el = this.$refs.autoLoad
-      $el.addEventListener('scroll', throttle(this.countDom, 30, 50), true)
+      this.$el.parentNode.style.position = 'relative'
+      this.$refs.autoLoad.addEventListener('scroll', throttle(this.countDom, 30, 50), true)
     },
   }
 </script>

@@ -20,10 +20,6 @@ export default {
           label: 'Button 按钮',
         },
         {
-          link: '/docs/switch',
-          label: 'Switch 开关'
-        },
-        {
           link: '/docs/radio',
           label: 'Radio 单选',
         },
@@ -32,12 +28,16 @@ export default {
           label: 'Checkbox 多选',
         },
         {
-          link: '/docs/slide',
-          label: 'Slide 幻灯片',
+          link: '/docs/switch',
+          label: 'Switch 开关'
         },
         {
           link: '/docs/tab',
           label: 'Tab 选项卡',
+        },
+        {
+          link: '/docs/slide',
+          label: 'Slide 幻灯片',
         },
         {
           link: '/docs/progress',

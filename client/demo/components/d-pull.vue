@@ -33,6 +33,7 @@
       doRefresh(resolve) {
         setTimeout(() => {
           this.dataList = 20
+          this.paging = true
           resolve()
         }, 1000)
       }

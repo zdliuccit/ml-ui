@@ -1,10 +1,6 @@
 <template>
   <div class="ml-tab">
-    <div class="ml-tab-nav ml-border">
-    </div>
-    <div class="ml-tab-wrap" ref="mlTabs">
-      <slot name="item"></slot>
-    </div>
+    <slot></slot>
   </div>
 </template>
 <script type="text/babel">
@@ -13,6 +9,10 @@
   export default {
     name: 'tab',
     props: {
+      value: {
+        type: Number,
+        default: 0,
+      },
       speed: {
         type: Number,
         default: 300,
@@ -22,10 +22,24 @@
         default: 0,
       },
     },
+    watch: {
+      /**
+       * 监听value变化
+       */
+      value() {
+        if (this.value !== this.index) this.changeIndex()
+      },
+      /**
+       * 监听内部index变化
+       */
+      index() {
+        if (this.index !== this.value) this.$emit('input', this.index)
+      }
+    },
     data() {
       return {
-        pages: [], // dots数量
-        index: 0, // 当前index索引
+        pages: [], // 存储子元素
+        index: this.value, // 当前index索引
         animating: false, // 是否动画中
         sliding: false, // 是否滑动中
         isScroll: false, // 是否滚动
@@ -34,12 +48,42 @@
     },
     methods: {
       /**
+       * 执行tab切换
+       */
+      changeIndex() {
+        if (this.animating) {
+          this.$emit('input', this.index)
+          return
+        }
+        const currentPage = this.pages[this.index]
+        const newPage = this.pages[this.value]
+        const $elWidth = this.$el.offsetWidth
+
+        const callback = () => {
+          newPage.style.display = ''
+          removeClass(currentPage, 'tab-active')
+          addClass(newPage, 'tab-active')
+          this.index = this.value
+        }
+        if (this.value > this.index) {
+          newPage.style.webkitTransform = `translate3d(${$elWidth}px,0,0)`
+          newPage.style.display = 'block'
+          this.translate(currentPage, -$elWidth, 300, callback)
+          this.translate(newPage, 0, 300)
+        } else {
+          newPage.style.webkitTransform = `translate3d(-${$elWidth}px,0,0)`
+          newPage.style.display = 'block'
+          this.translate(currentPage, $elWidth, 300, callback)
+          this.translate(newPage, 0, 300)
+        }
+      },
+      /**
        * 初始化子组件
        */
       initPages() {
         const children = this.$children
         const pages = []
-        this.index = Math.abs(this.defaultIndex) < children.length ? this.defaultIndex : 0
+        this.index = Math.abs(this.index) < children.length ? this.index : 0
         children.forEach((child, $index) => {
           pages.push(child.$el)
           removeClass(child.$el, 'tab-active')
@@ -53,16 +97,20 @@
        */
       continueTranslate($el, initOffset, offset, callback, $elNext) {
         this.animating = true
+        let ALPHA = 0.88
         const animationLoop = () => {
-          if (Math.abs(initOffset - offset) < 0.5) {
+          ALPHA = ALPHA * (0.98)
+          if (Math.abs(initOffset - offset) < 1) {
             this.animating = false
             $el.style.webkitTransform = ''
             $elNext.style.webkitTransform = ''
-            if (callback) callback()
           } else {
-            initOffset = 0.87 * initOffset + 0.3 * offset
-            $el.style.webkitTransform = `translateX(${initOffset}px)`
-            $elNext.style.webkitTransform = `translateX(${initOffset - offset}px)`
+            initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
+            $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
+            $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
+            if (Math.abs(initOffset - offset) < 1) {
+              if (callback) callback.apply({}, arguments)
+            }
             animationFrame(animationLoop)
           }
         }
@@ -76,7 +124,7 @@
           this.animating = true
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
           setTimeout(() => {
-            $el.style.webkitTransform = `translateX(${offset}px)`
+            $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
           }, 60)
           const transitionEndCallback = () => {
             this.animating = false
@@ -87,88 +135,75 @@
           setTimeout(transitionEndCallback, speed + 30)
         } else {
           $el.style.webkitTransition = ''
-          $el.style.webkitTransform = `translateX(${offset}px)`
+          $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
         }
       },
       runAnimate(towards, options) {
         if (this.pages.length < 2) return
         let { prevPage, nextPage, currentPage, $elWidth, offsetLeft, distanceX } = options || {}
-        let speed = this.speed || 300
+        const speed = this.speed || 300
         const index = this.index
         const pages = this.pages
-        let pageCount = pages.length
+        const prevIndex = index - 1 < 0 ? pages.length - 1 : index - 1
+        const nextIndex = index + 1 > pages.length - 1 ? 0 : index + 1
         if (!options) {
-          $elWidth = this.$el.clientWidth
-          const prevIndex = index - 1 < 0 ? pages.length - 1 : index - 1
-          const nextIndex = index + 1 > pages.length - 1 ? 0 : index + 1
+          $elWidth = this.$el.offsetWidth
           currentPage = pages[index]
           prevPage = pages[prevIndex]
           nextPage = pages[nextIndex]
-
           prevPage.style.display = 'block'
           this.translate(prevPage, -$elWidth)
-
           nextPage.style.display = 'block'
           this.translate(nextPage, $elWidth)
         }
-        if (!currentPage || !prevPage || !nextPage) return
-
         let newIndex = null
-        if (towards === 'prev') {
-          if (index > 0) newIndex = index - 1
-          if (index === 0) newIndex = pageCount - 1
-        } else if (towards === 'next') {
-          if (index < pageCount - 1) newIndex = index + 1
-          if (index === pageCount - 1) newIndex = 0
-        }
-        let callback = () => {
-          if (newIndex !== undefined && newIndex !== null) {
+        if (towards === 'next') newIndex = nextIndex
+        if (towards === 'prev') newIndex = prevIndex
+        const callback = () => {
+          prevPage.style.display = ''
+          nextPage.style.display = ''
+          if (newIndex !== null) {
             removeClass(currentPage, 'tab-active')
             addClass(pages[newIndex], 'tab-active')
             this.index = newIndex
           }
-          prevPage.style.display = ''
-          nextPage.style.display = ''
         }
-
-        setTimeout(() => {
-          if (towards === 'next') {
-            if (distanceX) {
-              this.continueTranslate(currentPage, offsetLeft, -$elWidth, callback, nextPage)
-            } else {
-              this.translate(currentPage, -$elWidth, speed, callback)
-              this.translate(nextPage, 0, speed)
-            }
-          } else if (towards === 'prev') {
-            if (distanceX) {
-              this.continueTranslate(currentPage, offsetLeft, $elWidth, callback, prevPage)
-            } else {
-              this.translate(currentPage, $elWidth, speed, callback)
-              this.translate(prevPage, 0, speed)
-            }
-          } else { // 滑动距离<5的回滚
-            this.translate(currentPage, 0, speed, callback)
-            if (offsetLeft > 0) {
-              this.translate(prevPage, $elWidth * -1, speed)
-            } else {
-              this.translate(nextPage, $elWidth, speed)
-            }
+        if (towards === 'next') {
+          if (distanceX) {
+            this.continueTranslate(currentPage, offsetLeft, -$elWidth, callback, nextPage)
+          } else {
+            this.translate(currentPage, -$elWidth, speed, callback)
+            this.translate(nextPage, 0, speed)
           }
-        }, 10)
+        } else if (towards === 'prev') {
+          if (distanceX) {
+            this.continueTranslate(currentPage, offsetLeft, $elWidth, callback, prevPage)
+          } else {
+            this.translate(currentPage, $elWidth, speed, callback)
+            this.translate(prevPage, 0, speed)
+          }
+        } else { // 滑动距离<5的回滚
+          this.translate(currentPage, 0, speed, callback)
+          if (offsetLeft > 0) {
+            this.translate(prevPage, $elWidth * -1, speed)
+          } else {
+            this.translate(nextPage, $elWidth, speed)
+          }
+        }
       },
       /**
        * 触发开发
        */
       touchStart(e) {
-        const $el = this.$el
+        if (this.pages.length < 2 || this.animating) return
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
-        if (this.pages.length < 2) return
 
         dragObject.startTime = new Date() // 触发时间
         dragObject.startLeft = touch.pageX // 开始left值
+        dragObject.startTop = touch.pageY // 开始Top值
 
-        dragObject.$elWidth = $el.offsetWidth
+        dragObject.$elWidth = this.$el.offsetWidth
         const prevIndex = this.index - 1 < 0 ? this.pages.length - 1 : this.index - 1
         const nextIndex = this.index + 1 > this.pages.length - 1 ? 0 : this.index + 1
 
@@ -183,41 +218,34 @@
        */
       touchMove(e) {
         const dragObject = this.dragObject
+        if (!dragObject.startLeft) return
         const touch = e.touches ? e.touches[0] : e
-
         dragObject.distanceX = touch.pageX - dragObject.currentLeft
         dragObject.currentLeft = touch.pageX
-
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
-        if (Math.abs(offsetLeft) < 5) return
-        this.isScroll = true
+        if (!this.sliding && Math.abs(offsetLeft) < 5) return
+        e.preventDefault()
+        this.sliding = true
         offsetLeft = Math.min(Math.max(-dragObject.$elWidth + 1, offsetLeft), dragObject.$elWidth - 1)
-        const towards = offsetLeft < 0 ? 'next' : 'prev'
-        if (dragObject.prevPage && towards === 'prev') {
-          this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
-        }
+        this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
         this.translate(dragObject.dragPage, offsetLeft)
-        if (dragObject.nextPage && towards === 'next') {
-          this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
-        }
+        this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
       },
       /**
        * 触发结束
        */
-      touchEnd() {
+      touchEnd(e) {
         const dragObject = this.dragObject
+        if (!dragObject.startLeft || this.pages.length < 2) return
+        const touch = e.touches ? e.touches[0] : e
         const dragDuration = new Date() - dragObject.startTime // 间隔时长
         let towards = null
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
         const $elWidth = dragObject.$elWidth
-
         if (dragDuration < 300 && !offsetLeft) return
-
         if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 2) {
           towards = offsetLeft < 0 ? 'next' : 'prev'
         }
-
-        if (this.$children.length < 2) towards = null
         this.runAnimate(towards, {
           offsetLeft,
           $elWidth,
@@ -229,32 +257,18 @@
         this.dragObject = {}
       },
     },
-    created() {
-      this.index = this.defaultIndex
-    },
     mounted() {
+      this.$el.parentNode.style.position = 'relative'
       this.initPages()
-      const $el = this.$refs.mlTabs
+      const $el = this.$el
       $el.addEventListener('touchstart', (e) => {
-        if (this.animating) return
-        this.sliding = true
-        this.isScroll = false
         this.touchStart(e)
       })
       $el.addEventListener('touchmove', (e) => {
-        e.preventDefault()
-        if (!this.sliding) return
-        if (this.timer) this.clearTimer()
         this.touchMove(e)
       })
       $el.addEventListener('touchend', (e) => {
-        if (!this.isScroll) {
-          this.sliding = false
-          this.dragObject = {}
-        }
-        if (!this.sliding || !this.isScroll) return
         this.touchEnd(e)
-        this.sliding = false
       })
     },
   }

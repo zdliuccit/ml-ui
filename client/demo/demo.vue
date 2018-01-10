@@ -28,10 +28,6 @@
 //            link: '/demo/layout'
 //          },
           {
-            label: 'Slide',
-            link: '/demo/slide'
-          },
-          {
             label: 'Button',
             link: '/demo/button'
           },
@@ -44,12 +40,16 @@
             link: '/demo/checkbox'
           },
           {
+            label: 'Switch',
+            link: '/demo/switch'
+          },
+          {
             label: 'Tab',
             link: '/demo/tab'
           },
           {
-            label: 'Switch',
-            link: '/demo/switch'
+            label: 'Slide',
+            link: '/demo/slide'
           },
           {
             label: 'Progress',
@@ -66,6 +66,10 @@
           {
             label: 'AutoLoad',
             link: '/demo/auto-load'
+          },
+          {
+            label: 'Loading',
+            link: '/demo/loading'
           },
           {
             label: 'LeftSlip',
