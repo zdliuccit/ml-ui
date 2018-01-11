@@ -249,14 +249,13 @@
     mounted() {
       this.$el.parentNode.style.position = 'relative'
       this.initPages()
-      const $el = this.$el
-      $el.addEventListener('touchstart', (e) => {
+      this.$el.addEventListener('touchstart', (e) => {
         this.touchStart(e)
       })
-      $el.addEventListener('touchmove', (e) => {
+      this.$el.addEventListener('touchmove', (e) => {
         this.touchMove(e)
       })
-      $el.addEventListener('touchend', (e) => {
+      this.$el.addEventListener('touchend', (e) => {
         this.touchEnd(e)
       })
     },

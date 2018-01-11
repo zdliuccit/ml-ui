@@ -12,7 +12,7 @@ Vue.component(`ml-${Tab.name}`, Tab)
 
 Demo
 
-Tab 切换的头部自定义吧！
+Tab的头部自定义吧！
 
 ```html
 <div class="dd-tab-warp">

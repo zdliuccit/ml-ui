@@ -16,6 +16,7 @@ import Model from './components/model/model.vue'
 import Pull from './components/pull/pull.vue'
 import AutoLoad from './components/auto-load/auto-load.vue'
 import Loading from './components/loading/loading.vue'
+import LeftSlip from './components/left-slip/left-slip.vue'
 // 引入JS组件
 import $toast from './components/toast'
 import $message from './components/message'
@@ -40,6 +41,7 @@ const components = {
   Pull,
   AutoLoad,
   Loading,
+  LeftSlip,
 }
 // JS组件
 const jsComponents = {

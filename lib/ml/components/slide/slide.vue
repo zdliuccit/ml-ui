@@ -42,7 +42,6 @@
         timer: null, // 定时器
         animating: false, // 是否动画中
         sliding: false, // 是否滑动中
-        isScroll: false, // 是否滚动
         dragObject: {}, // 储存拖拽drag信息
       }
     },
@@ -68,9 +67,9 @@
       initTimer() {
         if (this.autoInterval > 0 && !this.timer) {
           this.clearTimer()
-          if (!this.loop && (this.index >= this.pages.length - 1)) return
           const timerFunc = (callback) => {
             this.timer = setTimeout(() => {
+              if (!this.loop && this.index >= this.pages.length - 1) return
               callback()
               timerFunc(callback)
             }, this.autoInterval)
@@ -191,18 +190,16 @@
        * 触发开发
        */
       touchStart(e) {
+        if (this.pages.length < 2 || this.animating) return
         const $el = this.$el
+        this.dragObject = {}
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
-        if (!this.loop || this.pages.length < 2) return
-
         dragObject.startTime = new Date() // 触发时间
         dragObject.startLeft = touch.pageX // 开始left值
-
         dragObject.$elWidth = $el.offsetWidth
         const prevIndex = this.index - 1 < 0 ? this.pages.length - 1 : this.index - 1
         const nextIndex = this.index + 1 > this.pages.length - 1 ? 0 : this.index + 1
-
         dragObject.prevPage = this.$children[prevIndex].$el
         dragObject.dragPage = this.$children[this.index].$el
         dragObject.nextPage = this.$children[nextIndex].$el
@@ -215,17 +212,19 @@
       touchMove(e) {
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
-
+        if (!dragObject.startLeft) return
         dragObject.distanceX = touch.pageX - dragObject.currentLeft
         dragObject.currentLeft = touch.pageX
-
         let offsetLeft = dragObject.currentLeft - dragObject.startLeft
         if (!this.animating && Math.abs(offsetLeft) < 5) return
+        offsetLeft = Math.min(Math.max(-dragObject.$elWidth + 1, offsetLeft), dragObject.$elWidth - 1)
+        if (!this.loop && ((this.index === 0 && offsetLeft > 0) ||
+            (this.index === this.pages.length - 1 && offsetLeft < 0))) {
+          dragObject.currentLeft = null
+          return
+        }
         this.animating = true
         e.preventDefault()
-        e.stopPropagation()
-        this.isScroll = true
-        offsetLeft = Math.min(Math.max(-dragObject.$elWidth + 1, offsetLeft), dragObject.$elWidth - 1)
         const towards = offsetLeft < 0 ? 'next' : 'prev'
         if (dragObject.prevPage && towards === 'prev') {
           this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
@@ -240,24 +239,15 @@
        */
       touchEnd() {
         const dragObject = this.dragObject
+        if (!dragObject.startLeft || !dragObject.currentLeft) return
         const dragDuration = new Date() - dragObject.startTime // 间隔时长
-        let towards = null
-        let offsetLeft = dragObject.currentLeft - dragObject.startLeft
+        const offsetLeft = dragObject.currentLeft - dragObject.startLeft
         const $elWidth = dragObject.$elWidth
+        let towards = null
         this.animating = false
-        if (dragDuration < 300 && !offsetLeft) return
-
         if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 2) {
           towards = offsetLeft < 0 ? 'next' : 'prev'
         }
-        /*eslint-disable*/
-        if (!this.loop) {
-          if (( this.index === 0 && towards === 'prev') || ( this.index === (this.pages.length - 1) && towards === 'next')) {
-            towards = null
-          }
-        }
-        /*eslint-disabled*/
-        if (this.$children.length < 2) towards = null
         this.runAnimate(towards, {
           offsetLeft,
           $elWidth,
@@ -266,21 +256,15 @@
           nextPage: dragObject.nextPage,
           distanceX: dragObject.distanceX
         })
-        this.dragObject = {}
       },
     },
-    created() {
-      this.index = this.defaultIndex
-    },
     mounted() {
-      this.$el.parentNode.style.position = 'relative'
+      const $el = this.$el
       this.initTimer()
       this.initPages()
-      const $el = this.$el
+      $el.parentNode.style.position = 'relative'
       $el.addEventListener('touchstart', (e) => {
-        if (this.animating) return
         this.sliding = true
-        this.isScroll = false
         this.touchStart(e)
       })
       $el.addEventListener('touchmove', (e) => {
@@ -288,14 +272,9 @@
         if (this.timer) this.clearTimer()
         this.touchMove(e)
       })
-      $el.addEventListener('touchend', (e) => {
-        if (!this.isScroll) {
-          this.sliding = false
-          this.dragObject = {}
-        }
-        if (!this.sliding || !this.isScroll) return
+      $el.addEventListener('touchend', () => {
+        this.touchEnd()
         this.initTimer()
-        this.touchEnd(e)
         this.sliding = false
       })
     },
