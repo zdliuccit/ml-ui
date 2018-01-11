@@ -40,6 +40,7 @@
       return {
         pages: [], // 存储子元素
         index: this.value, // 当前index索引
+        clickIndex: null, // 外部TAB切换缓存index
         animating: false, // 是否动画中
         sliding: false, // 是否滑动中
         isScroll: false, // 是否滚动
@@ -51,23 +52,27 @@
        * 执行tab切换
        */
       changeIndex() {
-        if (this.animating) {
-          this.$emit('input', this.index)
+        if ((this.clickIndex && this.clickIndex !== this.value) || this.animating) {
+          this.$emit('input', this.clickIndex)
           return
         }
+        this.clickIndex = this.value
         const currentPage = this.pages[this.index]
         const newPage = this.pages[this.value]
         const $elWidth = this.$el.offsetWidth
         const than = (this.value - this.index) / Math.abs(this.value - this.index)
         newPage.style.webkitTransform = `translate3d(${than * $elWidth}px,0,0)`
         newPage.style.display = 'block'
-        this.translate(currentPage, -than * $elWidth, 300)
-        this.translate(newPage, 0, 300, () => {
-          newPage.style.display = ''
-          removeClass(currentPage, 'tab-active')
-          addClass(newPage, 'tab-active')
-          this.index = this.value
-        })
+        setTimeout(() => {
+          this.translate(currentPage, -than * $elWidth, 300)
+          this.translate(newPage, 0, 300, () => {
+            newPage.style.display = ''
+            removeClass(currentPage, 'tab-active')
+            addClass(newPage, 'tab-active')
+            this.index = this.clickIndex
+            this.clickIndex = null
+          })
+        }, 0)
       },
       /**
        * 初始化子组件
@@ -188,15 +193,11 @@
         if (this.pages.length < 2 || this.animating) return
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
-
-        dragObject.startTime = new Date() // 触发时间
-        dragObject.startLeft = touch.pageX // 开始left值
-        dragObject.startTop = touch.pageY // 开始Top值
-
+        dragObject.startTime = new Date()
+        dragObject.startLeft = touch.pageX
         dragObject.$elWidth = this.$el.offsetWidth
         const prevIndex = this.index - 1 < 0 ? this.pages.length - 1 : this.index - 1
         const nextIndex = this.index + 1 > this.pages.length - 1 ? 0 : this.index + 1
-
         dragObject.prevPage = this.$children[prevIndex].$el
         dragObject.dragPage = this.$children[this.index].$el
         dragObject.nextPage = this.$children[nextIndex].$el
@@ -224,16 +225,14 @@
       /**
        * 触发结束
        */
-      touchEnd(e) {
+      touchEnd() {
         const dragObject = this.dragObject
         if (!dragObject.startLeft || this.pages.length < 2) return
-        const touch = e.touches ? e.touches[0] : e
         const dragDuration = new Date() - dragObject.startTime // 间隔时长
         let towards = null
-        let offsetLeft = dragObject.currentLeft - dragObject.startLeft
+        const offsetLeft = dragObject.currentLeft - dragObject.startLeft
         const $elWidth = dragObject.$elWidth
-        if (dragDuration < 300 && !offsetLeft) return
-        if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 2) {
+        if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 3) {
           towards = offsetLeft < 0 ? 'next' : 'prev'
         }
         this.runAnimate(towards, {
