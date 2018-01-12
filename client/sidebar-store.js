@@ -32,6 +32,10 @@ export default {
           label: 'Switch 开关'
         },
         {
+          link: '/docs/date-pater',
+          label: 'DatePater 日期、时间选择器',
+        },
+        {
           link: '/docs/tab',
           label: 'Tab 选项卡',
         },

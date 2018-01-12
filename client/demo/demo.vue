@@ -44,6 +44,10 @@
             link: '/demo/switch'
           },
           {
+            label: 'DatePater',
+            link: '/demo/date-pater'
+          },
+          {
             label: 'Tab',
             link: '/demo/tab'
           },

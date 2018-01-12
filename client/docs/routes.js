@@ -14,6 +14,7 @@ import Pull from './components/pull.md'
 import AutoLoad from './components/auto-load.md'
 import Loading from './components/loading.md'
 import LeftSlip from './components/left-slip.md'
+import DatePater from './components/date-pater.md'
 // jsComponents MD
 import Toast from './components/toast.md'
 import Message from './components/message.md'
@@ -144,6 +145,13 @@ export default [
     component: LeftSlip,
     meta: {
       demoLink: '/left-slip'
+    }
+  },
+  {
+    path: 'date-pater',
+    component: DatePater,
+    meta: {
+      demoLink: '/date-pater'
     }
   }
 ]

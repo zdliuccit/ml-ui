@@ -15,6 +15,7 @@ import Pull from './components/d-pull.vue'
 import AutoLoad from './components/d-auto-load.vue'
 import Loading from './components/d-loading.vue'
 import LeftSlip from './components/d-left-slip.vue'
+import DatePater from './components/d-date-pater.vue'
 import index from './demo.vue'
 
 export default [
@@ -107,5 +108,10 @@ export default [
     path: 'left-slip',
     name: 'd-left-slip',
     component: LeftSlip,
+  },
+  {
+    path: 'date-pater',
+    name: 'd-date-pater',
+    component: DatePater,
   }
 ]

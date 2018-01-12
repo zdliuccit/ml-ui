@@ -2,32 +2,67 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  top: 0;
+  left: 0;
   background-color: transparent;
   z-index: 1002;
-  .ml-model-transition {
-    width: 80%;
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    padding: 15px;
-    transform: translate3d(0, -50%, 0);
+  .mml-com {
+    position: relative;
     background-color: #fff;
     transition: $scale-fade-transition;
   }
-
-  .ml-model-enter {
+  .mml-middle {
+    width: 80%;
+    top: 50%;
+    left: 10%;
+    transform: translate3d(0, -50%, 0);
+    border-radius: $border-radius;
+  }
+  .mml-middle-enter, .mml-middle-leave-active {
     opacity: 0;
     transform: translate3d(0, -50%, 0) scale(0.7);
   }
+  .mml-top {
+    top: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  .mml-top-enter, .mml-top-leave-active {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  .mml-right {
+    position: absolute;
+    height: 100%;
+    left: 100%;
+    transform: translate3d(-100%, 0, 0);
+  }
+  .mml-bottom {
+    top: 100%;
+    transform: translate3d(0, -100%, 0);
+  }
+  .mml-right-enter, .mml-right-leave-active, .mml-bottom-enter, .mml-bottom-leave-active {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .mml-left {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .mml-left-enter, .mml-left-leave-active {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
 }
 
 .ml-mask-bg {
-  position: relative;
-  width: 100%;
+  position: absolute;
   height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.34);
