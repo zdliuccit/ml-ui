@@ -1,9 +1,12 @@
 <template>
   <div class="dd-body">
-    <d-head :back="true" title="Checkbox"></d-head>
+    <d-head :back="true" title="DatePater"></d-head>
     <div class="dd-warp">
       <div class="warp-ctt">
-        <div class="dd-label">String类型值: {{checkboxValue}}</div>
+        <div class="dd-label">
+          <ml-button @click="doClick">datePater</ml-button>
+        </div>
+        <ml-date-pater ref="datePater"></ml-date-pater>
       </div>
     </div>
   </div>
@@ -15,6 +18,10 @@
         checkboxValue: '22',
       }
     },
-    methods: {}
+    methods: {
+      doClick() {
+        this.$refs.datePater.doOpen()
+      }
+    }
   }
 </script>

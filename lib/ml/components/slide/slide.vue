@@ -94,7 +94,7 @@
         let ALPHA = 0.88
         this.animating = true
         const animationLoop = () => {
-          ALPHA = ALPHA * (0.98)
+          ALPHA = ALPHA * 0.98
           if (Math.abs(initOffset - offset) < 1) {
             this.animating = false
             $el.style.webkitTransform = ''
