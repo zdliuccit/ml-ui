@@ -28,15 +28,38 @@
       },
       unit: String
     },
+    watch: {
+      /**
+       * 监听
+       */
+      value() {
+        if (this.value !== this.currentValue) this.initTranslate3d()
+      }
+    },
     data() {
       return {
         elWrap: null,
         dragObject: {},
         currentTop: 0,
         animating: false,
+        currentValue: this.value,
       }
     },
     methods: {
+      /**
+       * 通知值变化
+       */
+      emitValue() {
+        this.currentValue = 3 - this.currentTop / (this.$el.offsetHeight / 7) + this.start
+        if (this.value !== this.currentValue) this.$emit('input', this.currentValue)
+      },
+      /**
+       * 初始化位置
+       */
+      initTranslate3d() {
+        this.currentTop = this.$el.offsetHeight / 7 * (this.start - this.value + 3)
+        this.translate(this.elWrap, this.currentTop)
+      },
       /**
        * 动画
        */
@@ -50,6 +73,7 @@
           const transitionEndCallback = () => {
             this.animating = false
             $el.style.webkitTransition = ''
+            this.emitValue()
           }
           setTimeout(transitionEndCallback, speed + 30)
         } else {
@@ -66,8 +90,8 @@
         const animationLoop = () => {
           if (Math.abs(nowTop - futureTop) < 1) {
             this.animating = false
-            this.currentTop = futureTop
             $el.style.webkitTransform = `translate3d(0,${futureTop}px,0)`
+            this.emitValue()
           } else {
             nowTop = 0.87 * nowTop + 0.13 * futureTop
             $el.style.webkitTransform = `translate3d(0,${nowTop}px,0)`
@@ -86,9 +110,9 @@
         }
         const touch = e.touches ? e.touches[0] : e
         const dragObject = this.dragObject
+        const one = this.$el.offsetHeight / 7
         dragObject.startTop = touch.pageY // 开始left值
         dragObject.startTime = new Date() // 触发时间
-        const one = this.$el.offsetHeight / 7
         dragObject.one = one
         dragObject.maxTop = one * 3
         dragObject.minTop = -(this.end - this.start - 3) * one
@@ -102,17 +126,15 @@
         const touch = e.touches ? e.touches[0] : e
         const pageY = touch.pageY
         if (Math.abs(pageY - dragObject.startTop) < 5) return
-        let offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
+        const offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
         dragObject.currentTop = pageY
         let currentTop = this.currentTop + offsetTop
         if (currentTop >= dragObject.maxTop) currentTop = dragObject.maxTop
         if (currentTop <= dragObject.minTop) currentTop = dragObject.minTop
-        /*eslint-disable*/
         e.preventDefault()
         this.currentTop = currentTop
         this.translate(this.elWrap, currentTop)
-      }
-      ,
+      },
       /**
        * 触发结束
        */
@@ -136,6 +158,7 @@
           if (currentTop <= dragObject.minTop) currentTop = dragObject.minTop
           this.continueTranslate(this.elWrap, this.currentTop, currentTop)
         }
+        this.currentTop = currentTop
         this.dragObject = {}
       }
       ,
