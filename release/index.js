@@ -1,12 +1,12 @@
 // 引入基础组件
 import Icon from './components/icon/icon.vue'
-import Layout from './components/layout/layout.vue'
+// import Layout from './components/layout/layout.vue'
 import Slide from './components/slide/slide.vue'
 import SlideItem from './components/slide/child/slide-item.vue'
 import Button from './components/button/button.vue'
 import Checkbox from './components/checkbox/checkbox.vue'
 import CheckboxItem from './components/checkbox/child/checkbox-item.vue'
-import Progress from './components/progress/progress.vue'
+// import Progress from './components/progress/progress.vue'
 import Switch from './components/switch/switch.vue'
 import Radio from './components/radio/radio.vue'
 import RadioItem from './components/radio/child/radio-item.vue'
@@ -17,6 +17,8 @@ import Pull from './components/pull/pull.vue'
 import AutoLoad from './components/auto-load/auto-load.vue'
 import Loading from './components/loading/loading.vue'
 import LeftSlip from './components/left-slip/left-slip.vue'
+import DatePater from './components/date-pater/date-pater.vue'
+import PaterItem from './components/date-pater/child/pater-item.vue'
 // 引入JS组件
 import $toast from './components/toast'
 import $message from './components/message'
@@ -30,11 +32,11 @@ const components = {
   Radio,
   RadioItem,
   Button,
-  Layout,
+  // Layout,
   Switch,
   Checkbox,
   CheckboxItem,
-  Progress,
+  // Progress,
   Slide,
   SlideItem,
   Model,
@@ -42,6 +44,8 @@ const components = {
   AutoLoad,
   Loading,
   LeftSlip,
+  DatePater,
+  PaterItem,
 }
 // JS组件
 const jsComponents = {
@@ -64,6 +68,6 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.1.3',
+  version: '1.1.4',
   install,
 }, components, jsComponents)

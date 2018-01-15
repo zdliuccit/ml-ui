@@ -1,16 +1,13 @@
 <template>
-  <ml-model v-model="value" :mask="true" :prevent="prevent" :transition="false">
-    <transition name="ml-scale">
-      <div class="ml-popup" v-show="value">
-        <div class="ml-popup-title">{{title}}</div>
-        <div class="ml-popup-content" v-html="message">
-        </div>
-        <div class="ml-popup-button ml-border" :class="{'two-btn':type==='confirm'}">
-          <button @click="doClose" class="ml-border" v-if="type==='confirm'">取消</button>
-          <button @click="doConfirm" class="ml-border ml-popup-confirm">确定</button>
-        </div>
+  <ml-model v-model="value" :mask="true" :prevent="prevent">
+    <div class="ml-popup">
+      <div class="ml-popup-title">{{title}}</div>
+      <div class="ml-popup-content" v-html="message"></div>
+      <div class="ml-popup-button ml-border" :class="{'two-btn':type==='confirm'}">
+        <button @click="doClose" class="ml-border" v-if="type==='confirm'">取消</button>
+        <button @click="doConfirm" class="ml-border ml-popup-confirm">确定</button>
       </div>
-    </transition>
+    </div>
   </ml-model>
 </template>
 <script type="text/babel">
@@ -51,29 +48,26 @@
       /**
        * 窗口关闭移除DOM
        */
-      removeDom() {
+      removeDom(callback) {
         this.value = false
-        if (this.$el.parentNode) {
-          document.body.removeChild(this.$el)
-        }
+        setTimeout(() => {
+          callback && callback()
+          if (this.$el.parentNode) {
+            document.body.removeChild(this.$el)
+          }
+        }, 200)
       },
       /**
        * 取消事件
        */
       doClose() {
-        this.removeDom()
-        this.$nextTick(() => {
-          this.onClose()
-        })
+        this.removeDom(this.onClose)
       },
       /**
        * 确认事件
        */
       doConfirm() {
-        this.removeDom()
-        this.$nextTick(() => {
-          this.onConfirm()
-        })
+        this.removeDom(this.onConfirm)
       },
     },
   }
