@@ -38,5 +38,9 @@
         this.$emit('click', event)
       },
     },
+    mounted() {
+      this.$el.addEventListener('touchstart', () => {
+      })
+    }
   }
 </script>

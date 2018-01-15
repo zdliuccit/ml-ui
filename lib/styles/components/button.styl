@@ -12,6 +12,22 @@
   background-color: #fff;
   height: 36px;
   outline: 0;
+  position: relative;
+}
+
+.ml-button::after {
+  background-color: #000;
+  content: " ";
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.ml-button:not(.ml-button-disabled):active::after {
+  opacity: .3
 }
 
 .ml-button.ml-button-default {
