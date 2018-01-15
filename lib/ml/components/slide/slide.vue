@@ -192,7 +192,6 @@
       touchStart(e) {
         if (this.pages.length < 2 || this.animating) return
         const $el = this.$el
-        this.dragObject = {}
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
         dragObject.startTime = new Date() // 触发时间
@@ -225,14 +224,9 @@
         }
         this.animating = true
         e.preventDefault()
-        const towards = offsetLeft < 0 ? 'next' : 'prev'
-        if (dragObject.prevPage && towards === 'prev') {
-          this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
-        }
+        this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
         this.translate(dragObject.dragPage, offsetLeft)
-        if (dragObject.nextPage && towards === 'next') {
-          this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
-        }
+        this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
       },
       /**
        * 触发结束
@@ -244,7 +238,6 @@
         const offsetLeft = dragObject.currentLeft - dragObject.startLeft
         const $elWidth = dragObject.$elWidth
         let towards = null
-        this.animating = false
         if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 2) {
           towards = offsetLeft < 0 ? 'next' : 'prev'
         }
@@ -256,6 +249,7 @@
           nextPage: dragObject.nextPage,
           distanceX: dragObject.distanceX
         })
+        this.dragObject = {}
       },
     },
     mounted() {

@@ -2,4 +2,4 @@ npm config set registry http://registry.npmjs.org
 npm config set registry https://registry.npm.taobao.org
 
 
-npm run package && cd release && npm publish
+npm run package && cd release && npm publish && cd ..
