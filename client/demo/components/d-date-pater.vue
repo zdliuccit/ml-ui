@@ -29,7 +29,7 @@
         </div>
         <div class="dd-label">
           <ml-button @click="doClick(6)">格式 yyyy-MM-dd hh:mm</ml-button>
-          <div class="dd-label" @click="doClick(6)">值 {{date7}}</div>
+          <div class="dd-label" @click="doClick(6)">值 {{date6}}</div>
           <ml-date-pater format="yyyy-MM-dd hh:mm" ref="datePater6" v-model="date6"></ml-date-pater>
         </div>
         <div class="dd-label">
