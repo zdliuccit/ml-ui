@@ -17,7 +17,7 @@
   export default {
     data() {
       return {
-        list: [1, 2, 3, 4, 5, 6, 7, 8],
+        list: [1, 2, 3, 4, 5, 6],
       }
     },
     methods: {
@@ -32,8 +32,8 @@
   .slip-ul {
     border-top-color: #ccc;
     li {
-      height: 50px;
-      line-height: 50px;
+      height: 60px;
+      line-height: 60px;
       border-bottom-color: #ccc;
       text-align: center;
       .ctn-word {

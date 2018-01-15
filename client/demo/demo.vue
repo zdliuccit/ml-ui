@@ -20,7 +20,7 @@
       return {
         baseCpt: [
           {
-            label: 'Icon',
+            label: 'Icon 图标',
             link: '/demo/icon'
           },
 //          {
@@ -28,69 +28,69 @@
 //            link: '/demo/layout'
 //          },
           {
-            label: 'Button',
+            label: 'Button 按钮',
             link: '/demo/button'
           },
           {
-            label: 'Radio',
+            label: 'Radio 单选',
             link: '/demo/radio'
           },
           {
-            label: 'Checkbox',
+            label: 'Checkbox 多选',
             link: '/demo/checkbox'
           },
           {
-            label: 'Switch',
+            label: 'Switch 开关',
             link: '/demo/switch'
           },
           {
-            label: 'DatePater',
+            label: 'DatePater 日期、时间选择器',
             link: '/demo/date-pater'
           },
           {
-            label: 'Tab',
+            label: 'Tab 选项卡',
             link: '/demo/tab'
           },
           {
-            label: 'Slide',
+            label: 'Slide 幻灯片',
             link: '/demo/slide'
           },
+//          {
+//            label: 'Progress 进度条',
+//            link: '/demo/progress'
+//          },
           {
-            label: 'Progress',
-            link: '/demo/progress'
-          },
-          {
-            label: 'Model',
+            label: 'Model 遮罩层',
             link: '/demo/model'
           },
           {
-            label: 'Pull',
+            label: 'Pull 上拉加载 下拉刷新',
             link: '/demo/pull'
           },
           {
-            label: 'AutoLoad',
+            label: 'AutoLoad 底部自动加载',
             link: '/demo/auto-load'
           },
           {
-            label: 'Loading',
+            label: 'Loading 正在加载...',
             link: '/demo/loading'
           },
           {
-            label: 'LeftSlip',
+            label: 'LeftSlip 左滑',
             link: '/demo/left-slip'
           },
         ],
         jsCpt: [
           {
-            label: 'Toast',
+            label: 'Toast 提示',
             link: '/demo/toast'
           },
           {
-            label: 'Message',
+            label: 'Message 消息',
             link: '/demo/message'
           },
           {
-            label: 'Popup',
+            label: 'Popup 弹窗',
             link: '/demo/popup'
           },
         ]

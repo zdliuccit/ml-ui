@@ -43,10 +43,10 @@ export default {
           link: '/docs/slide',
           label: 'Slide 幻灯片',
         },
-        {
-          link: '/docs/progress',
-          label: 'Progress 进度条',
-        },
+        // {
+        //   link: '/docs/progress',
+        //   label: 'Progress 进度条',
+        // },
         {
           link: '/docs/model',
           label: 'Model 遮罩层',

@@ -1,7 +1,7 @@
 <template>
-  <div class="ml-pater-item" :style="`width:${width}%;`">
+  <div class="ml-pater-item">
     <ul ref="paterUl">
-      <li v-for="ii in (end-start+1)">
+      <li v-for="ii in (end-start+1)" :key="`pater${ii}`">
         {{(start + ii - 1) < 10 ? '0' : ''}}{{start + ii - 1}}{{unit}}
       </li>
     </ul>
@@ -50,14 +50,14 @@
        * 通知值变化
        */
       emitValue() {
-        this.currentValue = 3 - this.currentTop / (this.$el.offsetHeight / 7) + this.start
+        this.currentValue = Math.round(3 - this.currentTop / 34 + this.start)
         if (this.value !== this.currentValue) this.$emit('input', this.currentValue)
       },
       /**
        * 初始化位置
        */
       initTranslate3d() {
-        this.currentTop = this.$el.offsetHeight / 7 * (this.start - this.value + 3)
+        this.currentTop = 34 * (this.start - this.value + 3)
         this.translate(this.elWrap, this.currentTop)
       },
       /**
@@ -128,7 +128,7 @@
         if (Math.abs(pageY - dragObject.startTop) < 5) return
         const offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
         dragObject.currentTop = pageY
-        let currentTop = this.currentTop + offsetTop
+        let currentTop = this.currentTop + offsetTop || 0
         if (currentTop >= dragObject.maxTop) currentTop = dragObject.maxTop
         if (currentTop <= dragObject.minTop) currentTop = dragObject.minTop
         e.preventDefault()
@@ -140,7 +140,10 @@
        */
       touchEnd() {
         const dragObject = this.dragObject
-        if (!dragObject.startTop) return
+        if (!dragObject.startTop) {
+          this.animating = false
+          return
+        }
         const dragDuration = new Date() - dragObject.startTime // 间隔时长
         let currentTop = Math.round(this.currentTop / dragObject.one) * dragObject.one
         const offsetTop = dragObject.currentTop - dragObject.startTop
