@@ -10,6 +10,15 @@
 npm i ml-ui -S
 ```
 
+使用
+```js
+import 'ml-ui/styles/index.css'
+
+import mlUI from 'ml-ui'
+
+Vue.use(mlUi)
+```
+
 
 
 关于事件绑定
