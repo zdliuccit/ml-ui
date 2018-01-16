@@ -91,11 +91,14 @@
        */
       doOpen() {
         let de = new Date()
-        if (this.value) {
+        let vl = this.value
+        if (vl) {
           let yy = ''
-          if (['yyyy', 'MM', 'dd'].findIndex(ss => this.format.indexOf(ss) > 0) === -1) yy = '2018-01-01 '
-          de = new Date(yy + this.value)
+          if (['yyyy', 'MM', 'dd'].findIndex(ss => this.format.indexOf(ss) > -1) === -1) yy = '2018/01/01 '
+          if (this.format === 'yyyy') vl = `${vl}/01/01`
+          de = new Date(yy + vl.replace(/-/g, '/'))
         }
+        console.log(de)
         const mlDate = this.mlDate
         mlDate.year = de.getFullYear()
         mlDate.month = de.getMonth() + 1
