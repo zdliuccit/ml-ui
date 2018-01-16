@@ -1,10 +1,11 @@
-# ml-ui组件
-[在线预览](http://www.zdliu.com)
+# ml-ui 
 
-构建部署环境基于[vue-webpack-config](https://github.com/zdliuccit/vue-webpack-config)，求star!
+## 安装
+```npm
+npm install ml-ui -S
+```
 
-## Usage
-Import all components.
+## 使用
 ```js
 import Vue from 'vue'
 import MlUi from 'ml-ui'
@@ -13,8 +14,8 @@ import 'ml-ui/styles/index.css'
 Vue.use(MlUi)
 ```
 
-
-### 技术栈
+构建部署环境基于[vue-webpack-config](https://github.com/zdliuccit/vue-webpack-config)
+### 构建的技术栈
 * Webpack3
 * Koa2
 * Axios
@@ -22,3 +23,9 @@ Vue.use(MlUi)
 * Babel Es6/7
 * Eslint
 * stylus postcss
+
+有兴趣的同学可以看看，顺手都点个star哈～
+
+![](client/assets/images/mobile-src.png)
+
+
