@@ -1,5 +1,7 @@
 # ml-ui 
 
+基于 Vue 2.0 的 Mobile 组件库 ml-ui
+
 ## 安装
 ```npm
 npm install ml-ui -S
