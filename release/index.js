@@ -53,7 +53,16 @@ const jsComponents = {
   $message,
   $popup
 }
+
+/**
+ * 设置html根字体
+ */
+const setPixelRatio = () => {
+  global.document.documentElement.setAttribute('data-dpr', global.devicePixelRatio === 3 ? 3 : 2)
+}
+
 const install = function (Vue) {
+  setPixelRatio()
   // 全局注册普通组件
   Object.keys(components).map(key => Vue.component(`ml-${components[key].name}`, components[key]))
   // 全局注册JS组件
@@ -68,6 +77,6 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.1.8',
+  version: '1.1.9',
   install,
 }, components, jsComponents)

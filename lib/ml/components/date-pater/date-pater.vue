@@ -98,7 +98,6 @@
           if (this.format === 'yyyy') vl = `${vl}/01/01`
           de = new Date(yy + vl.replace(/-/g, '/'))
         }
-        console.log(de)
         const mlDate = this.mlDate
         mlDate.year = de.getFullYear()
         mlDate.month = de.getMonth() + 1
