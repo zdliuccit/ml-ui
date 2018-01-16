@@ -39,7 +39,9 @@
       setCurrentValue(value) {
         let ary = JSON.parse(JSON.stringify(this.currentValue))
         if (Object.prototype.toString.apply(this.currentValue) === '[object String]') {
-          ary = ary.split(',') || []
+          /*eslint-disable*/
+          ary = ary && ary.split(',') || []
+          /*eslint-disabled*/
         }
         const $index = ary.findIndex(vl => vl === value)
         if ($index > -1) {
