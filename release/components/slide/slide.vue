@@ -220,20 +220,31 @@
         if (!this.loop && ((this.index === 0 && offsetLeft > 0) ||
             (this.index === this.pages.length - 1 && offsetLeft < 0))) {
           dragObject.currentLeft = null
-          return
+          offsetLeft = 0
         }
         this.animating = true
         e.preventDefault()
-        this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
         this.translate(dragObject.dragPage, offsetLeft)
-        this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
+        if (dragObject.prevPage !== dragObject.nextPage) {
+          this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
+          this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
+        } else {
+          if (this.index === 1) {
+            this.translate(dragObject.nextPage, offsetLeft - dragObject.$elWidth)
+          } else {
+            this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
+          }
+        }
       },
       /**
        * 触发结束
        */
       touchEnd() {
         const dragObject = this.dragObject
-        if (!dragObject.startLeft || !dragObject.currentLeft) return
+        if (!dragObject.startLeft || !dragObject.currentLeft) {
+          this.animating = false
+          return
+        }
         const dragDuration = new Date() - dragObject.startTime // 间隔时长
         const offsetLeft = dragObject.currentLeft - dragObject.startLeft
         const $elWidth = dragObject.$elWidth
