@@ -11,16 +11,24 @@
         <span class="inline-block">正在加载...</span>
       </div>
     </div>
+    <div class="ml-back-top" v-if="showTop" v-show="isTop" @click="backTop">
+      <i class="ml-icon iconfont icon-up"></i>
+      <div>顶部</div>
+    </div>
   </div>
 </template>
 <script type="text/babel">
-  import { throttle } from './../../utils/ml-utils'
+  import { throttle, backToTop, animationFrame } from './../../utils/ml-utils'
 
   export default {
     name: 'auto-load',
     props: {
       loading: Function,
       value: {
+        type: Boolean,
+        default: true,
+      },
+      showTop: {
         type: Boolean,
         default: true,
       }
@@ -41,9 +49,16 @@
       return {
         loadState: false,
         elContent: null,
+        isTop: false,
       }
     },
     methods: {
+      /**
+       * 回到顶部
+       */
+      backTop() {
+        backToTop(animationFrame, this.$refs.autoLoad, this.$refs.autoLoad.scrollTop)
+      },
       /**
        * 执行加载事件
        */
@@ -63,8 +78,9 @@
        * 计算是否到底部
        */
       countDom() {
-        if (this.loadState || !this.value) return
         const $el = this.$refs.autoLoad
+        this.isTop = $el.scrollTop > 50
+        if (this.loadState || !this.value) return
         const $bH = this.$refs.autoBottom.offsetHeight
         const $Ch = this.$refs.autoContent.offsetHeight
         const $diff = $Ch + $bH - $el.offsetHeight

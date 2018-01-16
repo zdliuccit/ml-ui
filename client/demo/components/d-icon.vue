@@ -30,6 +30,7 @@
           'radio-on',
           'checkbox-on',
           'pull-up',
+          'up',
         ]
       }
     }

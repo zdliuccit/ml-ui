@@ -33,7 +33,7 @@
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
           setTimeout(() => {
             $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
-          }, 60)
+          }, 66)
           const transitionEndCallback = () => {
             this.animating = false
             $el.style.webkitTransition = ''

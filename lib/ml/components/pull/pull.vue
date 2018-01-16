@@ -23,9 +23,15 @@
         <span class="inline-block">{{satisfy ? '正在加载...' : '上拉刷新'}}</span>
       </div>
     </div>
+    <div class="ml-back-top" v-if="showTop" v-show="isTop" @click="backTop">
+      <i class="ml-icon iconfont icon-up"></i>
+      <div>顶部</div>
+    </div>
   </div>
 </template>
 <script type="text/babel">
+  import { throttle, backToTop, animationFrame } from './../../utils/ml-utils'
+
   export default {
     name: 'pull',
     props: {
@@ -43,6 +49,10 @@
         type: Boolean,
         default: true,
       },
+      showTop: {
+        type: Boolean,
+        default: true,
+      }
     },
     watch: {
       /**
@@ -62,6 +72,7 @@
         elWrap: null,
         elContent: null,
         satisfy: false,
+        isTop: false,
       }
     },
     methods: {
@@ -91,7 +102,7 @@
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-out'
           setTimeout(() => {
             $el.style.webkitTransform = `translate3d(0,${offset}px,0)`
-          }, 60)
+          }, 66)
           const transitionEndCallback = () => {
             if (callback) callback.apply({}, arguments)
           }
@@ -156,9 +167,22 @@
         if (offsetH !== 0) this.doLoading()
         this.dragObject = {}
       },
+      /**
+       * 计算是否到底部
+       */
+      countDom() {
+        this.isTop = this.$refs.elContent.scrollTop > 50
+      },
+      /**
+       * 回到顶部
+       */
+      backTop() {
+        backToTop(animationFrame, this.$refs.elContent, this.$refs.elContent.scrollTop)
+      },
     },
     mounted() {
       this.$el.parentNode.style.position = 'relative'
+      this.$refs.elContent.addEventListener('scroll', throttle(this.countDom, 30, 50), true)
       this.elWrap = this.$refs.elWrap
       this.elContent = this.$refs.elContent
       if (!this.pullUp && !this.pullDown) return

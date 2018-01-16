@@ -51,6 +51,8 @@ Props
 | pullDown         |  是否开启下拉刷新  | Boolean  | - | true |
 | loading         | 上拉加载event  | Function  | - |  -| 
 | refresh        | 下拉刷新event   | Function  | - |  -| 
+| showTop       |  回到顶部按钮开关  | Boolean  | true、false |  true| 
+
 
 Event
 
