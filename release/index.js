@@ -55,14 +55,29 @@ const jsComponents = {
 }
 
 /**
- * 设置html根字体
+ * ios设置1px像素比(ios8+),安卓不做处理
  */
-const setPixelRatio = () => {
-  global.document.documentElement.setAttribute('data-dpr', global.devicePixelRatio === 3 ? 3 : 2)
+const setIosOnePx = () => {
+  const u = navigator.userAgent
+  /*eslint-disable*/
+  if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+    const cssStyle = document.createElement('style')
+    const cssString = `
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      .ml-border { border-width: 0.5px !important; }
+    }
+    @media screen and (-webkit-min-device-pixel-ratio: 3) {
+      .ml-border { border-width: 0.333333px !important;}
+    }`
+    cssStyle.setAttribute('type', 'text/css')
+    cssStyle.appendChild(document.createTextNode(cssString))
+    document.getElementsByTagName('head')[0].appendChild(cssStyle)
+  }
+  /*eslint-disbaled*/
 }
 
 const install = function (Vue) {
-  setPixelRatio()
+  setIosOnePx()
   // 全局注册普通组件
   Object.keys(components).map(key => Vue.component(`ml-${components[key].name}`, components[key]))
   // 全局注册JS组件
@@ -77,6 +92,6 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.1.9',
+  version: '1.2.0',
   install,
 }, components, jsComponents)
