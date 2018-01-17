@@ -92,7 +92,7 @@
     },
     mounted() {
       this.$el.parentNode.style.position = 'relative'
-      this.$refs.autoLoad.addEventListener('scroll', throttle(this.countDom, 30, 50), true)
+      this.$refs.autoLoad.addEventListener('scroll', throttle(this.countDom, 20, 30), true)
     },
   }
 </script>

@@ -29,12 +29,12 @@
         </div>
         <div class="dd-label">
           <ml-button @click="doClick(6)">格式 yyyy-MM-dd hh:mm</ml-button>
-          <div class="dd-label" @click="doClick(6)">值 {{date6}}</div>
+          <div class="pater-value">值 {{date6}}</div>
           <ml-date-pater format="yyyy-MM-dd hh:mm" ref="datePater6" v-model="date6"></ml-date-pater>
         </div>
         <div class="dd-label">
           <ml-button @click="doClick(7)">格式 yyyy-MM-dd hh:mm:ss</ml-button>
-          <div class="dd-label">值 {{date7}}</div>
+          <div class="pater-value">值 {{date7}}</div>
           <ml-date-pater format="yyyy-MM-dd hh:mm:ss" ref="datePater7" v-model="date7"></ml-date-pater>
         </div>
       </div>
@@ -46,13 +46,13 @@
     data() {
       return {
         date: '',
-        date1: '12:59',
-        date2: '12:23:33',
-        date3: '2018',
-        date4: '2018-04',
-        date5: '01-15',
-        date6: '2018-01-15 12:22',
-        date7: '2018-01-15 15:33:44',
+        date1: '',
+        date2: '',
+        date3: '',
+        date4: '',
+        date5: '',
+        date6: '',
+        date7: '',
       }
     },
     methods: {
@@ -62,3 +62,12 @@
     }
   }
 </script>
+<style lang="stylus" scoped>
+  .dd-label {
+    padding-bottom: 5px;
+  }
+
+  .pater-value {
+    padding-top: 5px;
+  }
+</style>

@@ -182,7 +182,7 @@
     },
     mounted() {
       this.$el.parentNode.style.position = 'relative'
-      this.$refs.elContent.addEventListener('scroll', throttle(this.countDom, 30, 50), true)
+      this.$refs.elContent.addEventListener('scroll', throttle(this.countDom, 20, 30), true)
       this.elWrap = this.$refs.elWrap
       this.elContent = this.$refs.elContent
       if (!this.pullUp && !this.pullDown) return

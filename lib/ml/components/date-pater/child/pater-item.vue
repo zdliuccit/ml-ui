@@ -1,7 +1,7 @@
 <template>
   <div class="ml-pater-item">
     <ul ref="paterUl">
-      <li v-for="ii in (end-start+1)" :key="`pater${ii}`">
+      <li v-for="ii in (end-start+1)" :key="`pater${ii}`" :class="{'pater-check':value==(start + ii - 1)}">
         {{(start + ii - 1) < 10 ? '0' : ''}}{{start + ii - 1}}{{unit}}
       </li>
     </ul>
@@ -73,7 +73,6 @@
           const transitionEndCallback = () => {
             this.animating = false
             $el.style.webkitTransition = ''
-            this.emitValue()
           }
           setTimeout(transitionEndCallback, speed + 30)
         } else {
@@ -91,7 +90,6 @@
           if (Math.abs(nowTop - futureTop) < 1) {
             this.animating = false
             $el.style.webkitTransform = `translate3d(0,${futureTop}px,0)`
-            this.emitValue()
           } else {
             nowTop = 0.87 * nowTop + 0.13 * futureTop
             $el.style.webkitTransform = `translate3d(0,${nowTop}px,0)`
@@ -140,7 +138,7 @@
        */
       touchEnd() {
         const dragObject = this.dragObject
-        if (!dragObject.startTop) {
+        if (!dragObject.startTop || !dragObject.currentTop) {
           this.animating = false
           return
         }
@@ -162,6 +160,7 @@
           this.continueTranslate(this.elWrap, this.currentTop, currentTop)
         }
         this.currentTop = currentTop
+        this.emitValue()
         this.dragObject = {}
       }
       ,

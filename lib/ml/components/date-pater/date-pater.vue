@@ -91,12 +91,19 @@
        */
       doOpen() {
         let de = new Date()
-        let vl = this.value
-        if (vl) {
+        let val = this.value
+        if (val) {
+          const dateJson = {
+            'yyyy': `${val}/01/01`,
+            'MM': `2018/${val}/01`,
+            'MM-dd': `2018/${val}`,
+            'yyyy-MM': `${val}/01`,
+          }
+          const format = this.format
           let yy = ''
-          if (['yyyy', 'MM', 'dd'].findIndex(ss => this.format.indexOf(ss) > -1) === -1) yy = '2018/01/01 '
-          if (this.format === 'yyyy') vl = `${vl}/01/01`
-          de = new Date(yy + vl.replace(/-/g, '/'))
+          if (['yyyy', 'MM', 'dd'].findIndex(ss => format.indexOf(ss) > -1) === -1) yy = '2018/01/01 '
+          if (dateJson[format]) val = dateJson[format]
+          de = new Date(yy + val.replace(/-/g, '/'))
         }
         const mlDate = this.mlDate
         mlDate.year = de.getFullYear()
@@ -128,9 +135,8 @@
        * 确认事件
        */
       doConfirm() {
-        let ft = JSON.parse(JSON.stringify(this.format))
         const dd = this.mlDate
-        this.demoDate = ft.replace('yyyy', dd.year)
+        this.demoDate = this.format.replace('yyyy', dd.year)
           .replace('MM', (dd.month < 10 ? '0' : '') + dd.month)
           .replace('dd', (dd.day < 10 ? '0' : '') + dd.day)
           .replace('hh', (dd.hour < 10 ? '0' : '') + dd.hour)
