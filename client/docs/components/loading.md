@@ -27,3 +27,7 @@ Props
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model         | 是否显示   | Boolean  | - | false |
 | type         | 类型   | String  | one | one |
+| width       |  宽度  | Number  |  - |  60| 
+| height      |  高度  | Number  | - |  60| 
+
+注:width与height最好保持一致，最大不会超过100

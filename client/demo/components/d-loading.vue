@@ -3,7 +3,12 @@
     <d-head :back="true" title="Loading"></d-head>
     <div class="dd-warp">
       <div class="dd-load">
+        loading-one
         <ml-loading v-model="loading"></ml-loading>
+      </div>
+      <div class="dd-load">
+        loading-two
+        <ml-loading type="two" v-model="loading"></ml-loading>
       </div>
     </div>
   </div>
@@ -21,5 +26,6 @@
   .dd-load {
     height: 160px;
     position: relative;
+    text-align: center
   }
 </style>
