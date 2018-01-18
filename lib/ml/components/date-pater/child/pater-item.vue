@@ -69,7 +69,7 @@
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
           setTimeout(() => {
             $el.style.webkitTransform = `translate3d(0,${offset}px,0)`
-          }, 66)
+          }, 60)
           const transitionEndCallback = () => {
             this.animating = false
             $el.style.webkitTransition = ''
@@ -123,7 +123,8 @@
         if (!dragObject.startTop) return
         const touch = e.touches ? e.touches[0] : e
         const pageY = touch.pageY
-        if (Math.abs(pageY - dragObject.startTop) < 5) return
+        if (!this.animating && Math.abs(pageY - dragObject.startTop) < 5) return
+        this.animating = true
         const offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
         dragObject.currentTop = pageY
         let currentTop = this.currentTop + offsetTop || 0

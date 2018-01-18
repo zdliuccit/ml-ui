@@ -102,7 +102,7 @@
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-out'
           setTimeout(() => {
             $el.style.webkitTransform = `translate3d(0,${offset}px,0)`
-          }, 66)
+          }, 60)
           const transitionEndCallback = () => {
             if (callback) callback.apply({}, arguments)
           }

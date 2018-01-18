@@ -27,18 +27,17 @@
       /**
        * 动画
        */
-      translate($el, offset, speed, callback) {
+      translate($el, offset, speed) {
         if (speed) {
           this.animating = true
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
           setTimeout(() => {
             $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
-          }, 66)
+          }, 60)
           const transitionEndCallback = () => {
             this.animating = false
             $el.style.webkitTransition = ''
             $el.style.webkitTransform = ''
-            if (callback) callback.apply({}, arguments)
           }
           setTimeout(transitionEndCallback, speed + 30)
         } else {
@@ -50,24 +49,23 @@
        * 滑动距离后继续执行
        * 采用requestAnimationFrame
        */
-      continueTranslate($el, initOffset, offset, callback) {
+      continueTranslate($el, currentLeft, offset, callback) {
         let ALPHA = 0.88
         this.animating = true
         const animationLoop = () => {
-          if (Math.abs(initOffset - offset) < 2 || Math.abs(initOffset) < 2) {
-            if (callback) callback.apply({}, arguments)
+          if (Math.abs(currentLeft - offset) < 1) {
             this.animating = false
-            if (offset > 0) offset = 0
-            $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
+            currentLeft = offset
+            $el.style.webkitTransform = `translate3d(${currentLeft}px,0,0)`
+            callback && callback()
           } else {
-            if (offset < 0) {
-              ALPHA = ALPHA * 0.98
-              initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
+            ALPHA = ALPHA * 0.99
+            if (offset === 0) {
+              currentLeft = ALPHA * currentLeft - (1.0 - ALPHA) * currentLeft
             } else {
-              ALPHA = ALPHA * 0.995
-              initOffset = ALPHA * initOffset - (1.0 - ALPHA) * initOffset
+              currentLeft = ALPHA * currentLeft + (1.0 - ALPHA) * (offset)
             }
-            $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
+            $el.style.webkitTransform = `translate3d(${currentLeft}px,0,0)`
             animationFrame(animationLoop)
           }
         }
@@ -78,7 +76,7 @@
        */
       touchStart(e) {
         const maxWidth = this.$refs.rightSlip.offsetWidth
-        if (maxWidth < 0 || this.animating) return
+        if (maxWidth < 1 || this.animating) return
         const touch = e.touches ? e.touches[0] : e
         this.dragObject.startLeft = touch.pageX
         this.dragObject.maxWidth = maxWidth
@@ -89,44 +87,40 @@
       touchMove(e) {
         const dragObject = this.dragObject
         const touch = e.touches ? e.touches[0] : e
+        const pageX = touch.pageX
         if (!dragObject.startLeft) return
-        dragObject.currentLeft = touch.pageX
-        let offsetLeft = dragObject.currentLeft - dragObject.startLeft
+        const offsetLeft = pageX - (dragObject.currentLeft || dragObject.startLeft)
         if (!this.animating && Math.abs(offsetLeft) < 5) return
-        if (offsetLeft < 0 && this.slipLeft !== 0) return
-        this.animating = true
         e.preventDefault()
-        offsetLeft = this.slipLeft + offsetLeft
-        if (offsetLeft >= 0) offsetLeft = 0
-        if (Math.abs(offsetLeft) >= this.dragObject.maxWidth) offsetLeft = -this.dragObject.maxWidth
-        this.translate(this.$refs.warpSlip, offsetLeft)
+        this.animating = true
+        dragObject.oldValue = dragObject.currentLeft
+        dragObject.currentLeft = pageX
+        let currentLeft = this.slipLeft + offsetLeft || 0
+        if (currentLeft >= 0) currentLeft = 0
+        if (currentLeft <= -dragObject.maxWidth) currentLeft = -dragObject.maxWidth
+        this.slipLeft = currentLeft
+        this.translate(this.$refs.warpSlip, currentLeft)
       },
       /**
        * 触发结束
        */
-      touchEnd() {
+      touchEnd(e) {
         const dragObject = this.dragObject
-        this.dragObject = {}
-        if (!dragObject.startLeft && !this.animating) return
-        let offsetLeft = dragObject.currentLeft - dragObject.startLeft
-        this.animating = false
-        if (offsetLeft > 0 && this.slipLeft + offsetLeft >= 0) {
-          this.slipLeft = 0
+        if (!dragObject.startLeft || !dragObject.currentLeft) {
+          this.animating = false
           return
         }
-        if (offsetLeft > 0 && this.slipLeft !== 0) {
-          this.continueTranslate(this.$refs.warpSlip, this.slipLeft + offsetLeft, dragObject.maxWidth, () => {
-            this.slipLeft = 0
+        const currentLeft = this.slipLeft
+        const touch = e.changedTouches ? e.changedTouches[0] : e
+        this.slipLeft = touch.pageX - dragObject.oldValue > 0 ? 0 : -dragObject.maxWidth
+        this.continueTranslate(this.$refs.warpSlip, currentLeft, this.slipLeft, () => {
+          if (this.slipLeft === 0) {
             document.body.removeEventListener('touchstart', this.reduction, false)
-          })
-        }
-        if (offsetLeft < 0 && this.slipLeft === 0) {
-          if (Math.abs(offsetLeft) >= dragObject.maxWidth) offsetLeft = -dragObject.maxWidth
-          this.continueTranslate(this.$refs.warpSlip, offsetLeft, -dragObject.maxWidth, () => {
+          } else {
             document.body.addEventListener('touchstart', this.reduction, false)
-            this.slipLeft = -dragObject.maxWidth
-          })
-        }
+          }
+        })
+        this.dragObject = {}
       },
       /**
        * 还原
@@ -134,10 +128,9 @@
        */
       reduction(e) {
         if (!checkTargetNode(e.target, this.$el)) {
+          this.slipLeft = 0
           document.body.removeEventListener('touchstart', this.reduction, false)
-          this.translate(this.$refs.warpSlip, 0, 200, () => {
-            this.slipLeft = 0
-          })
+          this.translate(this.$refs.warpSlip, 0, 200)
         }
       },
     },
