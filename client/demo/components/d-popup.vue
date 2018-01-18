@@ -5,7 +5,6 @@
       <div class="warp-content">
         <button class="dd-btn ml-border" @click="doClick()">打开alert提示框</button>
         <button class="dd-btn ml-border" @click="doClick1()">打开confirm提示框</button>
-        <button class="dd-btn ml-border" @click="doClick1()">打开confirm提示框</button>
       </div>
     </div>
   </div>
