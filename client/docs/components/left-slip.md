@@ -13,47 +13,73 @@ Demo
 ```html
 <ul class="slip-ul ml-border">
   <li class=" ml-border" v-for="(ii,$index) in list" :key="`slip-${ii}`">
-    <ml-left-slip>
-      <div class="ctn-word">左滑出现删除 {{ii}}</div>
-      <div slot="right" class="btn-del" @click="doClick($index)">删除</div>
-    </ml-left-slip>
-  </li>
+     <ml-left-slip>
+       <div class="address-info">
+         <div class="name">{{ii.name}}<span>{{ii.iphone}}</span></div>
+         <div class="address">{{ii.address}}</div>
+       </div>
+       <div slot="right" class="btn-del" @click="doClick($index)">删除</div>
+     </ml-left-slip>
+   </li>
 </ul>
-
 <script type="text/babel">
   export default {
-        data() {
-            return {
-              list: [1, 2, 3, 4, 5, 6, 7, 8],
-            }
+    data() {
+      return {
+        list: [
+          {
+            address: '浙江省杭州市滨江区长河缤纷北苑',
+            iphone: 12345678910,
+            name: '张无忌',
           },
-          methods: {
-            doClick($index) {
-              this.list.splice($index, 1)
-              this.$message.success({ message: '成功删除了' })
-            },
+          {
+            address: '江苏省南京市六合区',
+            iphone: 12345678910,
+            name: '田二妞',
           }
-        }
+        ],
+      }
+    },
+    methods: {
+      doClick($index) {
+        this.list.splice($index, 1)
+        this.$message.success({ message: '成功删除了' })
+      },
+    }
+  }
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
- .slip-ul {
+  .slip-ul {
     border-top-color: #ccc;
     li {
-      height: 50px;
-      line-height: 50px;
+      font-size: 16px;
       border-bottom-color: #ccc;
-      text-align: center;
-      .ctn-word {
-        height: 100%;
+      .address-info {
+        padding: 20px 20px;
+      }
+      .name, .address {
+        color: #000;
+        span {
+          margin-left: 20px;
+        }
+      }
+      .address {
+        padding-top: 10px;
+        color: #999;
+        font-size: 14px;
       }
       .btn-del {
-        background-color: red;
+        background-color: #f0534c;
         color: #fff;
-        width: 100px;
+        width: 200px;
         height: 100%;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
- }
+  }
 </style>
 ```
 Slot
