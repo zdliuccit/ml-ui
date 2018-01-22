@@ -120,10 +120,12 @@
       touchStart(e) {
         if (this.animating) return
         const touch = e.touches ? e.touches[0] : e
-        this.dragObject.startTop = touch.pageY
-        this.dragObject.scrollTop = this.elContent.scrollTop
-        this.dragObject.ALPHA = 0.95
-        this.dragObject.diff = this.elContent.scrollHeight - this.elWrap.offsetHeight
+        const dragObject = this.dragObject
+        dragObject.startTop = touch.pageY
+        dragObject.startLeft = touch.pageX
+        dragObject.scrollTop = this.elContent.scrollTop
+        dragObject.ALPHA = 0.95
+        dragObject.diff = this.elContent.scrollHeight - this.elWrap.offsetHeight
         this.downLoad = this.upLoad = false
       },
       /**
@@ -136,22 +138,22 @@
         const pageY = touch.pageY
         const maxY = pageY - dragObject.startTop
         if (!this.animating && Math.abs(maxY) < 5) return
+        e.preventDefault()
+        this.animating = true
+        let offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
+        dragObject.currentTop = pageY
+        if (Math.abs(maxY) >= 5 && Math.abs(touch.pageX - dragObject.startLeft) >= 1.73 * Math.abs(maxY)) return
         if ((maxY > 0 && dragObject.scrollTop === 0 && this.pullDown) ||
           (maxY < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp && this.value)) {
-          this.animating = true
-          e.preventDefault()
-          let offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
           let ALPHA = dragObject.ALPHA
           const result = (offsetTop < 0 && maxY > 0) || (offsetTop > 0 && maxY < 0)
           if (!result && Math.abs(offsetTop) > 4 && ALPHA > 0.15) ALPHA = ALPHA * 0.9
           if (!result && Math.abs(this.currentTop) > 70 && ALPHA > 0.15) ALPHA = ALPHA * 0.92
           if (result) ALPHA = ALPHA >= 0.95 ? ALPHA : ALPHA * 1.1
-          offsetTop = offsetTop * ALPHA
-          let currentTop = this.currentTop + offsetTop
+          let currentTop = this.currentTop + offsetTop * ALPHA
           this.currentTop = currentTop
-          if ((maxY < 0 && currentTop >= 0) || (maxY > 0 && currentTop <= 0)) currentTop = 0
           dragObject.ALPHA = ALPHA
-          dragObject.currentTop = pageY
+          if ((maxY < 0 && currentTop >= 0) || (maxY > 0 && currentTop <= 0)) currentTop = 0
           this.downLoad = (currentTop > 0 && currentTop >= 25)
           this.upLoad = (currentTop < 0 && currentTop <= -25)
           this.translate(this.elWrap, currentTop)
@@ -163,8 +165,7 @@
       touchEnd() {
         this.currentTop = 0
         this.animating = false
-        const dragObject = this.dragObject
-        if (!dragObject.startTop) return
+        if (!this.dragObject.startTop) return
         let offsetH = 0
         this.satisfy = this.downLoad || this.upLoad
         if (this.downLoad) offsetH = this.$refs.elPullDown.offsetHeight
