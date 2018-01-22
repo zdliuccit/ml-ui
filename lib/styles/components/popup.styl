@@ -22,27 +22,19 @@
     color: $color-prompt1;
     background-color: #fff;
   }
-  .ml-popup-confirm {
-    color: $color-primary;
+  .ml-popup-cancel {
+    border-right-color: $color-border;
+    width: 50%;
   }
-}
-
-.two-btn {
-  button {
+  .ml-popup-cancel + .ml-popup-confirm {
     width: 50%;
   }
   .ml-popup-confirm {
-    border-left-color: $color-border;
+    border: 0;
+    color: $color-primary;
   }
 }
 
 .ml-popup {
   text-align: center;
 }
-
-.ml-scale-enter {
-  opacity: 0;
-  transform: translate3d(-50%, -50%, 0) scale(0.7);
-}
-
-

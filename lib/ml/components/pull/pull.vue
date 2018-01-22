@@ -73,6 +73,8 @@
         elContent: null,
         satisfy: false,
         isTop: false,
+        currentTop: 0,
+        animating: false,
       }
     },
     methods: {
@@ -116,49 +118,53 @@
        * 触发开发
        */
       touchStart(e) {
-        if (this.upLoad || this.downLoad) return
+        if (this.animating) return
         const touch = e.touches ? e.touches[0] : e
-        this.dragObject.startTop = touch.pageY // 开始left值
+        this.dragObject.startTop = touch.pageY
         this.dragObject.scrollTop = this.elContent.scrollTop
+        this.dragObject.ALPHA = 0.95
         this.dragObject.diff = this.elContent.scrollHeight - this.elWrap.offsetHeight
+        this.downLoad = this.upLoad = false
       },
       /**
        * 触发移动
        */
       touchMove(e) {
-        this.downLoad = this.upLoad = false
         const dragObject = this.dragObject
         if (!dragObject.startTop) return
         const touch = e.touches ? e.touches[0] : e
-        dragObject.currentTop = touch.pageY
-        let offsetTop = dragObject.currentTop - dragObject.startTop
-        /*eslint-disable*/
-        dragObject.ALPHA = dragObject.ALPHA ? dragObject.ALPHA * 0.985 : 0.88
-        if (offsetTop < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp && this.value) {
+        const pageY = touch.pageY
+        const maxY = pageY - dragObject.startTop
+        if (!this.animating && Math.abs(maxY) < 5) return
+        if ((maxY > 0 && dragObject.scrollTop === 0 && this.pullDown) ||
+          (maxY < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp && this.value)) {
+          this.animating = true
           e.preventDefault()
-          if (Math.abs(offsetTop) > 5) {
-            offsetTop = -5 * (1.0 - dragObject.ALPHA ) + dragObject.ALPHA * offsetTop
-            this.translate(this.elWrap, offsetTop)
-          }
-          if (Math.abs(offsetTop) > this.$refs.elPullUp.offsetHeight) this.upLoad = true
-        }
-        if (offsetTop > 0 && dragObject.scrollTop === 0 && this.pullDown) {
-          e.preventDefault()
-          if (offsetTop > 5) {
-            offsetTop = 5 * (1.0 - dragObject.ALPHA ) + dragObject.ALPHA * offsetTop
-            this.translate(this.elWrap, offsetTop)
-          }
-          if (offsetTop > this.$refs.elPullDown.offsetHeight) this.downLoad = true
+          let offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
+          let ALPHA = dragObject.ALPHA
+          const result = (offsetTop < 0 && maxY > 0) || (offsetTop > 0 && maxY < 0)
+          if (!result && Math.abs(offsetTop) > 4 && ALPHA > 0.15) ALPHA = ALPHA * 0.9
+          if (!result && Math.abs(this.currentTop) > 70 && ALPHA > 0.15) ALPHA = ALPHA * 0.92
+          if (result) ALPHA = ALPHA >= 0.95 ? ALPHA : ALPHA * 1.1
+          offsetTop = offsetTop * ALPHA
+          let currentTop = this.currentTop + offsetTop
+          this.currentTop = currentTop
+          if ((maxY < 0 && currentTop >= 0) || (maxY > 0 && currentTop <= 0)) currentTop = 0
+          dragObject.ALPHA = ALPHA
+          dragObject.currentTop = pageY
+          this.downLoad = (currentTop > 0 && currentTop >= 25)
+          this.upLoad = (currentTop < 0 && currentTop <= -25)
+          this.translate(this.elWrap, currentTop)
         }
       },
       /**
        * 触发结束
        */
       touchEnd() {
+        this.currentTop = 0
+        this.animating = false
         const dragObject = this.dragObject
         if (!dragObject.startTop) return
-        let offsetTop = dragObject.currentTop - dragObject.startTop
-        if (Math.abs(offsetTop) < 5) return
         let offsetH = 0
         this.satisfy = this.downLoad || this.upLoad
         if (this.downLoad) offsetH = this.$refs.elPullDown.offsetHeight

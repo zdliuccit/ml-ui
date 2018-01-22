@@ -3,9 +3,9 @@
     <div class="ml-popup">
       <div class="ml-popup-title">{{title}}</div>
       <div class="ml-popup-content" v-html="message"></div>
-      <div class="ml-popup-button ml-border" :class="{'two-btn':type==='confirm'}">
-        <button @click="doClose" class="ml-border" v-if="type==='confirm'">取消</button>
-        <button @click="doConfirm" class="ml-border ml-popup-confirm">确定</button>
+      <div class="ml-popup-button ml-border">
+        <button @click="doClose" class="ml-popup-cancel ml-border" v-if="type==='confirm'">{{cancelText}}</button>
+        <button @click="doConfirm" class="ml-popup-confirm">{{confirmText}}</button>
       </div>
     </div>
   </ml-model>
@@ -27,7 +27,7 @@
         default: () => {
         },
       },
-      onClose: {
+      onCancel: {
         type: Function,
         default: () => {
         },
@@ -39,6 +39,14 @@
       prevent: {
         type: Boolean,
         default: true,
+      },
+      confirmText: {
+        type: String,
+        default: '确定'
+      },
+      cancelText: {
+        type: String,
+        default: '取消'
       },
     },
     data() {
@@ -61,7 +69,7 @@
        * 取消事件
        */
       doClose() {
-        this.removeDom(this.onClose)
+        this.removeDom(this.onCancel)
       },
       /**
        * 确认事件

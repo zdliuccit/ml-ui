@@ -35,6 +35,8 @@
       doClick1() {
         this.$popup.confirm({
           message: '这是confirm',
+          cancelText: 'No',
+          confirmText: 'Yes',
           onConfirm: () => {
             this.$message.success({ message: 'confirm确定了' })
           },

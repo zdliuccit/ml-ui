@@ -16,7 +16,7 @@
     data() {
       return {
         dataList: 20,
-        paging: false,
+        paging: true,
       }
     },
     mounted() {

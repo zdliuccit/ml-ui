@@ -14,6 +14,24 @@ import 'ml-ui/styles/index.css'
 Vue.use(MlUi)
 ```
 
+## 组件
+* Icon 图标
+* Button 按钮
+* Radio 单选
+* Checkbox 多选
+* Switch 开关
+* DatePater 日期、时间选择器
+* Tab 选项卡
+* Sile 幻灯片
+* Model 遮罩层
+* Pull 上拉加载 下拉刷新
+* AutoLoad 底部自动加载
+* Loading 正在加载...
+* LeftSlip 左滑
+* Toast 提示
+* Message 消息
+* Popup 弹窗
+
 构建部署环境基于[vue-webpack-config](https://github.com/zdliuccit/vue-webpack-config)
 ### 构建的技术栈
 * Webpack3

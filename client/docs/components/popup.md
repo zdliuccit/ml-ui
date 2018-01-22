@@ -10,8 +10,17 @@ Demo1
 ```js
 this.$popup.alert({message: '这是alert' }) 
 
-this.$popup.confirm({ message: '这是confirm' }) 
-```
+this.$popup.confirm({
+       message: '这是confirm',
+       cancelText: 'No',
+       confirmText: 'Yes',
+       onConfirm: () => {
+         this.$message.success({ message: 'confirm确定了' })
+       },
+       onClose: () => {
+         this.$message.warning({ message: 'confirm取消了' })
+       }
+     })```
 Demo2 
 ```js
 this.$popup({type:'alert',message: '这是alert' }) 
@@ -25,5 +34,7 @@ Props
 | message         | 内容(支持html片段)   | String  | - | - |
 | type         | 类型   | String  | alert、confirm  |  alert| 
 | onConfirm        | 确定事件   | Function  | - |  -| 
-| onClose         | 取消事件   | Function  | - | - |
+| onCancel         | 取消事件   | Function  | - | - |
+| cancelText    | 取消按钮文字   | String  | - | 取消 |
+| confirmText    | 确定按钮文字   | String  | - | 确定 |
 | prevent    | 点击外层是否关闭   | Boolean  | true、false | false |
