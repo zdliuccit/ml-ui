@@ -43,6 +43,10 @@
         <a href="javascript:;" @click="$router.push('/docs/installation')" class="to-comp">开始使用</a>
         <a href="https://github.com/zdliuccit/ml-ui" target="_blank" class="to-git">GitHub</a>
       </div>
+      <div class="author-msg">
+        <span>电子邮箱：<a href="mailto:zdliuccit@gmail.com">zdliuccit@gmail.com</a></span>
+        <span>QQ：<a href="javascript:;">335758663 秋风</a></span>
+      </div>
     </div>
   </div>
 </template>
@@ -53,55 +57,70 @@
     }
   }
 </script>
-<style lang="stylus" ref="stylesheet/stylus" scoped="">
+<style lang="stylus" ref="stylesheet/stylus" scoped>
+  .author-msg {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+    margin-top: -22px;
+    word-break: break-all;
+    z-index: 22;
+    position: relative;
+    span {
+      margin: 0 6px;
+    }
+  }
+
   .ml-index {
     position: absolute;
-    height: 464PX;
+    height: 464px;
     top: 50%;
-    margin-top: -162PX;
+    transform: translate3d(0, -50%, 0)
     left: 0;
     width: 100%;
   }
 
   .ml-index-btn {
     text-align: center;
-    padding: 20PX;
+    padding: 20px;
     a {
       display: inline-block;
       vertical-align: middle;
-      height: 50PX;
-      border-radius: 25PX;
-      width: 160PX;
-      line-height: 50PX;
+      height: 50px;
+      border-radius: 25px;
+      width: 160px;
+      line-height: 50px;
       text-align: center;
-      font-size: 16PX;
-      margin: 0 50PX;
+      font-size: 16px;
+      margin: 0 50px;
       box-sizing: border-box;
       transition: all 0.3s;
+      margin-bottom: 15px;
     }
     a:hover {
-      box-shadow: 0 0 15PX #999;
+      box-shadow: 0 0 15px #999;
     }
     .to-comp {
       color: #fff;
       background-color: #409eff;
     }
     .to-git {
-      border: 1PX solid #409eff;
+      border: 1px solid #409eff;
     }
   }
 
   .ml-title {
-    font-size: 18PX;
-    line-height: 28PX;
+    font-size: 16px;
+    line-height: 28px;
     text-align: center;
     color: #888;
-    margin: 10PX 0 5PX;
+    margin: 10px 0 5px;
+    padding: 0 20px;
   }
 
   .gear-rolling {
     position: relative;
-    height: 240PX;
+    height: 240px;
     z-index: -1;
   }
 
@@ -114,7 +133,7 @@
   .gear-rolling .gear-loader {
     position: relative;
     margin: 0 auto;
-    width: 180PX;
+    width: 180px;
     height: 100%;
     text-align: center;
     -webkit-transform: rotate(45deg);
@@ -124,7 +143,7 @@
   .gear-rolling .loader-cogs {
     z-index: -2;
     margin-top: -90pt;
-    margin-left: -50PX;
+    margin-left: -50px;
     width: 75pt;
     height: 75pt
   }
@@ -139,8 +158,8 @@
     position: relative;
     width: 75pt;
     height: 75pt;
-    -webkit-transform-origin: 50PX 50PX;
-    transform-origin: 50PX 50PX;
+    -webkit-transform-origin: 50px 50px;
+    transform-origin: 50px 50px;
     -webkit-animation: rotate 10s infinite linear;
     animation: rotate 10s infinite linear
   }
@@ -149,7 +168,7 @@
     position: absolute;
     width: 75pt;
     height: 75pt;
-    border-radius: 10PX;
+    border-radius: 10px;
     background-color: #f96ac6
   }
 
@@ -170,23 +189,23 @@
 
   .gear-rolling .loader-cogs-in {
     position: relative;
-    top: 28PX;
-    left: -24PX;
-    width: 80PX;
-    height: 80PX;
+    top: 28px;
+    left: -24px;
+    width: 80px;
+    height: 80px;
     -webkit-transform: rotate(16deg);
     transform: rotate(16deg);
-    -webkit-transform-origin: 40PX 40PX;
-    transform-origin: 40PX 40PX;
+    -webkit-transform-origin: 40px 40px;
+    transform-origin: 40px 40px;
     -webkit-animation: rotate-in 10s .1s infinite reverse linear;
     animation: rotate-in 10s .1s infinite reverse linear
   }
 
   .gear-rolling .in-part {
     position: absolute;
-    width: 80PX;
-    height: 80PX;
-    border-radius: 6PX;
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
     background-color: #3960ff
   }
 
@@ -207,23 +226,23 @@
 
   .gear-rolling .loader-cogs-small {
     position: relative;
-    top: -65PX;
-    left: 79PX;
-    width: 60PX;
-    height: 60PX;
+    top: -65px;
+    left: 79px;
+    width: 60px;
+    height: 60px;
     -webkit-transform: rotate(4deg);
     transform: rotate(4deg);
-    -webkit-transform-origin: 30PX 30PX;
-    transform-origin: 30PX 30PX;
+    -webkit-transform-origin: 30px 30px;
+    transform-origin: 30px 30px;
     -webkit-animation: rotate-in 10.2s .4s infinite linear;
     animation: rotate-in 10.2s .4s infinite linear
   }
 
   .gear-rolling .small-part {
     position: absolute;
-    width: 60PX;
-    height: 60PX;
-    border-radius: 5PX;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
     background-color: #ffae22
   }
 
@@ -251,24 +270,24 @@
   }
 
   .gear-rolling .large-hole {
-    margin-top: -25PX;
-    margin-left: -25PX;
-    width: 50PX;
-    height: 50PX
+    margin-top: -25px;
+    margin-left: -25px;
+    width: 50px;
+    height: 50px
   }
 
   .gear-rolling .in-hole {
-    margin-top: -20PX;
-    margin-left: -20PX;
-    width: 40PX;
-    height: 40PX
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px
   }
 
   .gear-rolling .small-hole {
-    margin-top: -15PX;
-    margin-left: -15PX;
-    width: 30PX;
-    height: 30PX
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 30px;
+    height: 30px
   }
 
   @-webkit-keyframes rotate {

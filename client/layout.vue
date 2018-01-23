@@ -69,9 +69,11 @@
       goToComp(link) {
         if (link) this.$router.push(link)
       }
+    },
+    created() {
+      if (/Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent)) {
+        this.$router.replace('/demo/index')
+      }
     }
   }
 </script>
-<style lang="stylus" ref="stylesheet/stylus" scoped>
-
-</style>

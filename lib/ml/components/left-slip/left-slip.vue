@@ -79,6 +79,7 @@
         if (maxWidth < 1 || this.animating) return
         const touch = e.touches ? e.touches[0] : e
         this.dragObject.startLeft = touch.pageX
+        this.dragObject.startTop = touch.pageY
         this.dragObject.maxWidth = maxWidth
       },
       /**
@@ -95,6 +96,8 @@
         this.animating = true
         dragObject.oldValue = dragObject.currentLeft
         dragObject.currentLeft = pageX
+        dragObject.result = Math.abs(touch.pageY - dragObject.startTop) >= 1.73 * Math.abs(pageX - dragObject.startLeft)
+        if (dragObject.result) return
         let currentLeft = this.slipLeft + offsetLeft || 0
         if (currentLeft >= 0) currentLeft = 0
         if (currentLeft <= -dragObject.maxWidth) currentLeft = -dragObject.maxWidth
@@ -106,11 +109,11 @@
        */
       touchEnd(e) {
         const dragObject = this.dragObject
-        if (!dragObject.startLeft || !dragObject.currentLeft) {
+        const currentLeft = this.slipLeft
+        if (!dragObject.startLeft || !dragObject.currentLeft || (currentLeft === 0 && dragObject.result)) {
           this.animating = false
           return
         }
-        const currentLeft = this.slipLeft
         const touch = e.changedTouches ? e.changedTouches[0] : e
         this.slipLeft = touch.pageX - dragObject.oldValue > 0 ? 0 : -dragObject.maxWidth
         this.continueTranslate(this.$refs.warpSlip, currentLeft, this.slipLeft, () => {

@@ -45,6 +45,7 @@
         sliding: false, // 是否滑动中
         isScroll: false, // 是否滚动
         dragObject: {}, // 储存拖拽drag信息
+        slipLeft: 0,
       }
     },
     methods: {
@@ -97,7 +98,7 @@
         let ALPHA = 0.88
         const animationLoop = () => {
           ALPHA *= (0.98)
-          if (Math.abs(initOffset - offset) < 1) {
+          if (Math.abs(initOffset - offset) < 1.2) {
             this.animating = false
             $el.style.webkitTransform = ''
             $elNext.style.webkitTransform = ''
@@ -105,7 +106,7 @@
             initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
             $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
             $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
-            if (Math.abs(initOffset - offset) < 1 && callback) callback()
+            if (Math.abs(initOffset - offset) < 1.2 && callback) callback()
             animationFrame(animationLoop)
           }
         }
@@ -122,10 +123,10 @@
             $el.style.webkitTransform = `translate3d(${offset}px,0,0)`
           }, 60)
           const transitionEndCallback = () => {
-            this.animating = false
             $el.style.webkitTransition = ''
             $el.style.webkitTransform = ''
             if (callback) callback()
+            this.animating = false
           }
           setTimeout(transitionEndCallback, speed + 30)
         } else {
@@ -195,6 +196,7 @@
         const touch = e.touches ? e.touches[0] : e
         dragObject.startTime = new Date()
         dragObject.startLeft = touch.pageX
+        dragObject.startTop = touch.pageY
         dragObject.$elWidth = this.$el.offsetWidth
         const prevIndex = this.index - 1 < 0 ? this.pages.length - 1 : this.index - 1
         const nextIndex = this.index + 1 > this.pages.length - 1 ? 0 : this.index + 1
@@ -211,16 +213,20 @@
         const dragObject = this.dragObject
         if (!dragObject.startLeft) return
         const touch = e.touches ? e.touches[0] : e
-        dragObject.distanceX = touch.pageX - dragObject.currentLeft
-        dragObject.currentLeft = touch.pageX
-        let offsetLeft = dragObject.currentLeft - dragObject.startLeft
-        if (!this.sliding && Math.abs(offsetLeft) < 5) return
+        const pageX = touch.pageX
+        const maxX = Math.abs(pageX - dragObject.startLeft)
+        if (!this.sliding && maxX < 5) return
         e.preventDefault()
         this.sliding = true
-        offsetLeft = Math.min(Math.max(-dragObject.$elWidth + 1, offsetLeft), dragObject.$elWidth - 1)
-        this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
-        this.translate(dragObject.dragPage, offsetLeft)
-        this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
+        const offsetLeft = pageX - (dragObject.currentLeft || dragObject.startLeft)
+        dragObject.distanceX = pageX - dragObject.currentLeft
+        dragObject.currentLeft = pageX
+        dragObject.result = Math.abs(touch.pageY - dragObject.startTop) >= 1.73 * maxX
+        if (dragObject.result) return
+        this.slipLeft = this.slipLeft + offsetLeft
+        this.translate(dragObject.prevPage, this.slipLeft - dragObject.$elWidth)
+        this.translate(dragObject.dragPage, this.slipLeft)
+        this.translate(dragObject.nextPage, this.slipLeft + dragObject.$elWidth)
       },
       /**
        * 触发结束
@@ -228,11 +234,10 @@
       touchEnd() {
         const dragObject = this.dragObject
         if (!dragObject.startLeft || this.pages.length < 2) return
-        const dragDuration = new Date() - dragObject.startTime // 间隔时长
         let towards = null
-        const offsetLeft = dragObject.currentLeft - dragObject.startLeft
+        const offsetLeft = this.slipLeft
         const $elWidth = dragObject.$elWidth
-        if (dragDuration < 300 || Math.abs(offsetLeft) > $elWidth / 3) {
+        if (!dragObject.result && (new Date() - dragObject.startTime < 300 || Math.abs(offsetLeft) > $elWidth / 3)) {
           towards = offsetLeft < 0 ? 'next' : 'prev'
         }
         this.runAnimate(towards, {
@@ -243,6 +248,7 @@
           nextPage: dragObject.nextPage,
           distanceX: dragObject.distanceX
         })
+        this.slipLeft = 0
         this.dragObject = {}
       },
     },

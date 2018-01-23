@@ -37,7 +37,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((route) => {
   // 设置标题
-  doc.title = route.meta.title || 'ml-ui'
+  doc.title = route.meta.title || 'ml-ui,一套为开发者、设计师和产品经理准备的基于 Vue 2 的移动端组件库'
   // 进度条结束
   if (line) {
     line.animate(1, {
