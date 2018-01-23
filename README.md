@@ -29,7 +29,7 @@ Vue.use(MlUi)
 
 目前压缩后为56k大小 
 
-[md文档地址www.zdliu.com](http://www.zdliu.com)
+md文档地址 [www.ml-ui.com](http://www.ml-ui.com)
 
 构建部署环境基于[vue-webpack-config](https://github.com/zdliuccit/vue-webpack-config)
 
