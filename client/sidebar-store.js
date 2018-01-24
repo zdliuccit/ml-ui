@@ -5,23 +5,6 @@ export default {
       link: '/docs/installation',
     },
     {
-      label: 'Layout',
-      children: [
-        {
-          link: '/docs/layout',
-          label: 'Layout 布局',
-        },
-        {
-          link: '/docs/header',
-          label: 'Header 头部',
-        },
-        {
-          link: '/docs/menu',
-          label: 'Menu 菜单',
-        },
-      ]
-    },
-    {
       label: 'Js',
       children: [
         {
@@ -99,5 +82,22 @@ export default {
         },
       ]
     },
+    // {
+    //   label: 'Layout',
+    //   children: [
+    //     {
+    //       link: '/docs/layout',
+    //       label: 'Layout 布局',
+    //     },
+    //     {
+    //       link: '/docs/header',
+    //       label: 'Header 头部',
+    //     },
+    //     {
+    //       link: '/docs/menu',
+    //       label: 'Menu 菜单',
+    //     },
+    //   ]
+    // },
   ]
 }
