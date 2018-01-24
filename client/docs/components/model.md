@@ -63,31 +63,6 @@ Vue.prototype[`ml-${Model.name}`]= $message
     }
   }
 </script>
-<style lang="stylus" ref="stylesheet/stylus" scoped>
-  .test-ww {
-    text-align: center;
-    font-size: 16px;
-    padding: 30px 20px;
-  }
-  .test-cc {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    height: 100px;
-    line-height: 80px;
-    text-align: center;
-    font-size: 16px;
-    padding: 10px;
-    transform: translate3d(0, -50%, 0) rotate(0deg);
-    background-color: #fff;
-    transition: opacity .2s ease-out, transform .2s ease-out;
-  }
-  .dd-custom-enter, .dd-custom-leave-active {
-    opacity: 0;
-    transform: translate3d(0, 0, 0) rotate(25deg);
-  }
-</style>
 ```
 Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |

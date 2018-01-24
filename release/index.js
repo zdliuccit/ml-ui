@@ -92,6 +92,6 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.2.1',
+  version: '1.2.3',
   install,
 }, components, jsComponents)

@@ -27,6 +27,7 @@
         setTimeout(() => {
           this.dataList += 10
           if (this.dataList >= 50) this.paging = false
+          this.$message.success({ message: '加载成功' })
           resolve()
         }, 1000)
       },
@@ -34,6 +35,7 @@
         setTimeout(() => {
           this.dataList = 20
           this.paging = true
+          this.$message.success({ message: '刷新成功' })
           resolve()
         }, 1000)
       }

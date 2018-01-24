@@ -19,7 +19,7 @@ Demo
     data() {
       return {
         dataList: 20,
-        paging: false,
+        paging: true,
       }
     },
     mounted() {
@@ -30,12 +30,15 @@ Demo
         setTimeout(() => {
           this.dataList += 10
           if (this.dataList >= 50) this.paging = false
+          this.$message.success({ message: '加载成功' })
           resolve()
         }, 1000)
       },
       doRefresh(resolve) {
         setTimeout(() => {
           this.dataList = 20
+          this.paging = true
+          this.$message.success({ message: '刷新成功' })
           resolve()
         }, 1000)
       }
@@ -49,6 +52,7 @@ Props
 | v-model        |绑定值 是否执行底部自动加载(内容高度小于外层高度时无法上拉加载) | Boolean  | - |  true| 
 | pullUp         | 是否开启上拉刷新   | Boolean  | - | true |
 | pullDown         |  是否开启下拉刷新  | Boolean  | - | true |
+| distance       |  上、下拉距离（像素）  | Number  | - |  50| 
 | loading         | 上拉加载event  | Function  | - |  -| 
 | refresh        | 下拉刷新event   | Function  | - |  -| 
 | showTop       |  回到顶部按钮开关  | Boolean  | true、false |  true| 

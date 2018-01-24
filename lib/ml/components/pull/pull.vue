@@ -1,6 +1,7 @@
 <template>
   <div class="ml-pull-layout">
-    <div class="ml-pull" ref="elWrap">
+    <div class="ml-pull" ref="elWrap" :class="{'pull-drag':!animating}"
+         :style="{ 'transform': 'translate3d(0, ' + translate + 'px, 0)' }">
       <div v-if="pullDown" class="ml-pull-down" :class="{'satisfy-down':downLoad}" ref="elPullDown">
         <div class="inline-block ml-pd-icon" v-show="!satisfy">
           <ml-icon icon="pull-up"></ml-icon>
@@ -43,6 +44,10 @@
         type: Boolean,
         default: true,
       },
+      distance: {
+        type: Number,
+        default: 50,
+      },
       loading: Function,
       refresh: Function,
       value: {
@@ -73,8 +78,8 @@
         elContent: null,
         satisfy: false,
         isTop: false,
-        currentTop: 0,
         animating: false,
+        translate: 0,
       }
     },
     methods: {
@@ -91,40 +96,19 @@
             resolve()
           }
         }).then(() => {
-          this.translate(this.elWrap, 0, 100, () => {
-            this.upLoad = this.downLoad = this.satisfy = false
-          })
+          this.translate = 0
+          this.upLoad = this.downLoad = this.satisfy = false
         })
-      },
-      /**
-       * 动画
-       */
-      translate($el, offset, speed, callback) {
-        if (speed) {
-          $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-out'
-          setTimeout(() => {
-            $el.style.webkitTransform = `translate3d(0,${offset}px,0)`
-          }, 60)
-          const transitionEndCallback = () => {
-            if (callback) callback.apply({}, arguments)
-          }
-          setTimeout(transitionEndCallback, speed + 30)
-        } else {
-          $el.style.webkitTransition = ''
-          $el.style.webkitTransform = `translate3d(0,${offset}px,0)`
-        }
       },
       /**
        * 触发开发
        */
       touchStart(e) {
-        if (this.animating) return
+        if (this.animating || this.satisfy) return
         const touch = e.touches ? e.touches[0] : e
         const dragObject = this.dragObject
         dragObject.startTop = touch.pageY
-        dragObject.startLeft = touch.pageX
         dragObject.scrollTop = this.elContent.scrollTop
-        dragObject.ALPHA = 0.95
         dragObject.diff = this.elContent.scrollHeight - this.elWrap.offsetHeight
         this.downLoad = this.upLoad = false
       },
@@ -138,39 +122,35 @@
         const pageY = touch.pageY
         const maxY = pageY - dragObject.startTop
         if (!this.animating && Math.abs(maxY) < 5) return
-        e.preventDefault()
-        this.animating = true
-        let offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
-        dragObject.currentTop = pageY
-        if (Math.abs(maxY) >= 5 && Math.abs(touch.pageX - dragObject.startLeft) >= 1.73 * Math.abs(maxY)) return
-        if ((maxY > 0 && dragObject.scrollTop === 0 && this.pullDown) ||
-          (maxY < 0 && dragObject.scrollTop === dragObject.diff && this.pullUp && this.value)) {
-          let ALPHA = dragObject.ALPHA
-          const result = (offsetTop < 0 && maxY > 0) || (offsetTop > 0 && maxY < 0)
-          if (!result && Math.abs(offsetTop) > 4 && ALPHA > 0.15) ALPHA = ALPHA * 0.9
-          if (!result && Math.abs(this.currentTop) > 70 && ALPHA > 0.15) ALPHA = ALPHA * 0.92
-          if (result) ALPHA = ALPHA >= 0.95 ? ALPHA : ALPHA * 1.1
-          let currentTop = this.currentTop + offsetTop * ALPHA
-          this.currentTop = currentTop
-          dragObject.ALPHA = ALPHA
-          if ((maxY < 0 && currentTop >= 0) || (maxY > 0 && currentTop <= 0)) currentTop = 0
-          this.downLoad = (currentTop > 0 && currentTop >= 25)
-          this.upLoad = (currentTop < 0 && currentTop <= -25)
-          this.translate(this.elWrap, currentTop)
+        if (!dragObject.dire) dragObject.dire = maxY > 0 ? 'down' : 'up'
+        const translate = this.translate
+        if ((dragObject.dire === 'down' && translate < 0) || (dragObject.dire === 'up' && translate > 0)) return
+        if ((dragObject.dire === 'down' && dragObject.scrollTop === 0 && this.pullDown) ||
+          (dragObject.dire === 'up' && dragObject.scrollTop === dragObject.diff && this.pullUp && this.value)) {
+          e.preventDefault()
+          let than = Math.abs(translate) > 70 ? 3 : 2
+          this.animating = true
+          let offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
+          if ((dragObject.dire === 'down' && offsetTop < 0) || (dragObject.dire === 'up' && offsetTop > 0)) than = than === 3 ? 2 : 1.5
+          dragObject.currentTop = pageY
+          let currentTop = translate + offsetTop / than
+          if ((dragObject.dire === 'down' && currentTop < 0) || (dragObject.dire === 'up' && currentTop > 0)) currentTop = 0
+          this.downLoad = currentTop > 0 && currentTop >= this.distance
+          this.upLoad = currentTop < 0 && currentTop <= -this.distance
+          this.translate = currentTop
         }
       },
       /**
        * 触发结束
        */
       touchEnd() {
-        this.currentTop = 0
         this.animating = false
         if (!this.dragObject.startTop) return
         let offsetH = 0
         this.satisfy = this.downLoad || this.upLoad
         if (this.downLoad) offsetH = this.$refs.elPullDown.offsetHeight
         if (this.upLoad) offsetH = -this.$refs.elPullUp.offsetHeight
-        this.translate(this.elWrap, offsetH, 160)
+        this.translate = offsetH
         if (offsetH !== 0) this.doLoading()
         this.dragObject = {}
       },

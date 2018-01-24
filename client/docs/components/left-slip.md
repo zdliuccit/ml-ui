@@ -48,39 +48,6 @@ Demo
     }
   }
 </script>
-<style lang="stylus" ref="stylesheet/stylus" scoped>
-  .slip-ul {
-    border-top-color: #ccc;
-    li {
-      font-size: 16px;
-      border-bottom-color: #ccc;
-      .address-info {
-        padding: 20px 20px;
-      }
-      .name, .address {
-        color: #000;
-        span {
-          margin-left: 20px;
-        }
-      }
-      .address {
-        padding-top: 10px;
-        color: #999;
-        font-size: 14px;
-      }
-      .btn-del {
-        background-color: #f0534c;
-        color: #fff;
-        width: 200px;
-        height: 100%;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-  }
-</style>
 ```
 Slot
 | name | 描述 |
