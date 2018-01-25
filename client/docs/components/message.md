@@ -37,6 +37,6 @@ this.$message({ message: '错误消息',type:'error' })
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | message         | 内容   | String  | - | - |
 | type         | 类型   | String  | info、warning、error、success |  info| 
-| showIcon         | 是否显示icon   | Boolean  | true、false |  true| 
+| showIcon         | 是否显示icon   | Boolean  | - |  true| 
 | place         | 显示位置   | String  | top、middle、bottom  | middle |
 | duration         | 显示多久消失(ms)   | Number  | - | 3000 |

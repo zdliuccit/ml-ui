@@ -22,7 +22,7 @@ Vue.prototype[`ml-${Pull.name}`]= Pull
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model        |绑定值 是否执行底部自动加载(内容高度小于外层高度时无加载) | Boolean  | - |  true| 
 | loading       | 底部自动加载event  | Function  | - |  -| 
-| showTop       |  回到顶部按钮开关  | Boolean  | true、false |  true| 
+| showTop       |  回到顶部按钮开关  | Boolean  | - |  true| 
 
 ### Event
 | 名称          |  参数值  |  说明|

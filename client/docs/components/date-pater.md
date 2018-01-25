@@ -34,7 +34,7 @@ this.$refs.datePater.doOpen()
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model         | 绑定值   | String  | - | - |
 | format         | 格式   | String  | yyyy-MM-dd hh:mm:ss  |  yyyy-MM-dd| 
-| prevent    | 是否阻止点击外层关闭   | Boolean  | true、false | false |
+| prevent    | 是否阻止点击外层关闭   | Boolean  | - | false |
 
 ### Events
 | 事件名称          | 说明            | 返回值 |

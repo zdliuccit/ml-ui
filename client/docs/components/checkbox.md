@@ -65,5 +65,5 @@ Array类型值checkboxValue = [11,22,44]
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | value         | 值	  | String、Number、Boolean | - | - |
-| disabled         | 是否禁止选中	  | Boolean  |  true、false  | false |
-| inline         | 是否行内元素	  | Boolean  |  true、false | false |
+| disabled         | 是否禁止选中	  | Boolean  |  -  | false |
+| inline         | 是否行内元素	  | Boolean  |  - | false |

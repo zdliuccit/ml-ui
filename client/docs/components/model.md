@@ -44,12 +44,12 @@ Vue.prototype[`ml-${Model.name}`]= $message
 ### Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |------------- |---------------- |---------------- |---------------------- |-------- |
-| v-model       | 绑定值   | Boolean  | true、false | - |
+| v-model       | 绑定值   | Boolean  | - | - |
 | transition       | 动效   | String | middle、top、right、bottom、left| middle |
 | speed       | 动效时间(ms)   | Number | -| 200 |
-| mask    | 是否需要遮罩层   | Boolean  | true、false | true |
+| mask    | 是否需要遮罩层   | Boolean  | - | true |
 | maskClass    | 自定义遮罩层的class名称   | String  | - | - |
-| prevent    | 是否阻止点击外层关闭   | Boolean  | true、false | false |
+| prevent    | 是否阻止点击外层关闭   | Boolean  |  - | false |
 | onClose    | 关闭执行事件   | Function  | - | - |
 
 注: `speed`参数必须与`transition`设置的时间一样

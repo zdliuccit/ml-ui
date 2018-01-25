@@ -33,7 +33,7 @@ Vue.component(`ml-${Switch.name}`, Switch)
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model         | 绑定值		  | Boolean  | - | - |
-| disabled         | 是否禁用	  | Boolean  |  true、false  | false |
+| disabled         | 是否禁用	  | Boolean  |  - | false |
 
 ### Events
 | 事件名称          | 说明            | 返回值 |

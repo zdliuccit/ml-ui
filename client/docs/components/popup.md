@@ -41,4 +41,4 @@ Props
 | onCancel         | 取消事件   | Function  | - | - |
 | cancelText    | 取消按钮文字   | String  | - | 取消 |
 | confirmText    | 确定按钮文字   | String  | - | 确定 |
-| prevent    | 是否阻止点击外层关闭   | Boolean  | true、false | true |
+| prevent    | 是否阻止点击外层关闭   | Boolean  | - | true |
