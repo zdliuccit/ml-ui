@@ -23,14 +23,6 @@ body, html {
     width: 100%;
     position: relative;
     z-index: 3;
-    .ml-QRCode {
-      width: 70px;
-      float: left;
-      height: 70px;
-      margin-top: 5px;
-      background: url("./../images/mobile-src.png") no-repeat;
-      background-size: 100% 100%;
-    }
     .ml-git-link {
       float: right;
       top: 15px;
@@ -63,6 +55,24 @@ body, html {
     padding-top: 75px;
     overflow: hidden;
     top: 0;
+    .ml-QRCode {
+      width: 70px;
+      position: absolute;
+      right: 0;
+      top: 90px;
+      z-index: 2;
+      .ml-QRCode-img {
+        width: 70px;
+        height: 70px;
+        background: url("./../images/mobile-src.png") no-repeat;
+        background-size: 100% 100%;
+      }
+      .ml-QRCode-word {
+        padding-top: 5px;
+        text-align: center;
+        font-size: 12px;
+      }
+    }
     .side-nav {
       border-top: 1px solid #eee;
       width: 220px;

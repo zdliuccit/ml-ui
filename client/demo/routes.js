@@ -1,5 +1,4 @@
 import Icon from './components/d-icon.vue'
-import Layout from './components/d-layout.vue'
 import Toast from './components/d-toast.vue'
 import Message from './components/d-message.vue'
 import Slide from './components/d-slide.vue'
@@ -17,6 +16,7 @@ import Loading from './components/d-loading.vue'
 import LeftSlip from './components/d-left-slip.vue'
 import DatePater from './components/d-date-pater.vue'
 import Header from './components/d-header.vue'
+import Field from './components/d-field.vue'
 import index from './demo.vue'
 
 export default [
@@ -34,11 +34,6 @@ export default [
     path: 'toast',
     name: 'd-toast',
     component: Toast,
-  },
-  {
-    path: 'layout',
-    name: 'd-layout',
-    component: Layout,
   },
   {
     path: 'message',
@@ -119,5 +114,10 @@ export default [
     path: 'header',
     name: 'd-header',
     component: Header,
+  },
+  {
+    path: 'field',
+    name: 'd-field',
+    component: Field,
   }
 ]

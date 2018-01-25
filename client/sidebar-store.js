@@ -25,6 +25,14 @@ export default {
       label: 'Base',
       children: [
         {
+          link: '/docs/header',
+          label: 'Header 顶部导航栏',
+        },
+        {
+          link: '/docs/field',
+          label: 'Field',
+        },
+        {
           link: '/docs/icon',
           label: 'Icon 图标',
         },
@@ -56,10 +64,6 @@ export default {
           link: '/docs/slide',
           label: 'Slide 幻灯片',
         },
-        // {
-        //   link: '/docs/progress',
-        //   label: 'Progress 进度条',
-        // },
         {
           link: '/docs/model',
           label: 'Model 遮罩层',
@@ -81,23 +85,6 @@ export default {
           label: 'LeftSlip 左滑',
         },
       ]
-    },
-    {
-      label: 'Layout',
-      children: [
-        {
-          link: '/docs/header',
-          label: 'Header 头部',
-        },
-        // {
-        //   link: '/docs/layout',
-        //   label: 'Layout 布局',
-        // },
-        // {
-        //   link: '/docs/menu',
-        //   label: 'Menu 菜单',
-        // },
-      ]
-    },
+    }
   ]
 }

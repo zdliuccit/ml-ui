@@ -1,15 +1,17 @@
 <template>
   <div class="ml-demo">
-    <d-head title="BaseComponents"></d-head>
-    <ul class="ul-cpt">
-      <li class="ml-border" v-for="bb in baseCpt">
-        <a href="javascript:;" @click="toTo(bb.link)">{{bb.label}}</a>
-      </li>
-    </ul>
-    <d-head title="JSComponents"></d-head>
+    <div class="ul-title ml-border">JSComponents</div>
     <ul class="ul-cpt">
       <li class="ml-border" v-for="bb in jsCpt">
         <a href="javascript:;" @click="toTo(bb.link)">{{bb.label}}</a>
+        <ml-icon icon="up"></ml-icon>
+      </li>
+    </ul>
+    <div class="ul-title ml-border">BaseComponents</div>
+    <ul class="ul-cpt">
+      <li class="ml-border" v-for="bb in baseCpt">
+        <a href="javascript:;" @click="toTo(bb.link)">{{bb.label}}</a>
+        <ml-icon icon="up"></ml-icon>
       </li>
     </ul>
   </div>
@@ -23,10 +25,10 @@
             label: 'Icon 图标',
             link: '/demo/icon'
           },
-//          {
-//            label: 'Layout',
-//            link: '/demo/layout'
-//          },
+          {
+            label: 'Header 顶部导航栏',
+            link: '/demo/header'
+          },
           {
             label: 'Button 按钮',
             link: '/demo/button'
@@ -119,15 +121,28 @@
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
   .ml-demo {
-    font-size: 18px;
+    font-size: 16px;
+    .ul-title {
+      background-color: #f5f5f5;
+      padding: 16px 10px;
+      color: #505050;
+      border-bottom-color: #ddd;
+    }
     .ul-cpt {
       margin-bottom: 15px;
-      padding: 0 10px 10px;
+      padding-left: 10px;
       li {
         border-bottom-color: #ddd;
         a {
-          display: block;
-          padding: 10px;
+          display: inline-block;
+          padding: 12px 0;
+        }
+        i {
+          float: right;
+          font-size: 24px;
+          transform: rotate(90deg);
+          margin: 8px 12px;
+          color: #777;
         }
         a:hover {
           color: #0090fb;

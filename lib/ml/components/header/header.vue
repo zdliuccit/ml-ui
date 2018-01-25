@@ -1,5 +1,5 @@
 <template>
-  <header class="ml-header">
+  <header class="ml-header" :class="{'fix-header':fix}">
     <div class="ml-header-left">
       <slot name="left"></slot>
     </div>
@@ -14,6 +14,10 @@
     name: 'header',
     props: {
       title: String,
+      fix: {
+        type: Boolean,
+        default: false,
+      }
     },
   }
 </script>

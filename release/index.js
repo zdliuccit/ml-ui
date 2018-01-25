@@ -1,13 +1,12 @@
 // 引入基础组件
 import Icon from './components/icon/icon.vue'
-// import Layout from './components/layout/layout.vue'
 import Header from './components/header/header.vue'
+import Field from './components/field/field.vue'
 import Slide from './components/slide/slide.vue'
 import SlideItem from './components/slide/child/slide-item.vue'
 import Button from './components/button/button.vue'
 import Checkbox from './components/checkbox/checkbox.vue'
 import CheckboxItem from './components/checkbox/child/checkbox-item.vue'
-// import Progress from './components/progress/progress.vue'
 import Switch from './components/switch/switch.vue'
 import Radio from './components/radio/radio.vue'
 import RadioItem from './components/radio/child/radio-item.vue'
@@ -34,7 +33,7 @@ const components = {
   RadioItem,
   Button,
   Header,
-  // Layout,
+  Field,
   Switch,
   Checkbox,
   CheckboxItem,
@@ -94,6 +93,6 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.2.4',
+  version: '1.2.5',
   install,
 }, components, jsComponents)

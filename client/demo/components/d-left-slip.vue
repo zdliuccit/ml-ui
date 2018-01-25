@@ -75,7 +75,7 @@
       .btn-del {
         background-color: #f0534c;
         color: #fff;
-        width: 200px;
+        width: 100px;
         height: 100%;
         font-size: 18px;
         display: flex;
