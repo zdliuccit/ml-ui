@@ -60,12 +60,7 @@
       maskClass: String,
       prevent: {
         type: Boolean,
-        default: true,
-      },
-      onClose: {
-        type: Function,
-        default: () => {
-        },
+        default: false,
       },
       transition: {
         type: String,
@@ -101,7 +96,7 @@
       doClose() {
         setTimeout(() => {
           this.visible = false
-          this.onClose()
+          this.$emit('on-close')
         }, this.speed)
       },
       /**

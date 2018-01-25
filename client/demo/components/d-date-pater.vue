@@ -5,7 +5,7 @@
       <div class="warp-ctt">
         <div class="dd-label">
           <ml-button @click="doClick(0)">默认(yyyy-MM-dd) 值 {{date}}</ml-button>
-          <ml-date-pater ref="datePater0" v-model="date"></ml-date-pater>
+          <ml-date-pater @on-confirm="doConfirm" @on-close="doClose" ref="datePater0" v-model="date"></ml-date-pater>
         </div>
         <div class="dd-label">
           <ml-button @click="doClick(1)">格式 hh:mm 值 {{date1}}</ml-button>
@@ -58,7 +58,13 @@
     methods: {
       doClick(index) {
         this.$refs[`datePater${index}`].doOpen()
-      }
+      },
+      doConfirm(date) {
+        this.$message.success({ message: date })
+      },
+      doClose() {
+        this.$message.warning({ message: '取消了' })
+      },
     }
   }
 </script>

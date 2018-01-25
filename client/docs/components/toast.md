@@ -1,19 +1,22 @@
 # Toast
 
 Toast提示
+<hr>
+
+### 引入
 ```js
 import { $toast } from 'ml-ui'
 
 Vue.prototype[$toast.name]= $toast
 ```
 
-Demo
+### Demo
 ```js
 this.$toast({ message: '消息在top', place: 'top' })
 this.$toast({ message: '消息在middle' })
 this.$toast({ message: '消息在bottom', place: 'bottom' })
 ```
-Props
+### Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | message         | 内容   | String  | - | - |

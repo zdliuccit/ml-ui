@@ -1,40 +1,47 @@
 # Radio
 
-单选
+单选框，`ml-radio-item`依赖`ml-radio`
+<hr>
+
+### 引入
 ```js
-import { Radio } from 'ml-ui'
+import { Radio,RadioItem } from 'ml-ui'
 
 Vue.component(`ml-${Radio.name}`, Radio)
+Vue.component(`ml-${RadioItem.name}`, RadioItem)
 ```
-
-Demo
-
-```html
+### Demo
 默认
-<ml-radio v-model="radioValue" @on-change="doChange">
+```html
+<ml-radio v-model="radioValue">
   <ml-radio-item value="11">单选1南京</ml-radio-item>
   <ml-radio-item value="22">单选2杭州</ml-radio-item>
   <ml-radio-item value="33">单选3上海</ml-radio-item>
 </ml-radio>
+```
 
-禁止选中
-<ml-radio v-model="radioValue">
+设置禁用选项 `ml-radio-item`的参数`:disabled=true`
+```html
   <ml-radio-item :disabled="true" value="11">单选1南京</ml-radio-item>
-  <ml-radio-item :disabled="true" value="22">单选2杭州</ml-radio-item>
+```
+事件绑定
+```html
+<ml-radio v-model="radioValue" @on-change="doChange">
+  ...    
 </ml-radio>
 ```
-Radio Props
+### Radio Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model         | 绑定值		  | Boolean、String、Number  | - | - |
 
 
-Radio events
+### Radio events
 | 事件名称          | 说明            | 返回值 |
 |-------------  |---------------- | ---- |
 |on-change	  |开关变化时触发，返回当前的状态	 | true|false |
 
-Radio-item Props
+### Radio-item Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | value         | 值	  | String、Number、Boolean  | - | - |

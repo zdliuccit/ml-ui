@@ -23,7 +23,7 @@
        */
       currentValue(val) {
         this.$emit('input', val)
-        this.$emit('on-change', val)
+        this.$emit('on-change', JSON.parse(JSON.stringify(val)))
       }
     },
     data() {

@@ -1,12 +1,16 @@
 # Pull
 
 上拉加载更多、下拉刷新
+<hr>
+
+### 引入
+
 ```js
 import { Pull } from 'ml-ui'
 
 Vue.prototype[`ml-${Pull.name}`]= Pull
 ```
-Demo
+### Demo
 ```html
 <ml-pull :loading="doLoad" :refresh="doRefresh" v-model="paging">
   <ul class="test-ul ml-border">
@@ -46,19 +50,18 @@ Demo
   }
 </script>
 ```
-Props
+### Props
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | v-model        |绑定值 是否执行底部自动加载(内容高度小于外层高度时无法上拉加载) | Boolean  | - |  true| 
 | pullUp         | 是否开启上拉刷新   | Boolean  | - | true |
 | pullDown         |  是否开启下拉刷新  | Boolean  | - | true |
 | distance       |  上、下拉距离（像素）  | Number  | - |  50| 
+| showTop       |  回到顶部按钮开关  | Boolean  | true、false |  true| 
 | loading         | 上拉加载event  | Function  | - |  -| 
 | refresh        | 下拉刷新event   | Function  | - |  -| 
-| showTop       |  回到顶部按钮开关  | Boolean  | true、false |  true| 
 
-
-Event
+### Event
 
 | 名称          |  参数值  |  说明|
 |-------------  |------ |----- |

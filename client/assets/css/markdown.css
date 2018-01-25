@@ -14,7 +14,7 @@
 .markdown-body {
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
-  color: #333;
+  color: #505050;
   line-height: 1.6;
   word-wrap: break-word;
   background: #fff;
@@ -46,6 +46,11 @@
   line-height: 1.4;
 }
 
+.markdown-body hr {
+  border: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
 .markdown-body p,
 .markdown-body blockquote,
 .markdown-body ul,
@@ -55,25 +60,25 @@
 .markdown-body pre {
   margin-top: 0;
   margin-bottom: 16px;
+  color: #404040;
 }
 
 .markdown-body h1 {
   margin: 0.67em 0;
-  padding-bottom: 0.3em;
+  padding-bottom: 0.1em;
   font-size: 2.25em;
   line-height: 1.2;
-  border-bottom: 1px solid #eee;
+  color: #202020;
 }
 
 .markdown-body h2 {
   padding-bottom: 0.3em;
-  font-size: 1.75em;
+  font-size: 1.5em;
   line-height: 1.225;
-  border-bottom: 1px solid #eee;
 }
 
 .markdown-body h3 {
-  font-size: 1.5em;
+  font-size: 1.25em;
   line-height: 1.43;
 }
 
@@ -263,11 +268,11 @@
 }
 
 .hljs, .hljs-subst {
-  color: #000
+  color: #333
 }
 
 .hljs-addition, .hljs-meta, .hljs-string, .hljs-symbol, .hljs-template-tag, .hljs-template-variable {
-  color: #756bb1
+  color: #2e9400
 }
 
 .hljs-comment, .hljs-quote {
@@ -275,7 +280,7 @@
 }
 
 .hljs-bullet, .hljs-link, .hljs-literal, .hljs-number, .hljs-regexp {
-  color: #31a354
+  color: #2e9400
 }
 
 .hljs-deletion, .hljs-variable {
@@ -283,14 +288,22 @@
 }
 
 .hljs-built_in, .hljs-doctag, .hljs-keyword, .hljs-name, .hljs-section, .hljs-selector-class, .hljs-selector-id, .hljs-selector-tag, .hljs-strong, .hljs-tag, .hljs-title, .hljs-type {
-  color: #3182bd
+  color: #409eff
+}
+
+.language-js .hljs-keyword {
+  color: #ff00fc
+}
+
+.language-js .hljs-string {
+  color: #ff0000;
 }
 
 .hljs-emphasis {
   font-style: italic
 }
 
-.hljs-attribute {
+.hljs-attr {
   color: #e6550d
 }
 
@@ -306,7 +319,7 @@
 .markdown-body .table td, .markdown-body .table th {
   padding: 8px;
   vertical-align: top;
-  border: 1px solid #eee;
+  border: 1px solid #e0e0e0;
   text-align: left;
   color: #656b79
 }

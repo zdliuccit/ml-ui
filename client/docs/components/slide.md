@@ -1,12 +1,18 @@
 # Slide
 
-幻灯片
+幻灯片，可自定义轮播时间间隔、动画时长等。`ml-slide-item`依赖`ml-slide`
+<hr>
+
+### 引入
+
 ```js
-import { Slide } from 'ml-ui'
+import { Slide,SlideItem } from 'ml-ui'
 
 Vue.component(`ml-${Slide.name}`, Slide)
+Vue.component(`ml-${SlideItem.name}`, SlideItem)
 ```
-Demo
+### Demo
+默认
 ```html
 <div class="slide-demo">
   <ml-slide :defaultIndex="1">
@@ -24,6 +30,9 @@ Demo
     </ml-slide-item>
   </ml-slide>
 </div>
+```
+设置参数
+```html
 <div class="slide-demo">
   <ml-slide :speed="1000" :autoInterval="3500" :showDots="true" :loop="false">
     <ml-slide-item>
@@ -35,8 +44,7 @@ Demo
   </ml-slide>
 </div>
 ```
-
-Props
+### Props
 
 | 参数          | 说明            | 类型            | 可选值                 | 默认值   |
 |-------------  |---------------- |---------------- |---------------------- |-------- |

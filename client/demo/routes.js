@@ -7,7 +7,7 @@ import Popup from './components/d-popup.vue'
 import Tab from './components/d-tab.vue'
 import Switch from './components/d-switch.vue'
 import Radio from './components/d-radio.vue'
-import Progress from './components/d-progress.vue'
+// import Progress from './components/d-progress.vue'
 import Checkbox from './components/d-checkbox.vue'
 import Button from './components/d-button.vue'
 import Model from './components/d-model.vue'
@@ -16,6 +16,7 @@ import AutoLoad from './components/d-auto-load.vue'
 import Loading from './components/d-loading.vue'
 import LeftSlip from './components/d-left-slip.vue'
 import DatePater from './components/d-date-pater.vue'
+import Header from './components/d-header.vue'
 import index from './demo.vue'
 
 export default [
@@ -64,11 +65,11 @@ export default [
     name: 'd-checkbox',
     component: Checkbox,
   },
-  {
-    path: 'progress',
-    name: 'd-progress',
-    component: Progress,
-  },
+  // {
+  //   path: 'progress',
+  //   name: 'd-progress',
+  //   component: Progress,
+  // },
   {
     path: 'radio',
     name: 'd-radio',
@@ -113,5 +114,10 @@ export default [
     path: 'date-pater',
     name: 'd-date-pater',
     component: DatePater,
+  },
+  {
+    path: 'header',
+    name: 'd-header',
+    component: Header,
   }
 ]

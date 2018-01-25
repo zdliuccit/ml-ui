@@ -4,32 +4,32 @@
     <div class="dd-warp">
       <div class="warp-content">
         <button class="dd-btn ml-border" @click="show1=true">打开弹窗(默认middle效果)</button>
-        <ml-model v-model="show1" :onClose="doClose" :prevent="false">
+        <ml-model v-model="show1" @on-close="doClose">
           <div class="test-ww">默认middle效果</div>
         </ml-model>
 
         <button class="dd-btn ml-border" @click="show2=true">打开弹窗(top效果)</button>
-        <ml-model v-model="show2" :onClose="doClose" :prevent="false" transition="top">
+        <ml-model v-model="show2" @on-close="doClose" transition="top">
           <div class="test-ww">top效果</div>
         </ml-model>
 
         <button class="dd-btn ml-border" @click="show3=true">打开弹窗(right效果)</button>
-        <ml-model v-model="show3" :onClose="doClose" :prevent="false" transition="right">
+        <ml-model v-model="show3" @on-close="doClose" transition="right">
           <div class="test-ww">right效果</div>
         </ml-model>
 
         <button class="dd-btn ml-border" @click="show4=true">打开弹窗(bottom效果)</button>
-        <ml-model v-model="show4" :onClose="doClose" :prevent="false" transition="bottom">
+        <ml-model v-model="show4" transition="bottom">
           <div class="test-ww">bottom效果</div>
         </ml-model>
 
         <button class="dd-btn ml-border" @click="show5=true">打开弹窗(left效果)</button>
-        <ml-model v-model="show5" :onClose="doClose" :prevent="false" transition="left">
+        <ml-model v-model="show5" transition="left">
           <div class="test-ww">bottom效果</div>
         </ml-model>
 
         <button class="dd-btn ml-border" @click="doClick1">打开弹窗(自定义效果)</button>
-        <ml-model v-model="custom" :onClose="doClose" :prevent="false" transition="test-cc">
+        <ml-model v-model="custom" transition="test-cc">
           <transition name="dd-custom">
             <div class="test-cc" v-show="custom">
               自定义效果
@@ -57,7 +57,7 @@
         this.custom = !this.custom
       },
       doClose() {
-        this.log('关闭了')
+        this.$message.warning({ message: '关闭了' })
       },
     }
   }

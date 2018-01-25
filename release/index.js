@@ -1,6 +1,7 @@
 // 引入基础组件
 import Icon from './components/icon/icon.vue'
 // import Layout from './components/layout/layout.vue'
+import Header from './components/header/header.vue'
 import Slide from './components/slide/slide.vue'
 import SlideItem from './components/slide/child/slide-item.vue'
 import Button from './components/button/button.vue'
@@ -32,6 +33,7 @@ const components = {
   Radio,
   RadioItem,
   Button,
+  Header,
   // Layout,
   Switch,
   Checkbox,
@@ -92,6 +94,6 @@ const install = function (Vue) {
  * @param jsComponents JS组件
  */
 module.exports = Object.assign({
-  version: '1.2.3',
+  version: '1.2.4',
   install,
 }, components, jsComponents)

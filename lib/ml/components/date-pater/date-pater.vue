@@ -26,16 +26,6 @@
         type: String,
         default: ''
       },
-      onConfirm: {
-        type: Function,
-        default: () => {
-        },
-      },
-      onClose: {
-        type: Function,
-        default: () => {
-        },
-      },
       format: {
         type: String,
         default: 'yyyy-MM-dd', //  yyyy-MM-dd HH:mm:ss
@@ -83,7 +73,7 @@
       doHide(callback) {
         setTimeout(() => {
           this.visible = false
-          callback && callback(this.demoDate)
+          this.$emit(callback, this.demoDate)
         }, 200)
       },
       /**
@@ -122,7 +112,7 @@
        * 取消事件
        */
       doCancel() {
-        this.doHide(this.onClose)
+        this.doHide('on-close')
       },
       /**
        * 计算月份的最后一天
@@ -143,7 +133,7 @@
           .replace('mm', (dd.minutes < 10 ? '0' : '') + dd.minutes)
           .replace('ss', (dd.second < 10 ? '0' : '') + dd.second)
         this.$emit('input', this.demoDate)
-        this.doHide(this.onConfirm)
+        this.doHide('on-confirm')
       },
     },
   }

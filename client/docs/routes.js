@@ -2,13 +2,14 @@ import installation from './installation.md'
 // baseComponents MD
 import Icon from './components/icon.md'
 import Layout from './components/layout.md'
+import Header from './components/header.md'
 import Slide from './components/slide.md'
 import Button from './components/button.md'
 import Tab from './components/tab.md'
 import Switch from './components/switch.md'
 import Radio from './components/radio.md'
 import Checkbox from './components/checkbox.md'
-import Progress from './components/progress.md'
+// import Progress from './components/progress.md'
 import Model from './components/model.md'
 import Pull from './components/pull.md'
 import AutoLoad from './components/auto-load.md'
@@ -105,13 +106,13 @@ export default [
       demoLink: '/checkbox'
     }
   },
-  {
-    path: 'progress',
-    component: Progress,
-    meta: {
-      demoLink: '/progress'
-    }
-  },
+  // {
+  //   path: 'progress',
+  //   component: Progress,
+  //   meta: {
+  //     demoLink: '/progress'
+  //   }
+  // },
   {
     path: 'model',
     component: Model,
@@ -153,5 +154,12 @@ export default [
     meta: {
       demoLink: '/date-pater'
     }
-  }
+  },
+  {
+    path: 'header',
+    component: Header,
+    meta: {
+      demoLink: '/header'
+    }
+  },
 ]

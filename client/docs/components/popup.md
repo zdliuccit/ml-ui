@@ -1,12 +1,15 @@
 # Popup
 
-弹窗
+提示框弹窗
+<hr>
+
+### 引入
 ```js
 import { $popup } from 'ml-ui'
 
 Vue.prototype[$popup.name]= $popup
 ```
-Demo1
+### Demo-1
 ```js
 this.$popup.alert({message: '这是alert' }) 
 
@@ -20,8 +23,9 @@ this.$popup.confirm({
        onClose: () => {
          this.$message.warning({ message: 'confirm取消了' })
        }
-     })```
-Demo2 
+     })
+```
+### Demo-2 
 ```js
 this.$popup({type:'alert',message: '这是alert' }) 
 
@@ -37,4 +41,4 @@ Props
 | onCancel         | 取消事件   | Function  | - | - |
 | cancelText    | 取消按钮文字   | String  | - | 取消 |
 | confirmText    | 确定按钮文字   | String  | - | 确定 |
-| prevent    | 点击外层是否关闭   | Boolean  | true、false | false |
+| prevent    | 是否阻止点击外层关闭   | Boolean  | true、false | true |

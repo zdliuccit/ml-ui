@@ -4,7 +4,7 @@
     <div class="dd-warp">
       <div class="warp-ctt">
         <div class="dd-label">String类型值: {{checkboxValue}}</div>
-        <ml-checkbox v-model="checkboxValue">
+        <ml-checkbox v-model="checkboxValue" @on-change="doChange">
           <ml-checkbox-item value="11">多选1南京</ml-checkbox-item>
           <ml-checkbox-item value="22">多选2杭州</ml-checkbox-item>
           <ml-checkbox-item value="33">多选3上海</ml-checkbox-item>
@@ -43,6 +43,10 @@
         checkboxValue2: [33, 44],
       }
     },
-    methods: {}
+    methods: {
+      doChange(val) {
+        this.log(val)
+      }
+    }
   }
 </script>
