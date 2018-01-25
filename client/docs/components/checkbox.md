@@ -38,11 +38,11 @@ Array类型值checkboxValue = [11,22,44]
 ```
 选项是否行内元素 `ml-checkbox-item`的参数`:inline=true`
 ```html
-  <ml-checkbox-item :inline="true" :value="22">多选2杭州</ml-checkbox-item>
+<ml-checkbox-item :inline="true" :value="22">多选2杭州</ml-checkbox-item>
 ```
 设置禁用选项 `ml-checkbox-item`的参数`:disabled=true`
 ```html
-  <ml-checkbox-item :disabled="true" :value="22">多选2杭州</ml-checkbox-item>
+<ml-checkbox-item :disabled="true" :value="22">多选2杭州</ml-checkbox-item>
 ```
 事件绑定
 ```html

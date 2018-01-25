@@ -1,9 +1,8 @@
 <template>
   <div class="dd-layout">
     <div class="dd-layout-warp">
-      <div class="dd-layout-top">
+    <div class="dd-layout-top">
         <div class="ml-logo"></div>
-        <div class="logo-word">组件</div>
         <a class="ml-git-link" href="https://github.com/zdliuccit/ml-ui" target="_blank">
           <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16"
                width="32">

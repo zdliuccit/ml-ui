@@ -13,8 +13,7 @@ body, html {
   height: 100%;
   overflow: hidden;
   .dd-layout-warp {
-    max-width: 1600px;
-    min-width: 1200px;
+    max-width: 1460px;
     height: 100%;
     overflow: hidden;
     margin: 0 auto;
@@ -22,14 +21,21 @@ body, html {
   }
   .dd-layout-top {
     width: 100%;
-    height: 70px;
-    padding-top: 10px;
     position: relative;
     z-index: 3;
+    .ml-QRCode {
+      width: 70px;
+      float: left;
+      height: 70px;
+      margin-top: 5px;
+      background: url("./../images/mobile-src.png") no-repeat;
+      background-size: 100% 100%;
+    }
     .ml-git-link {
       float: right;
       top: 15px;
       margin-top: 15px;
+      margin-right: 28px;
     }
     .logo-word {
       font-size: 18px;
@@ -48,34 +54,15 @@ body, html {
     padding: 0 20px;
     height: 100%;
     position: relative;
-    margin-top: -70px;
     z-index: 0;
   }
   .ml-sidebar {
     width: 220px;
     position: absolute;
     height: 100%;
-    padding-top: 70px;
+    padding-top: 75px;
     overflow: hidden;
     top: 0;
-    .ml-QRCode {
-      width: 70px;
-      position: absolute;
-      right: 0;
-      top: 90px;
-      z-index: 2;
-      .ml-QRCode-img {
-        width: 70px;
-        height: 70px;
-        background: url("./../images/mobile-src.png") no-repeat;
-        background-size: 100% 100%;
-      }
-      .ml-QRCode-word {
-        padding-top: 5px;
-        text-align: center;
-        font-size: 12px;
-      }
-    }
     .side-nav {
       border-top: 1px solid #eee;
       width: 220px;

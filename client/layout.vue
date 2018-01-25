@@ -4,8 +4,8 @@
       <div class="dd-layout-top">
         <router-link :to="{path:'/'}">
           <div class="ml-logo"></div>
-          <div class="logo-word">组件</div>
         </router-link>
+        <div class="ml-QRCode"></div>
         <a class="ml-git-link" href="https://github.com/zdliuccit/ml-ui" target="_blank">
           <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16"
                width="32">
@@ -16,10 +16,6 @@
       </div>
       <div class="ml-body">
         <div class="ml-sidebar">
-          <div class="ml-QRCode">
-            <div class="ml-QRCode-img"></div>
-            <div class="ml-QRCode-word">手机预览</div>
-          </div>
           <ul class="side-nav">
             <li class="nav-item">
               <a href="javascript:;" changelog>更新日志</a>
