@@ -6,10 +6,5 @@
 <script type="text/babel">
   export default {
     name: 'tab-item',
-    data() {
-      return {}
-    },
-    mounted() {
-    }
   }
 </script>

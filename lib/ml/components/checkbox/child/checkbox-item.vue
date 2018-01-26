@@ -18,18 +18,9 @@
   export default {
     name: 'checkbox-item',
     props: {
-      value: {
-        type: [String, Number, Boolean],
-        default: '',
-      },
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
-      inline: {
-        type: Boolean,
-        default: false,
-      }
+      value: [String, Number, Boolean],
+      disabled: Boolean,
+      inline: Boolean,
     },
     computed: {
       /**
@@ -47,6 +38,6 @@
       doCheck() {
         !this.disabled && this.$parent && this.$parent.setCurrentValue(this.value)
       }
-    }
+    },
   }
 </script>

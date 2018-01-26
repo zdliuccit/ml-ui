@@ -6,13 +6,13 @@
   left: 0;
   background-color: transparent;
   z-index: 1002;
-  .mml-com {
+  .dl-com {
     position: absolute;
     background-color: #fff;
     transition: $scale-fade-transition;
     transform: translateZ(0);
   }
-  .mml-middle {
+  .dl-middle {
     width: 80%;
     top: 50%;
     left: 10%;
@@ -20,45 +20,45 @@
     border-radius: $border-radius;
     overflow: hidden;
   }
-  .mml-middle-enter, .mml-middle-leave-active {
+  .dl-middle-enter, .dl-middle-leave-active {
     opacity: 0;
     transform: translate3d(0, -50%, 0) scale(0.7);
   }
-  .mml-top {
+  .dl-top {
     top: 0;
     left: 0;
     width: 100%;
   }
-  .mml-top-enter, .mml-top-leave-active {
+  .dl-top-enter, .dl-top-leave-active {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
-  .mml-right {
+  .dl-right {
     height: 100%;
     right: 0;
     top: 0;
   }
-  .mml-right-enter, .mml-right-leave-active {
+  .dl-right-enter, .dl-right-leave-active {
     transform: translate3d(101%, 0, 0);
   }
-  .mml-bottom {
+  .dl-bottom {
     bottom: 0;
     left: 0;
     width: 100%;
   }
-  .mml-bottom-enter, .mml-bottom-leave-active {
+  .dl-bottom-enter, .dl-bottom-leave-active {
     opacity: 0;
     transform: translate3d(0, 101%, 0);
   }
-  .mml-left {
+  .dl-left {
     height: 100%;
     left: 0;
   }
-  .mml-left-enter, .mml-left-leave-active {
+  .dl-left-enter, .dl-left-leave-active {
     opacity: 0;
     transform: translate3d(-100%, 0, 0);
   }
-  .mml-opy, .mml-opy-leave-active {
+  .dl-opy, .dl-opy-leave-active {
     opacity: 0;
   }
 }
@@ -72,6 +72,12 @@
   background-color: rgba(0, 0, 0, 0.34);
   z-index: -1;
   transition: $fade-transition;
+}
+
+.ast-model {
+  .dl-com {
+    background-color: transparent;
+  }
 }
 
 .ml-mask-clarity {

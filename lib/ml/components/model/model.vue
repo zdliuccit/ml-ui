@@ -1,36 +1,36 @@
 <template>
   <div class="ml-model dg-mask-layer" v-show="visible" :style="{ 'z-index':currentIndex||zIndex }">
     <template v-if="transition=='middle'">
-      <transition name="mml-middle">
-        <div class="mml-com mml-middle" v-show="value">
+      <transition name="dl-middle">
+        <div class="dl-com dl-middle" v-show="value">
           <slot></slot>
         </div>
       </transition>
     </template>
     <template v-if="transition=='top'">
-      <transition name="mml-top">
-        <div class="mml-com mml-top" v-show="value">
+      <transition name="dl-top">
+        <div class="dl-com dl-top" v-show="value">
           <slot></slot>
         </div>
       </transition>
     </template>
     <template v-if="transition=='right'">
-      <transition name="mml-right">
-        <div class="mml-com mml-right" v-show="value">
+      <transition name="dl-right">
+        <div class="dl-com dl-right" v-show="value">
           <slot></slot>
         </div>
       </transition>
     </template>
     <template v-if="transition=='bottom'">
-      <transition name="mml-bottom">
-        <div class="mml-com mml-bottom" v-show="value">
+      <transition name="dl-bottom">
+        <div class="dl-com dl-bottom" v-show="value">
           <slot></slot>
         </div>
       </transition>
     </template>
     <template v-if="transition=='left'">
-      <transition name="mml-left">
-        <div class="mml-com mml-left" v-show="value">
+      <transition name="dl-left">
+        <div class="dl-com dl-left" v-show="value">
           <slot></slot>
         </div>
       </transition>
@@ -38,7 +38,7 @@
     <template v-if="['middle','top','left','right','bottom'].indexOf(transition)==-1">
       <slot></slot>
     </template>
-    <transition name="mml-opy">
+    <transition name="dl-opy">
       <div class="ml-mask-bg" :class="{maskClass,'ml-mask-clarity':!mask}" v-show="value"
            @click="doClickMask"></div>
     </transition>
@@ -83,12 +83,16 @@
         } else {
           this.visible = true
         }
+        setTimeout(() => {
+          this.finish = this.value
+        }, this.speed)
       }
     },
     data() {
       return {
         zIndex: 10001,
         visible: this.value,
+        finish: false,
       }
     },
     methods: {
@@ -105,7 +109,7 @@
        * 遮罩层click事件
        */
       doClickMask() {
-        if (!this.prevent) this.$emit('input', false)
+        if (this.finish && !this.prevent) this.$emit('input', false)
       },
     },
     mounted() {

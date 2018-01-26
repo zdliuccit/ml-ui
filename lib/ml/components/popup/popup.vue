@@ -1,11 +1,12 @@
 <template>
   <ml-model v-model="value" :mask="true" :prevent="prevent">
     <div class="ml-popup">
-      <div class="ml-popup-title">{{title}}</div>
+      <div class="ml-popup-title">{{title || '提示'}}</div>
       <div class="ml-popup-content" v-html="message"></div>
       <div class="ml-popup-button ml-border">
-        <button @click="doClose" class="ml-popup-cancel ml-border" v-if="type==='confirm'">{{cancelText}}</button>
-        <button @click="doConfirm" class="ml-popup-confirm">{{confirmText}}</button>
+        <button @click="doClose" class="ml-popup-cancel ml-border" v-if="type==='confirm'">{{cancelText || '取消'}}
+        </button>
+        <button @click="doConfirm" class="ml-popup-confirm">{{confirmText || '确定'}}</button>
       </div>
     </div>
   </ml-model>
@@ -17,21 +18,6 @@
         type: Boolean,
         default: false
       },
-      title: {
-        type: String,
-        default: '提示'
-      },
-      message: String,
-      onConfirm: {
-        type: Function,
-        default: () => {
-        },
-      },
-      onCancel: {
-        type: Function,
-        default: () => {
-        },
-      },
       type: {
         type: String,
         default: 'alert'
@@ -40,17 +26,12 @@
         type: Boolean,
         default: true,
       },
-      confirmText: {
-        type: String,
-        default: '确定'
-      },
-      cancelText: {
-        type: String,
-        default: '取消'
-      },
-    },
-    data() {
-      return {}
+      title: String,
+      message: String,
+      onConfirm: Function,
+      onCancel: Function,
+      confirmText: String,
+      cancelText: String,
     },
     methods: {
       /**
@@ -60,10 +41,8 @@
         this.value = false
         setTimeout(() => {
           callback && callback()
-          if (this.$el.parentNode) {
-            document.body.removeChild(this.$el)
-          }
-        }, 200)
+          if (this.$el.parentNode) document.body.removeChild(this.$el)
+        }, 300)
       },
       /**
        * 取消事件

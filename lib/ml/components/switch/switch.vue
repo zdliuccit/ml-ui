@@ -15,10 +15,7 @@
     name: 'switch',
     props: {
       value: Boolean,
-      disabled: {
-        type: Boolean,
-        default: false,
-      }
+      disabled: Boolean,
     },
     watch: {
       /**

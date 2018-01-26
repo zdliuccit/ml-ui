@@ -17,10 +17,6 @@
         type: Number,
         default: 300,
       },
-      defaultIndex: {
-        type: Number,
-        default: 0,
-      },
     },
     watch: {
       /**

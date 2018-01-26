@@ -22,18 +22,12 @@
   export default {
     name: 'date-pater',
     props: {
-      value: {
-        type: String,
-        default: ''
-      },
+      value: String,
       format: {
         type: String,
         default: 'yyyy-MM-dd', //  yyyy-MM-dd HH:mm:ss
       },
-      prevent: {
-        type: Boolean,
-        default: false,
-      },
+      prevent: Boolean,
     },
     watch: {
       /**

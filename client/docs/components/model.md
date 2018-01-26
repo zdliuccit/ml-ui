@@ -46,7 +46,7 @@ Vue.prototype[`ml-${Model.name}`]= $message
 |------------- |---------------- |---------------- |---------------------- |-------- |
 | v-model       | 绑定值   | Boolean  | - | - |
 | transition       | 动效   | String | middle、top、right、bottom、left| middle |
-| speed       | 动效时间(ms)   | Number | -| 200 |
+| speed       | 动效时间(ms)   | Number | -| 300 |
 | mask    | 是否需要遮罩层   | Boolean  | - | true |
 | maskClass    | 自定义遮罩层的class名称   | String  | - | - |
 | prevent    | 是否阻止点击外层关闭   | Boolean  |  - | false |

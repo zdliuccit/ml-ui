@@ -14,10 +14,7 @@
     name: 'header',
     props: {
       title: String,
-      fix: {
-        type: Boolean,
-        default: false,
-      }
+      fix: Boolean,
     },
   }
 </script>

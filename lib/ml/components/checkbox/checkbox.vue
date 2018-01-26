@@ -44,11 +44,7 @@
           /*eslint-disabled*/
         }
         const $index = ary.findIndex(vl => vl === value)
-        if ($index > -1) {
-          ary.splice($index, 1)
-        } else {
-          ary.push(value)
-        }
+        $index > -1 ? ary.splice($index, 1) : ary.push(value)
         if (Object.prototype.toString.apply(this.currentValue) === '[object String]') {
           ary = ary.join(',')
         }

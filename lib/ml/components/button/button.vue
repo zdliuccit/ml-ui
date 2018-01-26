@@ -1,7 +1,7 @@
 <template>
   <button @click="handleClick" class="ml-button ml-border" :disabled="disabled"
           :class="[
-            `ml-button-${type}`,
+            `ml-button-${type||'default'}`,
             {
             'ml-button-disabled': disabled,
             [`ml-button-${size}`]: size
@@ -18,14 +18,8 @@
   export default {
     name: 'button',
     props: {
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
-      type: {
-        type: String,
-        default: 'default',
-      },
+      disabled: Boolean,
+      type: String,
       size: String,
     },
     methods: {

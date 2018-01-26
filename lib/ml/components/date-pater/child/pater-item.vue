@@ -14,18 +14,8 @@
     name: 'pater-item',
     props: {
       value: Number,
-      width: {
-        type: Number,
-        default: 0,
-      },
-      start: {
-        type: Number,
-        default: 0,
-      },
-      end: {
-        type: Number,
-        default: 0,
-      },
+      start: Number,
+      end: Number,
       unit: String
     },
     watch: {

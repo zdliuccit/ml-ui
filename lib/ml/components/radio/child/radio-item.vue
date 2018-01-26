@@ -17,18 +17,9 @@
   export default {
     name: 'radio-item',
     props: {
-      value: {
-        type: [String, Number, Boolean],
-        default: '',
-      },
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
-      inline: {
-        type: Boolean,
-        default: false,
-      }
+      value: [String, Number, Boolean],
+      disabled: Boolean,
+      inline: Boolean,
     },
     computed: {
       /**

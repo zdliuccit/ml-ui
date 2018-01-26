@@ -12,10 +12,7 @@
   export default {
     name: 'loading',
     props: {
-      value: {
-        type: Boolean,
-        default: false
-      },
+      value: Boolean,
       width: {
         type: Number,
         default: 60,

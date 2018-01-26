@@ -15,7 +15,6 @@
 
   export default {
     name: 'left-slip',
-    props: {},
     data() {
       return {
         dragObject: {},
