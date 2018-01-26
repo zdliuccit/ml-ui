@@ -19,6 +19,10 @@ export default {
           link: '/docs/popup',
           label: 'Popup 弹窗',
         },
+        {
+          link: '/docs/active-sheet',
+          label: 'ActiveSheet 活动表',
+        },
       ]
     },
     {

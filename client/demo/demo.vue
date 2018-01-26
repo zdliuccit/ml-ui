@@ -95,6 +95,10 @@
             label: 'Popup 弹窗',
             link: '/demo/popup'
           },
+          {
+            label: 'ActiveSheet 活动表',
+            link: '/demo/active-sheet'
+          },
         ]
       }
     },

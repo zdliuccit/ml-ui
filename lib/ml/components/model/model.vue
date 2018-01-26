@@ -38,8 +38,10 @@
     <template v-if="['middle','top','left','right','bottom'].indexOf(transition)==-1">
       <slot></slot>
     </template>
-    <div class="ml-mask-bg" :class="{maskClass,'ml-mask-clarity':!mask}" v-show="visible"
-         @click="doClickMask"></div>
+    <transition name="mml-opy">
+      <div class="ml-mask-bg" :class="{maskClass,'ml-mask-clarity':!mask}" v-show="value"
+           @click="doClickMask"></div>
+    </transition>
   </div>
 </template>
 <script type="text/babel">
@@ -68,7 +70,7 @@
       },
       speed: {
         type: Number,
-        default: 200,
+        default: 300,
       }
     },
     watch: {

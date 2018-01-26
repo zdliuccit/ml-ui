@@ -25,9 +25,8 @@
 
         <button class="dd-btn ml-border" @click="show5=true">打开弹窗(left效果)</button>
         <ml-model v-model="show5" transition="left">
-          <div class="test-ww">bottom效果</div>
+          <div class="test-ww">left效果</div>
         </ml-model>
-
         <button class="dd-btn ml-border" @click="doClick1">打开弹窗(自定义效果)</button>
         <ml-model v-model="custom" transition="test-cc">
           <transition name="dd-custom">

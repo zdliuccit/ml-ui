@@ -1,6 +1,7 @@
 import Icon from './components/d-icon.vue'
 import Toast from './components/d-toast.vue'
 import Message from './components/d-message.vue'
+import ActiveSheet from './components/d-active-sheet.vue'
 import Slide from './components/d-slide.vue'
 import Popup from './components/d-popup.vue'
 import Tab from './components/d-tab.vue'
@@ -119,5 +120,10 @@ export default [
     path: 'field',
     name: 'd-field',
     component: Field,
-  }
+  },
+  {
+    path: 'active-sheet',
+    name: 'd-active-sheet',
+    component: ActiveSheet,
+  },
 ]

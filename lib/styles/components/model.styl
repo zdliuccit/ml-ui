@@ -7,9 +7,10 @@
   background-color: transparent;
   z-index: 1002;
   .mml-com {
-    position: relative;
+    position: absolute;
     background-color: #fff;
     transition: $scale-fade-transition;
+    transform: translateZ(0);
   }
   .mml-middle {
     width: 80%;
@@ -25,39 +26,41 @@
   }
   .mml-top {
     top: 0;
-    transform: translate3d(0, 0, 0);
+    left: 0;
+    width: 100%;
   }
   .mml-top-enter, .mml-top-leave-active {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
   .mml-right {
-    position: absolute;
     height: 100%;
-    left: 100%;
-    transform: translate3d(-100%, 0, 0);
+    right: 0;
+    top: 0;
+  }
+  .mml-right-enter, .mml-right-leave-active {
+    transform: translate3d(101%, 0, 0);
   }
   .mml-bottom {
-    top: 100%;
-    transform: translate3d(0, -100%, 0);
+    bottom: 0;
+    left: 0;
+    width: 100%;
   }
-  .mml-right-enter, .mml-right-leave-active, .mml-bottom-enter, .mml-bottom-leave-active {
+  .mml-bottom-enter, .mml-bottom-leave-active {
     opacity: 0;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 101%, 0);
   }
-
   .mml-left {
-    position: absolute;
     height: 100%;
     left: 0;
-    transform: translate3d(0, 0, 0);
   }
-
   .mml-left-enter, .mml-left-leave-active {
     opacity: 0;
     transform: translate3d(-100%, 0, 0);
   }
-
+  .mml-opy, .mml-opy-leave-active {
+    opacity: 0;
+  }
 }
 
 .ml-mask-bg {
@@ -68,6 +71,7 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.34);
   z-index: -1;
+  transition: $fade-transition;
 }
 
 .ml-mask-clarity {

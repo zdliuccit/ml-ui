@@ -20,6 +20,7 @@ import DatePater from './components/date-pater.md'
 import Toast from './components/toast.md'
 import Message from './components/message.md'
 import Popup from './components/popup.md'
+import ActiveSheet from './components/active-sheet.md'
 
 export default [
   {
@@ -160,6 +161,13 @@ export default [
     component: Field,
     meta: {
       demoLink: '/field'
+    }
+  },
+  {
+    path: 'active-sheet',
+    component: ActiveSheet,
+    meta: {
+      demoLink: '/active-sheet'
     }
   },
 ]
