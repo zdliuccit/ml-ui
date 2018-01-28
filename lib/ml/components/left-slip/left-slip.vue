@@ -14,7 +14,7 @@
   import { animationFrame, checkTargetNode } from './../../utils/ml-utils'
 
   export default {
-    name: 'left-slip',
+    name: 'ml-left-slip',
     data() {
       return {
         dragObject: {},

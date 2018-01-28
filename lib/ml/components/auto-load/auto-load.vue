@@ -21,7 +21,7 @@
   import { throttle, backToTop, animationFrame } from './../../utils/ml-utils'
 
   export default {
-    name: 'auto-load',
+    name: 'ml-auto-load',
     props: {
       loading: Function,
       value: {

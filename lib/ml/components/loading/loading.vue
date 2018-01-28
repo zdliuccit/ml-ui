@@ -10,7 +10,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'loading',
+    name: 'ml-loading',
     props: {
       value: Boolean,
       width: {

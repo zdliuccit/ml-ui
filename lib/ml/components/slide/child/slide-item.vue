@@ -5,6 +5,6 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'slide-item',
+    name: 'ml-slide-item',
   }
 </script>

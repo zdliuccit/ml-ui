@@ -8,7 +8,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'toast',
+    name: 'ml-toast',
     props: {
       message: String,
       place: String,

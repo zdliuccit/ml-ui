@@ -11,7 +11,7 @@
   import { animationFrame, checkTargetNode } from './../../../utils/ml-utils'
 
   export default {
-    name: 'pater-item',
+    name: 'ml-pater-item',
     props: {
       value: Number,
       start: Number,

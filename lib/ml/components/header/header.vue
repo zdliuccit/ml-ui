@@ -11,7 +11,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'header',
+    name: 'ml-header',
     props: {
       title: String,
       fix: Boolean,

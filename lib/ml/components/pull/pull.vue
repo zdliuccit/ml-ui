@@ -34,7 +34,7 @@
   import { throttle, backToTop, animationFrame } from './../../utils/ml-utils'
 
   export default {
-    name: 'pull',
+    name: 'ml-pull',
     props: {
       pullUp: {
         type: Boolean,

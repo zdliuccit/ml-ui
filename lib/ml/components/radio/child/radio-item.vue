@@ -15,7 +15,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'radio-item',
+    name: 'ml-radio-item',
     props: {
       value: [String, Number, Boolean],
       disabled: Boolean,

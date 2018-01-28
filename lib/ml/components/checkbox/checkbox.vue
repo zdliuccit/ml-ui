@@ -5,7 +5,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'checkbox',
+    name: 'ml-checkbox',
     props: {
       value: [String, Array],
     },

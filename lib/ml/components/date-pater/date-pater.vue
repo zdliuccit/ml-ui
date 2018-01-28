@@ -20,7 +20,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'date-pater',
+    name: 'ml-date-pater',
     props: {
       value: String,
       format: {
