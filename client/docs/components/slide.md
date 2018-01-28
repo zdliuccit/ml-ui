@@ -6,7 +6,7 @@
 ### 引入
 
 ```js
-import { Slide, SlideItem } from 'ml-ui
+import { Slide, SlideItem } from 'ml-ui'
 
 Vue.component(Slide)
 Vue.component(SlideItem)

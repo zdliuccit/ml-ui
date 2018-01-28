@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { Button } from 'ml-ui
+import { Button } from 'ml-ui'
 
 Vue.component(Button.name, Button)
 ```

@@ -6,7 +6,7 @@
 ### 引入
 
 ```js
-import { Model } from 'ml-ui
+import { Model } from 'ml-ui'
 
 Vue.component(Model.name, Model)
 ```

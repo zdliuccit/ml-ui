@@ -6,7 +6,7 @@
 ### 引入
 
 ```js
-import { Checkbox, CheckBoxItem } from 'ml-ui
+import { Checkbox, CheckBoxItem } from 'ml-ui'
 
 Vue.component(Checkbox)
 Vue.component(CheckBoxItem)

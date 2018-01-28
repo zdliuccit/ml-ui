@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { Header } from 'ml-ui
+import { Header } from 'ml-ui'
 
 Vue.component(Header.name, Header)
 ```

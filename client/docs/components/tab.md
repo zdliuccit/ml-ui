@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { Tab, TabItem } from 'ml-ui
+import { Tab, TabItem } from 'ml-ui'
 
 Vue.component(Tab)
 Vue.component(Tab, TabItem)

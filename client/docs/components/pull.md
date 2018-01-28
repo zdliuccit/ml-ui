@@ -6,7 +6,7 @@
 ### 引入
 
 ```js
-import { Pull } from 'ml-ui
+import { Pull } from 'ml-ui'
 
 Vue.component(Pull.name, Pull)
 ```

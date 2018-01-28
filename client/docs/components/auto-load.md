@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { AutoLoad } from 'ml-ui
+import { AutoLoad } from 'ml-ui'
 
 Vue.component(AutoLoad.name, AutoLoad)
 ```

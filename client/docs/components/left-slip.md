@@ -5,7 +5,7 @@
  
 ### 引入
 ```js
-import { LeftSlip } from 'ml-ui
+import { LeftSlip } from 'ml-ui'
 
 Vue.component(LeftSlip.name, LeftSlip)
 ```

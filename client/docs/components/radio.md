@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { Radio, RadioItem } from 'ml-ui
+import { Radio, RadioItem } from 'ml-ui'
 
 Vue.component(Radio)
 Vue.component(RadioItem)

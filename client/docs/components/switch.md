@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { Switch } from 'ml-ui
+import { Switch } from 'ml-ui'
 
 Vue.component(Switch.name, Switch)
 ```

@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { DatePater } from 'ml-ui
+import { DatePater } from 'ml-ui'
 
 Vue.component(DatePater.name, DatePater)
 ```

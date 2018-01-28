@@ -5,7 +5,7 @@
 
 ### 引入
 ```js
-import { Loading } from 'ml-ui
+import { Loading } from 'ml-ui'
 
 Vue.component(Loading.name, Loading)
 ```
