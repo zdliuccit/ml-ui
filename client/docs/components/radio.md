@@ -5,10 +5,10 @@
 
 ### 引入
 ```js
-import { Radio,RadioItem } from 'ml-ui'
+import { Radio, RadioItem } from 'ml-ui
 
-Vue.component(`ml-${Radio.name}`, Radio)
-Vue.component(`ml-${RadioItem.name}`, RadioItem)
+Vue.component(Radio)
+Vue.component(RadioItem)
 ```
 ### Demo
 默认

@@ -5,9 +5,9 @@
  
 ### 引入
 ```js
-import { LeftSlip } from 'ml-ui'
+import { LeftSlip } from 'ml-ui
 
-Vue.component(`ml-${LeftSlip.name}`, Icon)
+Vue.component(LeftSlip.name, LeftSlip)
 ```
 ### Demo
 ```html

@@ -7,7 +7,7 @@
 ```js
 import { $popup } from 'ml-ui'
 
-Vue.prototype[$popup.name]= $popup
+Vue.prototype.$popup = $popup
 ```
 ### Demo-1
 ```js

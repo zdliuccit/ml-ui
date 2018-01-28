@@ -6,10 +6,10 @@
 ### 引入
 
 ```js
-import { Slide,SlideItem } from 'ml-ui'
+import { Slide, SlideItem } from 'ml-ui
 
-Vue.component(`ml-${Slide.name}`, Slide)
-Vue.component(`ml-${SlideItem.name}`, SlideItem)
+Vue.component(Slide)
+Vue.component(SlideItem)
 ```
 ### Demo
 默认

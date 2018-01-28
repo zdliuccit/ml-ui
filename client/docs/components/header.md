@@ -5,9 +5,9 @@
 
 ### 引入
 ```js
-import { Header } from 'ml-ui'
+import { Header } from 'ml-ui
 
-Vue.component(`ml-${Header.name}`, Header)
+Vue.component(Header.name, Header)
 ```
 ### Demo
 
