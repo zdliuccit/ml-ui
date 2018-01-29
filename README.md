@@ -6,7 +6,7 @@
 
 网上轮子已经很多了哈，咋也凑个热闹，开源自己的Vue.js的移动端组件库。粗糙了点哈！
 
-![](client/assets/images/WechatIMG51558.jpeg)
+![](client/assets/images/ml-components.jpg)
 
 
 
@@ -27,7 +27,7 @@ Vue.use(MlUi)
 有兴趣的同学可以看看，顺手都点个star哈～
 
 
-目前压缩后为56k大小 
+目前压缩后为62.k大小 
 
 md文档地址 [www.ml-ui.com](http://www.ml-ui.com)
 
@@ -50,3 +50,6 @@ md文档地址 [www.ml-ui.com](http://www.ml-ui.com)
 扫码预览
 
 ![](client/assets/images/mobile-src.png)
+
+## Other Contributors
+* [medz](https://github.com/medz)

@@ -3,7 +3,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'icon',
+    name: 'ml-icon',
     props: {
       icon: String
     },

@@ -33,6 +33,7 @@
       },
     },
     mounted() {
+      // Ios click Effect
       this.$el.addEventListener('touchstart', () => {
       })
     }

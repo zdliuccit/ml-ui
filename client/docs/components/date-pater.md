@@ -26,7 +26,7 @@ this.$refs.datePater.doOpen()
 ```
 事件绑定
 ```html
-<ml-date-pater @on-confirm="doConfirm" @on-close="doClose" ref="datePater" v-model="date">
+<ml-date-pater @on-confirm="doConfirm" @on-cancel="doClose" ref="datePater" v-model="date">
 </ml-date-pater>
 ```
 ### Props
@@ -40,4 +40,4 @@ this.$refs.datePater.doOpen()
 | 事件名称          | 说明            | 返回值 |
 |-------------  |---------------- | ---- |
 |on-confirm	  |确定事件	 | 当前值 |
-|on-close	  | 取消事件	 | - |
+|on-cancel	  | 取消事件	 | - |

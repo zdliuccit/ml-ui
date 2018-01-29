@@ -106,7 +106,7 @@
        * 取消事件
        */
       doCancel() {
-        this.doHide('on-close')
+        this.doHide('on-cancel')
       },
       /**
        * 计算月份的最后一天

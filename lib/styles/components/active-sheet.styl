@@ -1,3 +1,73 @@
 .ml-active-sheet {
+  text-align: center;
+  .ml-ast-cancel {
+    margin: 8px;
+    .ast-btn {
+      border-radius: 8px;
+      border-top-width: 0;
+    }
+  }
+  .ast-btn {
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    color: $color-primary;
+    font-size: $font-max-size;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+    background-color: #fff;
+    height: 42px;
+    outline: 0;
+    position: relative;
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    padding: 0 15px;
+  }
+  .ast-options {
+    margin: 0 8px 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    .ast-btn {
+      border-top-color: #d1d3d6;
+    }
+  }
+  .ast-title {
+    height: 50px;
+    line-height: 50px;
+    color: #8f8f8f;
+    font-size: $font-size;
+    padding: 0 15px;
+  }
+  .ast-btn::after {
+    background-color: #000;
+    content: " ";
+    opacity: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+  }
+  .ast-btn:active::after {
+    opacity: .2
+  }
+}
 
+.ast-Android {
+  text-align: left;
+  .ast-options {
+    border-radius: 0;
+  }
+  .ast-title {
+    color: $color-prompt;
+    height: 42px;
+    line-height: 42px;
+  }
+  .ast-btn {
+    text-align: left;
+    color: $color-prompt1;
+  }
 }

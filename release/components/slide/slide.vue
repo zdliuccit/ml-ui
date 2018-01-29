@@ -12,7 +12,7 @@
   import { addClass, removeClass, animationFrame } from './../../utils/ml-utils'
 
   export default {
-    name: 'slide',
+    name: 'ml-slide',
     props: {
       speed: {
         type: Number,

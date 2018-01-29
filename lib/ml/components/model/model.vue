@@ -113,6 +113,9 @@
       },
     },
     mounted() {
+      this.$el.addEventListener('touchmove', (e) => {
+        e.preventDefault()
+      })
       const fragment = document.createDocumentFragment()
       fragment.appendChild(this.$el)
       document.body.appendChild(fragment)

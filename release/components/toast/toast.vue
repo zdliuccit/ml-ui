@@ -1,23 +1,17 @@
 <template>
   <transition name="ml-opacity">
-    <div class="ml-toast dg-mask-layer " v-show="visible" :class="[`place-${place}`]"
+    <div class="ml-toast dg-mask-layer " v-show="visible" :class="[`place-${place ||'middle'}`]"
          :style="{ 'z-index':$index }">
-      <span class="ml-toast-text">{{ message}}</span>
+      <span class="ml-toast-text">{{message}}</span>
     </div>
   </transition>
 </template>
 <script type="text/babel">
   export default {
-    name: 'toast',
+    name: 'ml-toast',
     props: {
-      message: {
-        type: String,
-        default: ''
-      },
-      place: {
-        type: String,
-        default: 'middle'
-      },
+      message: String,
+      place: String,
       $index: Number,
     },
     data() {

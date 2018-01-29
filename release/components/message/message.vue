@@ -1,20 +1,16 @@
 <template>
   <transition name="ml-opacity">
-    <div class="ml-message dg-mask-layer ml-border" :class="[`place-${place}`,`ml-msg-${type}`]"
+    <div class="ml-message dg-mask-layer ml-border" :class="[`place-${place||'middle'}`,`ml-msg-${type}`]"
          :style="{ 'z-index':$index }"
          v-show="visible">
-      <ml-icon ref="mlMsgIcon" v-if="showIcon" :icon="iconClass"></ml-icon>
+      <ml-icon v-if="showIcon" :icon="iconClass"></ml-icon>
       <p ref="mlMsgText" class="ml-message-text inline-block">{{message}}</p>
     </div>
   </transition>
 </template>
 <script type="text/babel">
-  import MlIcon from '../icon/icon.vue'
-
   export default {
-    components: { MlIcon },
     props: {
-      message: String,
       type: {
         type: String,
         default: 'info',
@@ -23,15 +19,9 @@
         type: Boolean,
         default: true,
       },
-      place: {
-        type: String,
-        default: 'middle',
-      },
-      onClose: {
-        type: Function,
-        default: () => {
-        },
-      },
+      message: String,
+      place: String,
+      onClose: Function,
       $index: Number,
     },
     computed: {
@@ -40,11 +30,7 @@
        * @return {String} icon
        */
       iconClass: function () {
-        let icon = 'info'
-        if (this.type === 'success') icon = 'hook'
-        if (this.type === 'error') icon = 'fork'
-        if (this.type === 'warning') icon = 'sigh'
-        return icon
+        return { info: 'info', success: 'hook', error: 'fork', warning: 'sigh' }[this.type]
       },
     },
     data() {

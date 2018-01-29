@@ -1,3 +1,4 @@
+import install from './install'
 // 引入基础组件
 import Icon from './components/icon/icon.vue'
 import Header from './components/header/header.vue'
@@ -23,6 +24,10 @@ import PaterItem from './components/date-pater/child/pater-item.vue'
 import $toast from './components/toast'
 import $message from './components/message'
 import $popup from './components/popup'
+import $activeSheet from './components/activesheet'
+
+// Version
+const version = '1.2.6'
 
 // 普通组件
 const components = {
@@ -49,50 +54,24 @@ const components = {
   PaterItem,
 }
 // JS组件
-const jsComponents = {
+const services = {
   $toast,
   $message,
-  $popup
+  $popup,
+  $activeSheet,
+}
+
+/* istanbul ignore if */
+if (typeof window !== 'undefined' && window.Vue) {
+  install(components, services)(window.Vue)
 }
 
 /**
- * ios设置1px像素比(ios8+),安卓不做处理
- */
-const setIosOnePx = () => {
-  const u = navigator.userAgent
-  /*eslint-disable*/
-  if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-    const cssStyle = document.createElement('style')
-    const cssString = `
-    @media screen and (-webkit-min-device-pixel-ratio: 2) {
-      .ml-border { border-width: 0.5px !important; }
-    }
-    @media screen and (-webkit-min-device-pixel-ratio: 3) {
-      .ml-border { border-width: 0.333333px !important;}
-    }`
-    cssStyle.setAttribute('type', 'text/css')
-    cssStyle.appendChild(document.createTextNode(cssString))
-    document.getElementsByTagName('head')[0].appendChild(cssStyle)
-  }
-  /*eslint-disbaled*/
-}
-
-const install = function (Vue) {
-  setIosOnePx()
-  // 全局注册普通组件
-  Object.keys(components).map(key => Vue.component(`ml-${components[key].name}`, components[key]))
-  // 全局注册JS组件
-  Object.assign(Vue.prototype, jsComponents)
-}
-
-/**
+ * Export default Object
  *
- * @param version 版本号
- * @param install 注册方法
- * @param components 基础组件
- * @param jsComponents JS组件
+ * Vue plugin structure, contain `version` and `install` function.
  */
-module.exports = Object.assign({
-  version: '1.2.5',
-  install,
-}, components, jsComponents)
+export default {
+  version,
+  install: install(components, services)
+}

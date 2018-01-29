@@ -1,26 +1,23 @@
 <template>
-  <ml-model v-model="value" :mask="true" :prevent="prevent" transition="bottom" class="ast-model">
-    <div class="ml-active-sheet">
-      <div class="ast-title">{{title || '提示'}}</div>
-      <div class="ast-options">
-        <button class="ast-option" v-for="item in data">
-        </button>
+  <ml-model v-model="value" :mask="true" :prevent="prevent" transition="bottom" class="ast-model" @on-close="removeDom">
+    <div class="ml-active-sheet" :class="`ast-${mode||'IOS '}`">
+      <ul class="ast-options">
+        <li class="ast-title ml-border ellipsis">{{title || '提示'}}</li>
+        <li v-for="item in data" :key="`option-${item[label || 'label']}`">
+          <button @click="doExcEvent(item)" class="ast-btn ml-border ellipsis">{{item[label || 'label']}}</button>
+        </li>
+      </ul>
+      <div class="ml-ast-cancel" v-if="mode!='Android'">
+        <button class="ast-btn ellipsis" @click="doExcEvent()">{{cancelText || '取消'}}</button>
       </div>
-      <button class="ml-ast-cancel">{{cancelText || '取消'}}</button>
     </div>
   </ml-model>
 </template>
 <script type="text/babel">
   export default {
     props: {
-      value: {
-        type: Boolean,
-        default: false
-      },
-      prevent: {
-        type: Boolean,
-        default: false,
-      },
+      value: Boolean,
+      prevent: Boolean,
       mode: String,
       data: Array,
       label: String,
@@ -34,29 +31,30 @@
     },
     methods: {
       /**
-       * 窗口关闭移除DOM
+       * 窗口关闭移除DOM/Window closes and remove DOM
        */
-      removeDom(callback) {
+      removeDom() {
+        if (this.$el.parentNode) document.body.removeChild(this.$el)
+      },
+      /**
+       * 执行事件/Execution of events
+       */
+      doExcEvent(obj) {
         this.value = false
         setTimeout(() => {
-          callback && callback()
-          if (this.$el.parentNode) {
-            document.body.removeChild(this.$el)
-          }
+          obj ? this.onSelect && this.onSelect(JSON.parse(JSON.stringify(obj))) : this.onCancel && this.onCancel()
+          this.removeDom()
         }, 300)
       },
-      /**
-       * 取消事件
-       */
-      doClose() {
-        this.removeDom(this.onCancel)
-      },
-      /**
-       * 确认事件
-       */
-      doConfirm() {
-        this.removeDom(this.onConfirm)
-      },
+    },
+    mounted() {
+      // Ios click Effect
+      setTimeout(() => {
+        Array.from(this.$el.getElementsByClassName('ast-btn')).forEach($el => {
+          $el.addEventListener('touchstart', () => {
+          })
+        })
+      }, 60)
     },
   }
 </script>

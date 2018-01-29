@@ -1,6 +1,6 @@
 {
   "name": "ml-ui",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "zdliu ui ml components",
   "main": "ml-ui.js",
   "repository": {
