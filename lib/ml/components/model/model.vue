@@ -48,7 +48,7 @@
   import maskMixin from './../../mixins/mask-mixins'
 
   export default {
-    name: 'model',
+    name: 'ml-model',
     mixins: [maskMixin],
     props: {
       value: {

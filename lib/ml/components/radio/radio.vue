@@ -5,7 +5,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'radio',
+    name: 'ml-radio',
     props: {
       value: [String, Boolean, Number],
     },

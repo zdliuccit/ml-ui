@@ -8,7 +8,7 @@
 ```js
 import { Pull } from 'ml-ui'
 
-Vue.prototype[`ml-${Pull.name}`]= Pull
+Vue.component(Pull.name, Pull)
 ```
 ### Demo
 ```html

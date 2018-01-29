@@ -7,7 +7,7 @@
 ```js
 import { Button } from 'ml-ui'
 
-Vue.component(`ml-${Button.name}`, Layout)
+Vue.component(Button.name, Button)
 ```
 
 ### Demo

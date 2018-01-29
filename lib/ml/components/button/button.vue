@@ -16,7 +16,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'button',
+    name: 'ml-button',
     props: {
       disabled: Boolean,
       type: String,

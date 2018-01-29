@@ -7,7 +7,7 @@ Toast提示
 ```js
 import { $toast } from 'ml-ui'
 
-Vue.prototype[$toast.name]= $toast
+Vue.prototype.$toast = $toast
 ```
 
 ### Demo

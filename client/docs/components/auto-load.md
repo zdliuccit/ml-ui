@@ -5,9 +5,9 @@
 
 ### 引入
 ```js
-import { Pull } from 'ml-ui'
+import { AutoLoad } from 'ml-ui'
 
-Vue.prototype[`ml-${Pull.name}`]= Pull
+Vue.component(AutoLoad.name, AutoLoad)
 ```
 ### Demo
 ```html

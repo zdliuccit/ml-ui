@@ -7,7 +7,7 @@
 ```js
 import { DatePater } from 'ml-ui'
 
-Vue.prototype[`ml-${DatePater.name}`]= $popup
+Vue.component(DatePater.name, DatePater)
 ```
 打开选择器
 ```js

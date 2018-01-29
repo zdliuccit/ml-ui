@@ -7,7 +7,7 @@
 ```js
 import { $message } from 'ml-ui'
 
-Vue.prototype[$message.name]= $message
+Vue.prototype.$message = $message
 ```
 
 ### Demo-1

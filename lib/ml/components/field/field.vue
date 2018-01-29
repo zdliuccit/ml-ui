@@ -3,7 +3,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'field',
+    name: 'ml-field',
     props: {}
   }
 </script>

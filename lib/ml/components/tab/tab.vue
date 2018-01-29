@@ -7,7 +7,7 @@
   import { addClass, removeClass, animationFrame } from './../../utils/ml-utils'
 
   export default {
-    name: 'tab',
+    name: 'ml-tab',
     props: {
       value: {
         type: Number,

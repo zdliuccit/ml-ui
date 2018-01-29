@@ -7,7 +7,7 @@
 ```js
 import { Loading } from 'ml-ui'
 
-Vue.component(`ml-${Loading.name}`, Icon)
+Vue.component(Loading.name, Loading)
 ```
 
 ### Demo

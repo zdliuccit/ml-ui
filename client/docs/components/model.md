@@ -8,7 +8,7 @@
 ```js
 import { Model } from 'ml-ui'
 
-Vue.prototype[`ml-${Model.name}`]= $message
+Vue.component(Model.name, Model)
 ```
 ### Demo
 

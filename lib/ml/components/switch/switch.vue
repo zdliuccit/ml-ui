@@ -12,7 +12,7 @@
 </template>
 <script type="text/babel">
   export default {
-    name: 'switch',
+    name: 'ml-switch',
     props: {
       value: Boolean,
       disabled: Boolean,
