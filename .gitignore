@@ -1,2 +1,6 @@
-node_modules
-*.log
+# Created by .ignore support plugin (hsz.mobi)
+git config user.name zdliu
+git config user.email 335758663@qq.com
+
+tt.txt
+release/*
