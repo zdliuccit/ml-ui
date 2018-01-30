@@ -39,7 +39,7 @@
       <slot></slot>
     </template>
     <transition name="dl-opy">
-      <div class="ml-mask-bg" :class="{maskClass,'ml-mask-clarity':!mask}" v-show="value"
+      <div class="ml-mask-bg" :class="[maskClass,{'ml-mask-clarity':!mask}]" v-show="value"
            @click="doClickMask"></div>
     </transition>
   </div>
