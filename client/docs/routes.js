@@ -9,7 +9,7 @@ import Tab from './components/tab.md'
 import Switch from './components/switch.md'
 import Radio from './components/radio.md'
 import Checkbox from './components/checkbox.md'
-// import Progress from './components/progress.md'
+import Range from './components/range.md'
 import Model from './components/model.md'
 import Pull from './components/pull.md'
 import AutoLoad from './components/auto-load.md'
@@ -168,6 +168,13 @@ export default [
     component: ActiveSheet,
     meta: {
       demoLink: '/active-sheet'
+    }
+  },
+  {
+    path: 'range',
+    component: Range,
+    meta: {
+      demoLink: '/range'
     }
   },
 ]

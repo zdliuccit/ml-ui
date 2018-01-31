@@ -9,6 +9,7 @@ import Button from './components/button/button.vue'
 import Checkbox from './components/checkbox/checkbox.vue'
 import CheckboxItem from './components/checkbox/child/checkbox-item.vue'
 import Switch from './components/switch/switch.vue'
+import Range from './components/range/range.vue'
 import Radio from './components/radio/radio.vue'
 import RadioItem from './components/radio/child/radio-item.vue'
 import Tab from './components/tab/tab.vue'
@@ -27,7 +28,7 @@ import $popup from './components/popup'
 import $activeSheet from './components/activesheet'
 
 // Version
-const version = '1.2.6'
+const version = '1.2.7'
 
 // 普通组件
 const components = {
@@ -36,13 +37,13 @@ const components = {
   Icon,
   Radio,
   RadioItem,
+  Range,
   Button,
   Header,
   Field,
   Switch,
   Checkbox,
   CheckboxItem,
-  // Progress,
   Slide,
   SlideItem,
   Model,

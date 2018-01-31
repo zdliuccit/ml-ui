@@ -57,6 +57,10 @@ export default {
           label: 'Switch 开关'
         },
         {
+          link: '/docs/range',
+          label: 'Range 范围'
+        },
+        {
           link: '/docs/date-pater',
           label: 'DatePater 日期、时间选择器',
         },

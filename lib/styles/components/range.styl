@@ -1,0 +1,57 @@
+.ml-range {
+  height: 30px;
+  line-height: 30px;
+  display: flex;
+}
+
+.ml-range-disable {
+  opacity: 0.5;
+  .ml-rang-circle:active {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+  }
+}
+
+.ml-range-warp {
+  flex: 1;
+  position: relative;
+  margin-right: 30px;
+}
+
+.ml-rang-bg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: -30px;
+  height: 2px;
+  border-radius: 1px;
+  transform: translateY(-50%);
+  background-color: $color-aaa;
+}
+
+.ml-rang-circle {
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  cursor: move;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+
+.ml-rang-circle:active {
+  box-shadow: 0 1px 9px rgba(0, 0, 0, .8);
+}
+
+.ml-rang-line {
+  position: absolute;
+  display: block;
+  width: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  height: 2px;
+  border-radius: 1px;
+  background-color: $color-primary;
+}

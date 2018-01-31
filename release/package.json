@@ -1,7 +1,7 @@
 {
   "name": "ml-ui",
-  "version": "1.2.6",
-  "description": "zdliu ui ml components",
+  "version": "1.2.7",
+  "description": "ml-ui，一套为开发者、设计师和产品经理准备的基于 Vue 2 的移动端组件库",
   "main": "ml-ui.js",
   "repository": {
     "type": "git",

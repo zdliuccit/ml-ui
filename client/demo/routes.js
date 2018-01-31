@@ -7,6 +7,7 @@ import Popup from './components/d-popup.vue'
 import Tab from './components/d-tab.vue'
 import Switch from './components/d-switch.vue'
 import Radio from './components/d-radio.vue'
+import Range from './components/d-range.vue'
 // import Progress from './components/d-progress.vue'
 import Checkbox from './components/d-checkbox.vue'
 import Button from './components/d-button.vue'
@@ -125,5 +126,10 @@ export default [
     path: 'active-sheet',
     name: 'd-active-sheet',
     component: ActiveSheet,
+  },
+  {
+    path: 'range',
+    name: 'd-range',
+    component: Range,
   },
 ]
