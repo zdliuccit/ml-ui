@@ -8,6 +8,7 @@
 
 ![](client/assets/images/ml-components.jpg)
 
+秋风会继续改进中。。。欢迎各种issues
 
 
 ## 安装
@@ -44,8 +45,6 @@ md文档地址 [www.ml-ui.com](http://www.ml-ui.com)
 * stylus postcss
 
 有兴趣的同学可以看看，顺便贡献出你们的star哈～
-
-秋风会继续改进中。。。
 
 扫码预览
 
