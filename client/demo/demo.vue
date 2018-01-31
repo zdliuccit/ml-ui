@@ -46,6 +46,10 @@
             link: '/demo/switch'
           },
           {
+            label: 'Range 范围',
+            link: '/demo/range'
+          },
+          {
             label: 'DatePater 日期、时间选择器',
             link: '/demo/date-pater'
           },
