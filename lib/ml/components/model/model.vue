@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-model dg-mask-layer" v-show="visible" :style="{ 'z-index':currentIndex||zIndex }">
+  <div class="ml-model dg-mask-layer" v-show="visible" :style="{ 'z-index':currentIndex|| 1001 }">
     <template v-if="transition=='middle'">
       <transition name="dl-middle">
         <div class="dl-com dl-middle" v-show="value">
@@ -90,7 +90,6 @@
     },
     data() {
       return {
-        zIndex: 10001,
         visible: this.value,
         finish: false,
       }
