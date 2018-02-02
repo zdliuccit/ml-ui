@@ -16,6 +16,7 @@ import AutoLoad from './components/auto-load.md'
 import Loading from './components/loading.md'
 import LeftSlip from './components/left-slip.md'
 import DatePater from './components/date-pater.md'
+import IView from './components/i-view.md'
 // jsComponents MD
 import Toast from './components/toast.md'
 import Message from './components/message.md'
@@ -175,6 +176,13 @@ export default [
     component: Range,
     meta: {
       demoLink: '/range'
+    }
+  },
+  {
+    path: 'i-view',
+    component: IView,
+    meta: {
+      demoLink: '/i-view'
     }
   },
 ]

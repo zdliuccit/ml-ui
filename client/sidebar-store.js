@@ -61,6 +61,10 @@ export default {
           label: 'Range 范围'
         },
         {
+          link: '/docs/i-view',
+          label: 'IView 图片预览组件'
+        },
+        {
           link: '/docs/date-pater',
           label: 'DatePater 日期、时间选择器',
         },
