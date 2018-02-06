@@ -2,7 +2,9 @@
   <div class="dd-body">
     <d-head :back="true" title="IView"></d-head>
     <div class="dd-warp">
-      <img @click="imgShow=true" class="dd-ii-img" :src="url"/>
+      <div class="warp-content">
+        <div class="dd-ii-img"><img @click="imgShow=true" class="" :src="url"/></div>
+      </div>
       <ml-i-view v-model="imgShow" :url="url"></ml-i-view>
     </div>
   </div>

@@ -1,6 +1,8 @@
 # Tab
 
 选项卡，左右切换效果(支持左右滑动)，`ml-tab-item`依赖`ml-tab`
+
+<strong>注:touch事件请手机预览</strong>
 <hr>
 
 ### 引入

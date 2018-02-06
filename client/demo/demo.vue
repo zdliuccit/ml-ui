@@ -50,6 +50,10 @@
             link: '/demo/range'
           },
           {
+            label: 'IView 图片预览组件',
+            link: '/demo/i-view'
+          },
+          {
             label: 'DatePater 日期、时间选择器',
             link: '/demo/date-pater'
           },

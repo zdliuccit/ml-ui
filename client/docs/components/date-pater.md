@@ -1,6 +1,8 @@
 # DatePater
 
 日期、时间选择器
+
+<strong>注:touch事件请手机预览</strong>
 <hr>
 
 ### 引入

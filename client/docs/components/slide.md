@@ -1,6 +1,8 @@
 # Slide
 
 幻灯片，可自定义轮播时间间隔、动画时长等。`ml-slide-item`依赖`ml-slide`
+
+<strong>注:touch事件请手机预览</strong>
 <hr>
 
 ### 引入

@@ -1,6 +1,8 @@
 # LeftSlip
 
-左滑 <strong>注:外层必须定高</strong>
+左滑 
+
+<strong>注:外层必须定高,touch事件请手机预览</strong>
 <hr>
  
 ### 引入

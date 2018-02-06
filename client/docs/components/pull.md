@@ -1,6 +1,8 @@
 # Pull
 
 上拉加载更多、下拉刷新
+
+<strong>注:touch事件请手机预览</strong>
 <hr>
 
 ### 引入

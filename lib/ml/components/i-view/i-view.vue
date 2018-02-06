@@ -134,7 +134,7 @@
        */
       touchEnd(dragDuration) {
         const dragObject = this.dragObject
-        const durationMile = Math.round(1024 / dragDuration * 10)
+        const durationMile = Math.round(1024 / dragDuration * 6)
         let left = this.mLeft
         if (this.imgWidth * dragObject.zoom > this.elWidth) {
           const xx = (dragObject.oldLeft - dragObject.startLeft) || 1
@@ -166,8 +166,8 @@
         const line = Math.pow((diffX * diffX + diffY * diffY), 0.5) - this.starLine
         let zoom = Number(dragObject.zoom + (line / 2 / 75))
         /*eslint-disable*/
-        if (zoom < 1) zoom = 1 - (1 - zoom ) * 0.1
-        if (zoom > this.compress) zoom = this.compress + (zoom - 3) * 0.1
+        if (zoom < 1) zoom = 1 - (1 - zoom ) * 0.15
+        if (zoom > this.compress) zoom = this.compress + (zoom - 3) * 0.2
         this.zoom = zoom
         this.mLeft = dragObject.leftThan * this.reckonWidth(zoom)
         this.mTop = dragObject.topThan * this.reckonHeight(zoom)
@@ -207,14 +207,14 @@
           if (!this.isTouch) this.isTouch = e.touches.length > 1
         })
         $el.addEventListener('touchmove', (e) => {
-          if (this.animating) return
           e.preventDefault()
+          if (this.animating) return
           this.isTouch = true
           if (e.touches.length === 2) this.touchTwoMove(e)
           if (e.touches.length === 1) this.touchMove(e)
         })
-        $el.addEventListener('touchend', () => {
-          if (this.animating) return
+        $el.addEventListener('touchend', (e) => {
+          if (this.animating || e.touches.length > 0) return
           const dragObject = this.dragObject
           // 单次间隔时长
           const duration = new Date() - this.dragObject.startTime
@@ -237,7 +237,7 @@
             this.dragObject = {}
           } else {
             // 俩次点击时长<220双击
-            if (dragObject.duration && dragObject.duration < 220) {
+            if (dragObject.duration && dragObject.duration < 250) {
               // 双击事件
               clearTimeout(this.timeFunc)
               this.timeFunc = null
@@ -254,7 +254,7 @@
                 this.zoom = 1
                 this.mLeft = this.mTop = 0
                 this.$emit('input', false)
-              }, 220)
+              }, 250)
             }
           }
         })
