@@ -5,19 +5,17 @@
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
+  transition: $scale-fade-transition;
 }
 
 .ii-scale {
   transition: $all-transition;
+  opacity: 1;
 }
 
-.ii-test {
-  position: absolute;
-  z-index: 1111;
-  font-size: 22px;
-  top: 0;
-  left: 0;
-  color: #fff;
+.ii-view-enter, .ii-view-leave-active {
+  opacity: 0;
+  transform: scale(1);
 }
 
 .ml-i-img {
@@ -28,7 +26,6 @@
   height: 100%;
   overflow: hidden;
   padding: 1px;
-  -webkit-overflow-scrolling: touch;
   transform: translate3d(0, 0, 0);
   img {
     display: block;
