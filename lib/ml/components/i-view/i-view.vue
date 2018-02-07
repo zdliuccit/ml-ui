@@ -2,12 +2,12 @@
   <transition name="ii-view">
     <div class="ml-i-view" :style="{ 'z-index':currentIndex|| 1001 }" v-show="value">
       <div class="ml-i-img">
-        <img ref="mlIImg" :style="{transform:`translate3d(-50%, -50%, 0) scale(${zoom})`,
-      width:`${imgWidth}px`,'margin-top':`${mTop}px`,'margin-left':`${mLeft}px`}"
-             @load="imgLoad" @error="imgError" :src="url"
+        <img ref="mlIImg" :style="{width:`${imgWidth*zoom}px`,'margin-top':`${mTop}px`,'margin-left':`${mLeft}px`}"
+             @load="imgLoad" @error="loading = 3" :src="url"
              :class="{'ii-scale':!isTouch&&!this.animating}"
-             v-show="!loading"/>
-        <div v-show="loading">正在加载....</div>
+             v-show="loading==1"/>
+        <div class="ii-text" v-show="loading==2">正在加载...</div>
+        <div class="ii-text" v-show="loading==3">图片出错了!</div>
       </div>
     </div>
   </transition>
@@ -22,14 +22,15 @@
     props: {
       value: Boolean,
       url: String,
+      scale: Number,
     },
     data() {
       return {
-        loading: false,
+        loading: 2, // 1成功 2正在加载 3error失败
         dragObject: {},
         starLine: 0, // 初始俩个点第1次距离
         zoom: 1, // 放缩比
-        compress: null, // 压缩比
+        compress: null, // 最大压缩比
         elWidth: null, // 外层宽度
         elHeight: null, // 外层高度
         imgWidth: null, // 当前图片宽度
@@ -50,26 +51,19 @@
        */
       imgLoad(e) {
         const compress = e.target.width / this.elWidth
+        const scale = this.scale > 3 ? this.scale : 3
         this.imgWidth = compress > 1 ? this.elWidth : e.target.width
         this.imgHeight = compress > 1 ? e.target.height / compress : e.target.height
-        this.compress = compress > 3 ? compress : 3
-        this.loading = false
-      },
-      /**
-       * 图片加载失败事件
-       */
-      imgError() {
-        this.loading = false
+        this.compress = compress > scale ? compress : scale
+        this.loading = 1
       },
       /**
        * 继续执行一段距离滑行
        */
-      continueTranslate(top, left) {
+      continueTranslate(top, left, oldX, oldY) {
         this.animating = true
-        const xx = left - this.mLeft
-        const yy = top - this.mTop
-        const oldX = this.mLeft
-        const oldY = this.mTop
+        const xx = left - oldX
+        const yy = top - oldY
         let diffX = 0
         let diffY = 0
         let ALPHA = 0.88
@@ -95,17 +89,19 @@
        * 触发开发
        */
       touchStart(e) {
-        const touch1 = e.touches[0]
+        const touch = e.touches[0]
         if (e.touches.length > 1) {
+          // 放缩初始俩点的距离
           const touch2 = e.touches[1]
-          const diffX = touch1.pageX - touch2.pageX
-          const diffY = touch1.pageY - touch2.pageY
+          const diffX = touch.pageX - touch2.pageX
+          const diffY = touch.pageY - touch2.pageY
           this.starLine = Math.pow((diffX * diffX + diffY * diffY), 0.5)
         }
+        // 缓存初始的margin-left和margin-top的比值
         this.dragObject.topThan = this.mTop !== 0 ? this.mTop / this.reckonHeight(this.zoom) : 0
         this.dragObject.leftThan = this.mLeft !== 0 ? this.mLeft / this.reckonWidth(this.zoom) : 0
-        this.dragObject.startLeft = touch1.pageX
-        this.dragObject.startTop = touch1.pageY
+        this.dragObject.startLeft = touch.pageX
+        this.dragObject.startTop = touch.pageY
         this.dragObject.zoom = this.zoom
       },
       /**
@@ -151,7 +147,7 @@
           if (top > cha) top = cha
           if (top < -cha) top = -cha
         }
-        this.continueTranslate(top, left)
+        this.continueTranslate(top, left, this.mLeft, this.mTop)
       },
       /**
        * 放缩移动
@@ -159,14 +155,13 @@
       touchTwoMove(e) {
         this.scrolling = true
         const dragObject = this.dragObject
-        const touch1 = e.touches[0]
+        const touch = e.touches[0]
         const touch2 = e.touches[1]
-        const diffX = touch1.pageX - touch2.pageX
-        const diffY = touch1.pageY - touch2.pageY
+        const diffX = touch.pageX - touch2.pageX
+        const diffY = touch.pageY - touch2.pageY
         const line = Math.pow((diffX * diffX + diffY * diffY), 0.5) - this.starLine
         let zoom = Number(dragObject.zoom + (line / 2 / 75))
-        /*eslint-disable*/
-        if (zoom < 1) zoom = 1 - (1 - zoom ) * 0.15
+        if (zoom < 1) zoom = 1 - (1 - zoom) * 0.15
         if (zoom > this.compress) zoom = this.compress + (zoom - 3) * 0.2
         this.zoom = zoom
         this.mLeft = dragObject.leftThan * this.reckonWidth(zoom)
@@ -175,7 +170,7 @@
       /**
        * 返回 超出 宽度1/2
        * @param {Number} zoom 当前比
-       * @param {Number} 值
+       * @return {Number} 返回值
        */
       reckonWidth(zoom) {
         const width = (zoom * this.imgWidth - this.elWidth) / 2 || 0
@@ -184,7 +179,7 @@
       /**
        * 返回 超出 高度1/2
        * @param{Number} zoom 当前比
-       * @param {Number} 值
+       * @return {Number} height 值
        */
       reckonHeight(zoom) {
         const height = (zoom * this.imgHeight - this.elHeight) / 2 || 0
@@ -199,6 +194,7 @@
         this.elHeight = document.documentElement.clientHeight
         $el.addEventListener('touchstart', (e) => {
           if (this.animating) return
+          // 记录点击时间和第二次点击的时差
           if (this.startTime) this.dragObject.duration = new Date() - this.startTime
           if (!this.startTime) this.startTime = new Date()
           if (this.dragObject.duration) this.startTime = null
@@ -223,7 +219,9 @@
             // 滑动事件
             clearTimeout(this.timeFunc)
             this.timeFunc = null
+            // 滑动执行事件
             if (!this.scrolling) this.touchEnd(duration)
+            // 放缩执行事件
             if (this.scrolling) {
               if (zoom > this.compress) zoom = this.compress
               if (zoom < 1) zoom = 1

@@ -113,9 +113,7 @@
     watch: {
       $route(to, from) {
         if (to.path !== from.path) {
-          const layers = document.getElementsByClassName('dg-mask-layer')
-          this.log(layers)
-          Array.from(layers).forEach(vv => {
+          Array.from(document.getElementsByClassName('dg-mask-layer')).forEach(vv => {
             vv.parent.removeChild(vv)
           })
         }

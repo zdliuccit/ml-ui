@@ -28,7 +28,7 @@ Vue.use(MlUi)
 有兴趣的同学可以看看，顺手都点个star哈～
 
 
-目前压缩后为65k大小 
+目前压缩后为70.8k大小 
 
 md文档地址 [www.ml-ui.com](http://www.ml-ui.com)
 

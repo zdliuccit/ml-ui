@@ -30,3 +30,18 @@ Vue.use(mlUi)
 ```html
 <ml-component @click.native="click">Click Me</ml-component>
 ```
+
+关于弹窗组件
+
+需要在最外路由中加入以下代码，防止路由变了，弹窗不小时
+```js
+watch: {
+      $route(to, from) {
+        if (to.path !== from.path) {
+          Array.from(document.getElementsByClassName('dg-mask-layer')).forEach(vv => {
+            vv.parent.removeChild(vv)
+          })
+        }
+      }
+},
+```

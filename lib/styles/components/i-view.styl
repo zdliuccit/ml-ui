@@ -4,8 +4,9 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.86);
   transition: $scale-fade-transition;
+  padding: 1px;
 }
 
 .ii-scale {
@@ -18,15 +19,20 @@
   transform: scale(1);
 }
 
-.ml-i-img {
+.ii-text {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  color: #fff;
+  font-size: 18px;
+}
+
+.ml-i-img {
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding: 1px;
-  transform: translate3d(0, 0, 0);
   img {
     display: block;
     position: relative;
@@ -34,5 +40,6 @@
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     z-index: 999;
+    background-color: #fff;
   }
 }

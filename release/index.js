@@ -21,6 +21,7 @@ import Loading from './components/loading/loading.vue'
 import LeftSlip from './components/left-slip/left-slip.vue'
 import DatePater from './components/date-pater/date-pater.vue'
 import PaterItem from './components/date-pater/child/pater-item.vue'
+import IView from './components/i-view/i-view.vue'
 // 引入JS组件
 import $toast from './components/toast'
 import $message from './components/message'
@@ -28,7 +29,7 @@ import $popup from './components/popup'
 import $activeSheet from './components/activesheet'
 
 // Version
-const version = '1.2.7'
+const version = '1.2.8'
 
 // 普通组件
 const components = {
@@ -38,6 +39,7 @@ const components = {
   Radio,
   RadioItem,
   Range,
+  IView,
   Button,
   Header,
   Field,

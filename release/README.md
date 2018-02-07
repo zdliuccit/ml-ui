@@ -16,10 +16,13 @@ Vue.use(MlUi)
 
 ## 组件
 * Icon 图标
+* Header 顶部导航栏
 * Button 按钮
 * Radio 单选
 * Checkbox 多选
 * Switch 开关
+* Range 范围
+* IView 图片预览组件
 * DatePater 日期、时间选择器
 * Tab 选项卡
 * Sile 幻灯片
