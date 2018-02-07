@@ -23,6 +23,11 @@ Vue.component(LeftSlip.name, LeftSlip)
   </ml-left-slip>
 </li>
 ```
+### Props
+| 参数          | 说明            | 类型            | 可选值                 | 默认值   |
+|-------------  |---------------- |---------------- |---------------------- |-------- |
+| selfClosing  |  点击外部区域自动关闭  | Boolean  |  - |  true| 
+
 ### Slot
 | name | 描述 |
 | -- | --- | 
