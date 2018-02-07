@@ -59,6 +59,10 @@
       },
       /**
        * 继续执行一段距离滑行
+       * @param {Number} top 将要到达的top值
+       * @param {Number} left 将要到达的left值
+       * @param {Number} oldX  动画执行前left值
+       * @param {Number} oldY 动画执行前top值
        */
       continueTranslate(top, left, oldX, oldY) {
         this.animating = true
@@ -234,7 +238,7 @@
             this.starLine = 0
             this.dragObject = {}
           } else {
-            // 俩次点击时长<220双击
+            // 俩次点击时长<250双击
             if (dragObject.duration && dragObject.duration < 250) {
               // 双击事件
               clearTimeout(this.timeFunc)
