@@ -1,8 +1,8 @@
 <template>
   <transition name="ii-view">
     <div class="ml-i-view" :style="{ 'z-index':currentIndex|| 1001 }" v-show="value">
-      <div class="ml-i-img">
-        <img ref="mlIImg" :style="{width:`${imgWidth*zoom}px`,'margin-top':`${mTop}px`,'margin-left':`${mLeft}px`}"
+      <div class="ml-i-img" ref="mlIImg">
+        <img :style="{width:`${imgWidth*zoom}px`,'margin-top':`${mTop}px`,'margin-left':`${mLeft}px`}"
              @load="imgLoad" @error="loading = 3" :src="url"
              :class="{'ii-scale':!isTouch&&!this.animating}"
              v-show="loading==1"/>

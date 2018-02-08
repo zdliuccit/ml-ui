@@ -1,27 +1,27 @@
-import installation from './installation.md'
+const installation = () => import('./installation.md')
 // baseComponents MD
-import Icon from './components/icon.md'
-import Header from './components/header.md'
-import Field from './components/field.md'
-import Slide from './components/slide.md'
-import Button from './components/button.md'
-import Tab from './components/tab.md'
-import Switch from './components/switch.md'
-import Radio from './components/radio.md'
-import Checkbox from './components/checkbox.md'
-import Range from './components/range.md'
-import Model from './components/model.md'
-import Pull from './components/pull.md'
-import AutoLoad from './components/auto-load.md'
-import Loading from './components/loading.md'
-import LeftSlip from './components/left-slip.md'
-import DatePater from './components/date-pater.md'
-import IView from './components/i-view.md'
+const Icon = () => import('./components/icon.md')
+const Header = () => import('./components/header.md')
+const Field = () => import('./components/field.md')
+const Slide = () => import('./components/slide.md')
+const Button = () => import('./components/button.md')
+const Tab = () => import('./components/tab.md')
+const Switch = () => import('./components/switch.md')
+const Radio = () => import('./components/radio.md')
+const Checkbox = () => import('./components/checkbox.md')
+const Range = () => import('./components/range.md')
+const Model = () => import('./components/model.md')
+const Pull = () => import('./components/pull.md')
+const AutoLoad = () => import('./components/auto-load.md')
+const Loading = () => import('./components/loading.md')
+const LeftSlip = () => import('./components/left-slip.md')
+const DatePater = () => import('./components/date-pater.md')
+const IView = () => import('./components/i-view.md')
 // jsComponents MD
-import Toast from './components/toast.md'
-import Message from './components/message.md'
-import Popup from './components/popup.md'
-import ActiveSheet from './components/active-sheet.md'
+const Toast = () => import('./components/toast.md')
+const Message = () => import('./components/message.md')
+const Popup = () => import('./components/popup.md')
+const ActiveSheet = () => import('./components/active-sheet.md')
 
 export default [
   {

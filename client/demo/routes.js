@@ -1,25 +1,25 @@
-import Icon from './components/d-icon.vue'
-import Toast from './components/d-toast.vue'
-import Message from './components/d-message.vue'
-import ActiveSheet from './components/d-active-sheet.vue'
-import Slide from './components/d-slide.vue'
-import Popup from './components/d-popup.vue'
-import Tab from './components/d-tab.vue'
-import Switch from './components/d-switch.vue'
-import Radio from './components/d-radio.vue'
-import Range from './components/d-range.vue'
-import IView from './components/d-i-view.vue'
-import Checkbox from './components/d-checkbox.vue'
-import Button from './components/d-button.vue'
-import Model from './components/d-model.vue'
-import Pull from './components/d-pull.vue'
-import AutoLoad from './components/d-auto-load.vue'
-import Loading from './components/d-loading.vue'
-import LeftSlip from './components/d-left-slip.vue'
-import DatePater from './components/d-date-pater.vue'
-import Header from './components/d-header.vue'
-import Field from './components/d-field.vue'
-import index from './demo.vue'
+const Icon = () => import('./components/d-icon.vue')
+const Toast = () => import('./components/d-toast.vue')
+const Message = () => import('./components/d-message.vue')
+const ActiveSheet = () => import('./components/d-active-sheet.vue')
+const Slide = () => import('./components/d-slide.vue')
+const Popup = () => import('./components/d-popup.vue')
+const Tab = () => import('./components/d-tab.vue')
+const Switch = () => import('./components/d-switch.vue')
+const Radio = () => import('./components/d-radio.vue')
+const Range = () => import('./components/d-range.vue')
+const IView = () => import('./components/d-i-view.vue')
+const Checkbox = () => import('./components/d-checkbox.vue')
+const Button = () => import('./components/d-button.vue')
+const Model = () => import('./components/d-model.vue')
+const Pull = () => import('./components/d-pull.vue')
+const AutoLoad = () => import('./components/d-auto-load.vue')
+const Loading = () => import('./components/d-loading.vue')
+const LeftSlip = () => import('./components/d-left-slip.vue')
+const DatePater = () => import('./components/d-date-pater.vue')
+const Header = () => import('./components/d-header.vue')
+const Field = () => import('./components/d-field.vue')
+const index = () => import('./demo.vue')
 
 export default [
   {
