@@ -38,7 +38,7 @@ const config = {
   // 寻找模块时的一些缺省设置
   resolve: {
     // 补充扩展名
-    extensions: ['.js', '.vue', '.json']
+    extensions: ['.js', '.vue', '.json'],
   },
   module: {
     rules: [
@@ -64,6 +64,8 @@ const config = {
         drop_console: false,
       },
     }),
+    //  Scope Hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 }
 

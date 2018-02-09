@@ -29,7 +29,7 @@ import $popup from './components/popup'
 import $activeSheet from './components/activesheet'
 
 // Version
-const version = '1.2.9'
+const version = '1.3.0'
 
 // 普通组件
 const components = {
