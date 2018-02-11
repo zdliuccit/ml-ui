@@ -47,7 +47,7 @@
         </div>
         <div class="ml-phone">
           <div class="phone-top"></div>
-          <iframe class="phone-content" :src="`#/demo${$route.meta.demoLink||''}`"></iframe>
+          <iframe class="phone-content" :src="`//${host}/#/demo${$route.meta.demoLink||''}`"></iframe>
         </div>
       </div>
     </div>
@@ -57,7 +57,8 @@
   export default {
     data() {
       return {
-        sideJson: this.$store.state.sidebar
+        sideJson: this.$store.state.sidebar,
+        host: window.location.host,
       }
     },
     methods: {
@@ -69,10 +70,5 @@
         if (link) this.$router.push(link)
       }
     },
-    created() {
-      if (/Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent)) {
-        this.$router.replace('/demo/index')
-      }
-    }
   }
 </script>
