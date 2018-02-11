@@ -165,8 +165,10 @@
       }, false)
     },
     destroyed() {
-      if (this.selfClosing) document.body.removeEventListener('touchstart', this.reduction, true)
-      if (this.selfClosing) document.body.removeEventListener('touchstart', this.stopPro, true)
+      if (this.selfClosing) {
+        document.body.removeEventListener('touchstart', this.reduction, true)
+        document.body.removeEventListener('touchstart', this.stopPro, true)
+      }
     },
   }
 </script>

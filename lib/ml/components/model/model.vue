@@ -51,19 +51,13 @@
     name: 'ml-model',
     mixins: [maskMixin],
     props: {
-      value: {
-        type: Boolean,
-        default: false
-      },
+      value: Boolean,
       mask: {
         type: Boolean,
         default: true
       },
       maskClass: String,
-      prevent: {
-        type: Boolean,
-        default: false,
-      },
+      prevent: Boolean,
       transition: {
         type: String,
         default: 'middle', // middle、top、right、bottom、left
@@ -71,6 +65,10 @@
       speed: {
         type: Number,
         default: 300,
+      },
+      through: {
+        type: Boolean,
+        default: true
       }
     },
     watch: {
@@ -112,7 +110,7 @@
       },
     },
     mounted() {
-      this.$el.addEventListener('touchmove', (e) => {
+      this.through && this.$el.addEventListener('touchmove', (e) => {
         e.preventDefault()
       })
       const fragment = document.createDocumentFragment()

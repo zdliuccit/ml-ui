@@ -48,11 +48,14 @@ Vue.component(Model.name, Model)
 | transition       | 动效   | String | middle、top、right、bottom、left| middle |
 | speed       | 动效时间(ms)   | Number | -| 300 |
 | mask    | 是否需要遮罩层   | Boolean  | - | true |
+| through    | 针对IOS，是否禁止touch穿透   | Boolean  | - | true |
 | maskClass    | 自定义遮罩层的class名称   | String  | - | - |
 | prevent    | 是否阻止点击外层关闭   | Boolean  |  - | false |
 | onClose    | 关闭执行事件   | Function  | - | - |
 
-注: `speed`参数必须与`transition`设置的时间一样
+<strong>注: </strong>
+ * `speed`参数必须与`transition`设置的时间一样
+ * 内部有滚动的话，需`through`设为false
 
 ### Events
 | 事件名称          | 说明            | 返回值 |
