@@ -6,7 +6,26 @@
 
 网上轮子已经很多了哈，咋也凑个热闹，开源自己的Vue.js的移动端组件库。粗糙了点哈！
 
-![](client/assets/images/ml-components.jpg)
+* Toast 提示
+* Message 消息
+* Popup 弹窗
+* ActiveSheet 活动表
+* Icon 图标
+* Header 顶部导航栏
+* Button 按钮
+* Radio 单选
+* Checkbox 多选
+* Switch 开关
+* Range 范围
+* IView 图片预览组件
+* DatePater 日期、时间选择器
+* Tab 选项卡
+* Slide 幻灯片
+* Model 遮罩层
+* Pull 上拉加载 下拉刷新
+* AutoLoad 底部自动加载
+* Loading 正在加载...
+* LeftSlip 左滑
 
 秋风会继续改进中。。。欢迎各种issues
 
