@@ -32,6 +32,10 @@ Vue.component(Range.name, Range)
 禁用
 ```html
 <ml-range :disabled="true" v-model="value"></ml-range>
+
+事件绑定
+```html
+<ml-range @on-change="doChange" v-model="value"></ml-range>
 ```
 
 ### Props
@@ -45,6 +49,12 @@ Vue.component(Range.name, Range)
 | disabled         | 禁用状态	  | Boolean  | - | false |
 
 <strong>注：max必须大于min</strong>
+
+### Events
+| 事件名称          | 说明            | 返回值 |
+|-------------  |---------------- | ---- |
+|on-change	  | 值改变执行事件	 | 当前值 |
+
 
 ### Slot
 | name | 描述 |

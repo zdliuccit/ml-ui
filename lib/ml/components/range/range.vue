@@ -78,7 +78,10 @@
         if (left < 0) left = 0
         this.rangLeft = left
         this.currentValue = this.min + Math.round(left / this.than)
-        this.$emit('input', this.currentValue)
+        if (this.currentValue !== this.value) {
+          this.$emit('input', this.currentValue)
+          this.$emit('on-change', this.currentValue)
+        }
       },
     },
     mounted() {

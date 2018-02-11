@@ -30,7 +30,7 @@
         <div class="range-label">线宽 height=8 value:{{value5}}</div>
       </div>
       <div class="dd-range">
-        <ml-range v-model="value6" :min="12" :max="30">
+        <ml-range v-model="value6" :min="12" :max="30" @on-change="doChange">
           <div class="pr6" slot="left">12</div>
           <div class="pf6" slot="right">30</div>
         </ml-range>
@@ -50,6 +50,11 @@
         value4: 44,
         value5: 20,
         value6: 14,
+      }
+    },
+    methods: {
+      doChange(val) {
+        this.log(val)
       }
     }
   }
