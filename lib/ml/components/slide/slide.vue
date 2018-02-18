@@ -114,7 +114,7 @@
       /**
        * 动画
        */
-      translate($el, offset, speed, callback) {
+      setTranslate($el, offset, speed, callback) {
         if (speed) {
           this.animating = true
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
@@ -147,9 +147,9 @@
           prevPage = pages[prevIndex]
           nextPage = pages[nextIndex]
           prevPage.style.display = 'block'
-          this.translate(prevPage, -$elWidth)
+          this.setTranslate(prevPage, -$elWidth)
           nextPage.style.display = 'block'
-          this.translate(nextPage, $elWidth)
+          this.setTranslate(nextPage, $elWidth)
         }
         let newIndex = null
         if (towards === 'next') newIndex = nextIndex
@@ -167,22 +167,22 @@
           if (distanceX) {
             this.continueTranslate(currentPage, offsetLeft, -$elWidth, callback, nextPage)
           } else {
-            this.translate(currentPage, -$elWidth, speed, callback)
-            this.translate(nextPage, 0, speed)
+            this.setTranslate(currentPage, -$elWidth, speed, callback)
+            this.setTranslate(nextPage, 0, speed)
           }
         } else if (towards === 'prev') {
           if (distanceX) {
             this.continueTranslate(currentPage, offsetLeft, $elWidth, callback, prevPage)
           } else {
-            this.translate(currentPage, $elWidth, speed, callback)
-            this.translate(prevPage, 0, speed)
+            this.setTranslate(currentPage, $elWidth, speed, callback)
+            this.setTranslate(prevPage, 0, speed)
           }
         } else { // 滑动距离<5的回滚
-          this.translate(currentPage, 0, speed, callback)
+          this.setTranslate(currentPage, 0, speed, callback)
           if (offsetLeft > 0) {
-            this.translate(prevPage, -$elWidth, speed)
+            this.setTranslate(prevPage, -$elWidth, speed)
           } else {
-            this.translate(nextPage, $elWidth, speed)
+            this.setTranslate(nextPage, $elWidth, speed)
           }
         }
       },
@@ -224,15 +224,15 @@
         }
         this.animating = true
         e.preventDefault()
-        this.translate(dragObject.dragPage, offsetLeft)
+        this.setTranslate(dragObject.dragPage, offsetLeft)
         if (dragObject.prevPage !== dragObject.nextPage) {
-          this.translate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
-          this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
+          this.setTranslate(dragObject.prevPage, offsetLeft - dragObject.$elWidth)
+          this.setTranslate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
         } else {
           if (this.index === 1) {
-            this.translate(dragObject.nextPage, offsetLeft - dragObject.$elWidth)
+            this.setTranslate(dragObject.nextPage, offsetLeft - dragObject.$elWidth)
           } else {
-            this.translate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
+            this.setTranslate(dragObject.nextPage, offsetLeft + dragObject.$elWidth)
           }
         }
       },

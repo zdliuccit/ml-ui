@@ -48,12 +48,12 @@
        */
       initTranslate3d() {
         this.currentTop = 34 * (this.start - this.value + 3)
-        this.translate(this.elWrap, this.currentTop)
+        this.setTranslate(this.elWrap, this.currentTop)
       },
       /**
        * 动画
        */
-      translate($el, offset, speed) {
+      setTranslate($el, offset, speed) {
         if (speed) {
           this.animating = true
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
@@ -122,7 +122,7 @@
         if (currentTop <= dragObject.minTop) currentTop = dragObject.minTop
         e.preventDefault()
         this.currentTop = currentTop
-        this.translate(this.elWrap, currentTop)
+        this.setTranslate(this.elWrap, currentTop)
       },
       /**
        * 触发结束
@@ -137,7 +137,7 @@
         let currentTop = Math.round(this.currentTop / dragObject.one) * dragObject.one
         const offsetTop = dragObject.currentTop - dragObject.startTop
         if (dragDuration > 300) {
-          this.translate(this.elWrap, currentTop, 200)
+          this.setTranslate(this.elWrap, currentTop, 200)
         } else {
           const topMile = (1 + Math.abs(offsetTop) / 5 / dragObject.one)
           const durationMile = Math.round(600 / dragDuration * topMile)

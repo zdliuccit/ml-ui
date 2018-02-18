@@ -32,7 +32,7 @@
       /**
        * 动画
        */
-      translate($el, offset, speed) {
+      setTranslate($el, offset, speed) {
         if (speed) {
           this.animating = true
           $el.style.webkitTransition = '-webkit-transform ' + speed + 'ms ease-in-out'
@@ -107,7 +107,7 @@
         if (currentLeft >= 0) currentLeft = 0
         if (currentLeft <= -dragObject.maxWidth) currentLeft = -dragObject.maxWidth
         this.slipLeft = currentLeft
-        this.translate(this.$refs.warpSlip, currentLeft)
+        this.setTranslate(this.$refs.warpSlip, currentLeft)
       },
       /**
        * 触发结束
@@ -141,7 +141,7 @@
         if (!checkTargetNode(e.target, this.$el)) {
           this.slipLeft = 0
           document.body.removeEventListener('touchstart', this.reduction, true)
-          this.translate(this.$refs.warpSlip, 0, 200)
+          this.setTranslate(this.$refs.warpSlip, 0, 200)
         }
       },
       /**
