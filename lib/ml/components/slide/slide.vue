@@ -103,9 +103,7 @@
             initOffset = ALPHA * initOffset + (1.0 - ALPHA) * offset
             $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
             $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
-            if (Math.abs(initOffset - offset) < 1) {
-              if (callback) callback.apply({}, arguments)
-            }
+            if (Math.abs(initOffset - offset) < 1 && callback) callback()
             animationFrame(animationLoop)
           }
         }
@@ -125,7 +123,7 @@
             this.animating = false
             $el.style.webkitTransition = ''
             $el.style.webkitTransform = ''
-            if (callback) callback.apply({}, arguments)
+            callback && callback()
           }
           setTimeout(transitionEndCallback, speed + 30)
         } else {
@@ -146,17 +144,15 @@
           currentPage = pages[index]
           prevPage = pages[prevIndex]
           nextPage = pages[nextIndex]
-          prevPage.style.display = 'block'
           this.setTranslate(prevPage, -$elWidth)
-          nextPage.style.display = 'block'
           this.setTranslate(nextPage, $elWidth)
+          prevPage.style.display = nextPage.style.display = 'block'
         }
         let newIndex = null
         if (towards === 'next') newIndex = nextIndex
         if (towards === 'prev') newIndex = prevIndex
         const callback = () => {
-          prevPage.style.display = ''
-          nextPage.style.display = ''
+          prevPage.style.display = nextPage.style.display = ''
           if (newIndex !== null) {
             removeClass(currentPage, 'slide-active')
             addClass(pages[newIndex], 'slide-active')
@@ -199,9 +195,9 @@
         dragObject.$elWidth = $el.offsetWidth
         const prevIndex = this.index - 1 < 0 ? this.pages.length - 1 : this.index - 1
         const nextIndex = this.index + 1 > this.pages.length - 1 ? 0 : this.index + 1
-        dragObject.prevPage = this.$children[prevIndex].$el
-        dragObject.dragPage = this.$children[this.index].$el
-        dragObject.nextPage = this.$children[nextIndex].$el
+        dragObject.prevPage = this.pages[prevIndex]
+        dragObject.dragPage = this.pages[this.index]
+        dragObject.nextPage = this.pages[nextIndex]
         dragObject.prevPage.style.display = 'block'
         dragObject.nextPage.style.display = 'block'
       },

@@ -121,7 +121,7 @@
           const transitionEndCallback = () => {
             $el.style.webkitTransition = ''
             $el.style.webkitTransform = ''
-            if (callback) callback()
+            callback && callback()
             this.animating = false
           }
           setTimeout(transitionEndCallback, speed + 30)
