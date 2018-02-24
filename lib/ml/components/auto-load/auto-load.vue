@@ -63,12 +63,8 @@
        * 执行加载事件
        */
       doLoading() {
-        new Promise((resolve, reject) => {
-          if (this.loadState) {
-            this.loading(resolve, reject)
-          } else {
-            resolve()
-          }
+        new Promise((resolve) => {
+          if (this.loadState) this.loading(resolve)
         }).then(() => {
           this.loadState = false
           this.downLoad = false

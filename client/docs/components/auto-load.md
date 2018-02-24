@@ -11,7 +11,7 @@ Vue.component(AutoLoad.name, AutoLoad)
 ```
 ### Demo
 ```html
-<ml-auto-load :loading="doLoad" :paging="paging">
+<ml-auto-load :loading="doLoad" v-model="paging">
   <ul class="test-ul ml-border">
     <li class="ml-border" v-for="ii in dataList">{{ii}}</li>
   </ul>
@@ -27,4 +27,4 @@ Vue.component(AutoLoad.name, AutoLoad)
 ### Event
 | 名称          |  参数值  |  说明|
 |-------------  |------ |----- |
-| loading         | (resolve,reject)   | 内部执行promise函数，外部需要resolve `or` reject  |
+| loading         | (resolve)   | 内部执行promise函数，外部需要resolve |
