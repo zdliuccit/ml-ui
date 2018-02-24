@@ -1,6 +1,8 @@
 # ml-ui 
+[![Version](client/assets/x-ml.svg)](https://www.npmjs.com/package/ml-ui) 
 
-基于 Vue 2.0 的 Mobile 组件库 ml-ui
+
+> 基于 Vue 2xm , 的 Mobile 组件库 ml-ui
 
 摘要: ml-ui，一套为开发者、设计师和产品经理准备的基于 Vue 2 的移动端组件库
 
