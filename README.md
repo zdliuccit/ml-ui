@@ -29,7 +29,9 @@
 * Loading 正在加载...
 * LeftSlip 左滑
 
-秋风会继续改进中。。。欢迎各种issues
+欢迎在issues提出建议和Bug
+
+秋风会继续改进中。。。喜欢的顺便点个start 
 
 
 ## 安装
@@ -45,9 +47,6 @@ import 'ml-ui/styles/index.css'
 
 Vue.use(MlUi)
 ```
-
-有兴趣的同学可以看看，顺手都点个star哈～
-
 
 目前压缩后为70k大小 
 
