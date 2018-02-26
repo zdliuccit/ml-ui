@@ -5,7 +5,7 @@ import routes from './routes'
 const ProgressBar = require('progressbar.js')
 
 const router = new VueRouter({
-  // mode: 'history',
+  mode: 'history',
   routes
 })
 
@@ -34,7 +34,7 @@ router.beforeEach((to, from, next) => {
   })
   if (/Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent) &&
     to.path !== '/' && to.path.indexOf('demo') < 0) {
-    router.push({ path: '/demo/index' })
+    router.replace('/demo/index')
   } else {
     next()
   }
