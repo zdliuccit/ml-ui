@@ -34,7 +34,7 @@ router.beforeEach((to, from, next) => {
   })
   if (/Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent) &&
     to.path !== '/' && to.path.indexOf('demo') < 0) {
-    router.replace('/demo/index')
+    router.replace({ path: '/demo/index' })
   } else {
     next()
   }
