@@ -35,7 +35,7 @@ if (!IS_DEBUG) {
 module.exports = function (options) {
   options = Object.assign({}, defaultOptions, options)
   return async function spa(ctx, next) {
-    if (!options.include.test(ctx.url) && ctx.url.indexOf('.js') < 0) {
+    if (!options.include.test(ctx.url)) {
       /**
        * 开发模式从koa2服务中获取index
        */
