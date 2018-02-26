@@ -5,7 +5,7 @@ import routes from './routes'
 const ProgressBar = require('progressbar.js')
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes
 })
 
