@@ -1,3 +1,6 @@
+import Range from './components/d-range.vue'
+import LeftSlip from './components/d-left-slip.vue'
+
 const Icon = () => import('./components/d-icon.vue')
 const Toast = () => import('./components/d-toast.vue')
 const Message = () => import('./components/d-message.vue')
@@ -7,7 +10,6 @@ const Popup = () => import('./components/d-popup.vue')
 const Tab = () => import('./components/d-tab.vue')
 const Switch = () => import('./components/d-switch.vue')
 const Radio = () => import('./components/d-radio.vue')
-const Range = () => import('./components/d-range.vue')
 const IView = () => import('./components/d-i-view.vue')
 const Checkbox = () => import('./components/d-checkbox.vue')
 const Button = () => import('./components/d-button.vue')
@@ -15,7 +17,6 @@ const Model = () => import('./components/d-model.vue')
 const Pull = () => import('./components/d-pull.vue')
 const AutoLoad = () => import('./components/d-auto-load.vue')
 const Loading = () => import('./components/d-loading.vue')
-const LeftSlip = () => import('./components/d-left-slip.vue')
 const DatePater = () => import('./components/d-date-pater.vue')
 const Header = () => import('./components/d-header.vue')
 const Field = () => import('./components/d-field.vue')
