@@ -9,7 +9,7 @@ const currentIP = require('ip').address()
 const { IS_DEBUG } = require('../utils/env')
 const appConfig = require('./../../app.config')
 
-const defaultOptions = { include: /^\/(api|static|public|v3)/ }
+const defaultOptions = { include: /^\/(api|static|public)/ }
 
 /**
  * 读取构建过的文件，public目录下
@@ -35,8 +35,7 @@ if (!IS_DEBUG) {
 module.exports = function (options) {
   options = Object.assign({}, defaultOptions, options)
   return async function spa(ctx, next) {
-    logger.info('ctx.url', ctx.url)
-    if (!options.include.test(ctx.url)) {
+    if (!options.include.test(ctx.url) && ctx.url.indexOf('.js') < 0) {
       /**
        * 开发模式从koa2服务中获取index
        */
