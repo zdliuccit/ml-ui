@@ -52,6 +52,9 @@ Vue.use(MlUi)
 
 md文档地址 [www.ml-ui.com](http://www.ml-ui.com)
 
+
+组件预览地址 [www.ml-ui.com/#/demo/index](http://www.ml-ui.com/#/demo/index)
+
 构建部署环境基于[vue-webpack-config](https://github.com/zdliuccit/vue-webpack-config)
 
 构建技术栈
