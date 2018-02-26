@@ -128,7 +128,7 @@ export default [
     component: ActiveSheet,
   },
   {
-    path: 'range',
+    path: 'd-range',
     name: 'd-range',
     component: Range,
   },

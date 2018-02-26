@@ -172,10 +172,10 @@ export default [
     }
   },
   {
-    path: 'range',
+    path: 'd-range',
     component: Range,
     meta: {
-      demoLink: '/range'
+      demoLink: '/d-range'
     }
   },
   {

@@ -47,7 +47,7 @@
           },
           {
             label: 'Range 范围',
-            link: '/demo/range'
+            link: '/demo/d-range'
           },
           {
             label: 'IView 图片预览组件',
