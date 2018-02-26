@@ -35,7 +35,7 @@ if (!IS_DEBUG) {
 module.exports = function (options) {
   options = Object.assign({}, defaultOptions, options)
   return async function spa(ctx, next) {
-    logger.log(ctx.url)
+    logger.info('ctx.url', ctx.url)
     if (!options.include.test(ctx.url)) {
       /**
        * 开发模式从koa2服务中获取index
