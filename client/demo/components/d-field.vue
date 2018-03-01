@@ -38,7 +38,8 @@
         video.play()
       }, (error) => {
         // error.code
-      });
+        console.log('2', error)
+      })
       snap.addEventListener('click', () => {
         // 绘制canvas图形
         canvas.getContext('2d').drawImage(video, 0, 0, 400, 300)
