@@ -58,19 +58,19 @@
         let ALPHA = 0.88
         this.animating = true
         const animationLoop = () => {
-          if (Math.abs(currentLeft - offset) < 1) {
+          if (Math.abs(currentLeft - offset) < 2) {
             this.animating = false
             currentLeft = offset
             $el.style.webkitTransform = `translate3d(${currentLeft}px,0,0)`
             callback && callback()
           } else {
-            ALPHA = ALPHA * 0.99
+            ALPHA = ALPHA * 0.98
             if (offset === 0) {
               currentLeft = ALPHA * currentLeft - (1.0 - ALPHA) * currentLeft
             } else {
               currentLeft = ALPHA * currentLeft + (1.0 - ALPHA) * (offset)
             }
-            $el.style.webkitTransform = `translate3d(${currentLeft}px,0,0)`
+            $el.style.webkitTransform = `translate3d(${Math.round(currentLeft)}px,0,0)`
             animationFrame(animationLoop)
           }
         }
@@ -96,7 +96,7 @@
         const pageX = touch.pageX
         if (!dragObject.startLeft) return
         dragObject.oldValue = dragObject.currentLeft || pageX
-        if (!this.animating && Math.abs(pageX - dragObject.startLeft) < 15) return
+        if (!this.animating && Math.abs(pageX - dragObject.startLeft) < 18) return
         dragObject.currentLeft = pageX
         const offsetLeft = pageX - dragObject.oldValue
         this.animating = true

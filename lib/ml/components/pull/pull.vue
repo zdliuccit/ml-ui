@@ -133,7 +133,7 @@
           let offsetTop = pageY - (dragObject.currentTop || dragObject.startTop)
           if ((dragObject.dire === 'down' && offsetTop < 0) || (dragObject.dire === 'up' && offsetTop > 0)) than = than === 3 ? 2 : 1.5
           dragObject.currentTop = pageY
-          let currentTop = translate + offsetTop / than
+          let currentTop = Math.round(translate + offsetTop / than)
           if ((dragObject.dire === 'down' && currentTop < 0) || (dragObject.dire === 'up' && currentTop > 0)) currentTop = 0
           this.downLoad = currentTop > 0 && currentTop >= this.distance
           this.upLoad = currentTop < 0 && currentTop <= -this.distance
