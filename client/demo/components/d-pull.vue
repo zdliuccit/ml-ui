@@ -4,7 +4,7 @@
     <div class="dd-warp">
       <ml-pull :loading="doLoad" :refresh="doRefresh" v-model="paging">
         <ul class="test-ul ml-border">
-          <li class="ml-border" v-for="ii in dataList">{{ii}}</li>
+          <li class="ml-border" v-for="ii in dataList" :key="ii">{{ii}}</li>
           <li class="ml-border">paging: {{paging}}</li>
         </ul>
       </ml-pull>
