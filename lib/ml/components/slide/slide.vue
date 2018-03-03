@@ -4,7 +4,7 @@
       <slot></slot>
     </div>
     <div class="ml-slide-dots" v-show="showDots">
-      <div class="ml-slide-dot" v-for="(page, $index) in pages" :class="{ 'dot-active': $index == index }"></div>
+      <div class="ml-slide-dot" v-for="(page, $index) in pages" :class="{ 'dot-active': $index == index }" :key="$index"></div>
     </div>
   </div>
 </template>
