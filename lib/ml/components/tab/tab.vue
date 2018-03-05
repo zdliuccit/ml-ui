@@ -95,11 +95,12 @@
         const animationLoop = () => {
           ALPHA *= (0.98)
           if (Math.abs(initOffset - offset) < 2) {
+            this.log(Math.abs(initOffset - offset))
             this.animating = false
             $el.style.webkitTransform = ''
             $elNext.style.webkitTransform = ''
           } else {
-            initOffset = Math.round(ALPHA * initOffset + (1.0 - ALPHA) * offset)
+            initOffset = Math.round(ALPHA * initOffset + (1 - ALPHA) * offset)
             $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
             $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
             if (Math.abs(initOffset - offset) < 2 && callback) callback()

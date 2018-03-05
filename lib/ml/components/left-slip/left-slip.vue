@@ -66,9 +66,9 @@
           } else {
             ALPHA = ALPHA * 0.98
             if (offset === 0) {
-              currentLeft = ALPHA * currentLeft - (1.0 - ALPHA) * currentLeft
+              currentLeft = ALPHA * currentLeft - (1 - ALPHA) * currentLeft
             } else {
-              currentLeft = ALPHA * currentLeft + (1.0 - ALPHA) * (offset)
+              currentLeft = ALPHA * currentLeft + (1 - ALPHA) * (offset)
             }
             $el.style.webkitTransform = `translate3d(${Math.round(currentLeft)}px,0,0)`
             animationFrame(animationLoop)

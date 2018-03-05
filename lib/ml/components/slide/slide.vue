@@ -4,7 +4,8 @@
       <slot></slot>
     </div>
     <div class="ml-slide-dots" v-show="showDots">
-      <div class="ml-slide-dot" v-for="(page, $index) in pages" :class="{ 'dot-active': $index == index }" :key="$index"></div>
+      <div class="ml-slide-dot" v-for="(page, $index) in pages" :class="{ 'dot-active': $index == index }"
+           :key="$index"></div>
     </div>
   </div>
 </template>
@@ -100,7 +101,7 @@
             $el.style.webkitTransform = ''
             $elNext.style.webkitTransform = ''
           } else {
-            initOffset = Math.round(ALPHA * initOffset + (1.0 - ALPHA) * offset)
+            initOffset = Math.round(ALPHA * initOffset + (1 - ALPHA) * offset)
             $el.style.webkitTransform = `translate3d(${initOffset}px,0,0)`
             $elNext.style.webkitTransform = `translate3d(${initOffset - offset}px,0,0)`
             if (Math.abs(initOffset - offset) < 2 && callback) callback()

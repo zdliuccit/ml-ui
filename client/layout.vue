@@ -21,7 +21,7 @@
           </div>
           <ul class="side-nav">
             <li class="nav-item">
-              <a href="javascript:;" changelog>更新日志</a>
+              <a href="javascript:;">更新日志</a>
             </li>
             <li class="nav-item" v-for="side in sideJson" :key="side.label">
               <a href="javascript:;" :class="{'active':side.link==$route.path}"
