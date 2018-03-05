@@ -2,14 +2,14 @@
   <div class="ml-demo">
     <div class="ul-title ml-border">JSComponents</div>
     <ul class="ul-cpt">
-      <li class="ml-border" v-for="bb in jsCpt">
+      <li class="ml-border" v-for="bb in jsCpt" :key="bb.label">
         <a href="javascript:;" @click="toTo(bb.link)">{{bb.label}}</a>
         <ml-icon icon="up"></ml-icon>
       </li>
     </ul>
     <div class="ul-title ml-border">BaseComponents</div>
     <ul class="ul-cpt">
-      <li class="ml-border" v-for="bb in baseCpt">
+      <li class="ml-border" v-for="bb in baseCpt" :key="bb.label">
         <a href="javascript:;" @click="toTo(bb.link)">{{bb.label}}</a>
         <ml-icon icon="up"></ml-icon>
       </li>

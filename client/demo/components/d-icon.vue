@@ -4,7 +4,7 @@
     <div class="dd-warp">
       <div class="warp-content">
         <ul class="icon-list ">
-          <li v-for="icon in icons">
+          <li v-for="icon in icons" :key="icon">
             <div class="icon">
               <ml-icon :icon="`${icon}`"></ml-icon>
             </div>
