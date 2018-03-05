@@ -1,8 +1,10 @@
 <template>
   <div class="ml-pater-item">
     <ul ref="paterUl">
+      
       <li v-for="ii in (end-start+1)" :key="`pater${ii}`" :class="{'pater-check':value==(start + ii - 1)}">
-        {{(start + ii - 1) < 10 ? '0' : ''}}{{start + ii - 1}}{{unit}}
+        <!-- &lt; refers to '<', see discussion here 'https://github.com/vuejs/eslint-plugin-vue/issues/370' -->
+        {{ (start + ii - 1) &lt; 10 ? '0' : '' }}{{ start + ii - 1 }}{{ unit }}
       </li>
     </ul>
   </div>
