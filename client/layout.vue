@@ -61,6 +61,9 @@
         host: window.location.host,
       }
     },
+    created() {
+      if (process.env.NODE_ENV === 'development') this.host = `//${this.host}`
+    },
     methods: {
       /**
        * 组件切换
