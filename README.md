@@ -4,7 +4,7 @@
 
 > 基于 Vue 2.0 的 Mobile 组件库 ml-ui
 
-> Version～1.3.6
+> Version～1.3.7
 
 摘要: ml-ui，一套为开发者、设计师和产品经理准备的基于 Vue 2 的移动端组件库
 

@@ -2,8 +2,7 @@
   <transition name="ii-view">
     <div class="ml-i-view" :style="{ 'z-index':currentIndex|| 1001 }" v-show="value">
       <div class="ml-i-img" ref="mlIImg">
-        <img :style="{width:`${imgWidth*zoom}px`,'margin-top':`${mTop}px`,'margin-left':`${mLeft}px`}"
-             @load="imgLoad" @error="loading = 3" :src="url"
+        <img :style="{width:`${imgWidth*zoom}px`,'margin-top':`${mTop}px`,'margin-left':`${mLeft}px`}" :src="url"
              :class="{'ii-scale':!isTouch&&!this.animating}"
              v-show="loading==1"/>
         <div class="ii-text" v-show="loading==2">正在加载...</div>
@@ -23,6 +22,16 @@
       value: Boolean,
       url: String,
       scale: Number,
+    },
+    watch: {
+      /**
+       * 监听图片地址变动
+       */
+      url() {
+        this.imgWidth = this.imgHeight = null
+        this.loading = 2
+        this.imgLoad()
+      }
     },
     data() {
       return {
@@ -47,15 +56,22 @@
     },
     methods: {
       /**
-       * 图片加载成功事件
+       * 图片加载事件
        */
-      imgLoad(e) {
-        const compress = e.target.width / this.elWidth
-        const scale = this.scale > 3 ? this.scale : 3
-        this.imgWidth = compress > 1 ? this.elWidth : e.target.width
-        this.imgHeight = compress > 1 ? e.target.height / compress : e.target.height
-        this.compress = compress > scale ? compress : scale
-        this.loading = 1
+      imgLoad() {
+        const imgJS = new Image()
+        imgJS.onload = (e) => {
+          const compress = e.target.width / this.elWidth
+          const scale = this.scale > 3 ? this.scale : 3
+          this.imgWidth = compress > 1 ? this.elWidth : e.target.width
+          this.imgHeight = compress > 1 ? e.target.height / compress : e.target.height
+          this.compress = compress > scale ? compress : scale
+          this.loading = 1
+        }
+        imgJS.onerror = () => {
+          this.loading = 3
+        }
+        imgJS.src = this.url
       },
       /**
        * 继续执行一段距离滑行
