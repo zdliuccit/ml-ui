@@ -12,9 +12,9 @@
 </template>
 <script type="text/babel">
   import { animationFrame, checkTargetNode } from './../../utils/ml-utils'
-
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-left-slip',
+    name: `${COMPONENT_PREFIX}left-slip`,
     props: {
       selfClosing: {
         type: Boolean,

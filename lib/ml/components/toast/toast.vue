@@ -7,8 +7,9 @@
   </transition>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-toast',
+    name: `${COMPONENT_PREFIX}toast`,
     props: {
       message: String,
       place: String,

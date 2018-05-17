@@ -10,8 +10,9 @@
   </header>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-header',
+    name: `${COMPONENT_PREFIX}header`,
     props: {
       title: String,
       fix: Boolean,

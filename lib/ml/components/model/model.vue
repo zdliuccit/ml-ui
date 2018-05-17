@@ -46,9 +46,9 @@
 </template>
 <script type="text/babel">
   import maskMixin from './../../mixins/mask-mixins'
-
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-model',
+    name: `${COMPONENT_PREFIX}model`,
     mixins: [maskMixin],
     props: {
       value: Boolean,

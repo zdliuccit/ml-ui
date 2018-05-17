@@ -14,7 +14,9 @@
   </ml-model>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
+    name: `${COMPONENT_PREFIX}active-sheet`,
     props: {
       value: Boolean,
       prevent: Boolean,

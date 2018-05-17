@@ -5,9 +5,9 @@
 </template>
 <script type="text/babel">
   import { addClass, removeClass, animationFrame } from './../../utils/ml-utils'
-
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-tab',
+    name: `${COMPONENT_PREFIX}tab`,
     props: {
       value: {
         type: Number,

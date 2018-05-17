@@ -5,3 +5,6 @@ tt.txt
 release/*
 public/*
 client/layout.vue
+
+node_modules
+yarn.lock

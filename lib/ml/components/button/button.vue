@@ -15,8 +15,9 @@
   </button>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-button',
+    name: `${COMPONENT_PREFIX}button`,
     props: {
       disabled: Boolean,
       type: String,

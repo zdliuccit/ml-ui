@@ -19,8 +19,9 @@
   </ml-model>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-date-pater',
+    name: `${COMPONENT_PREFIX}date-pater`,
     props: {
       value: String,
       format: {

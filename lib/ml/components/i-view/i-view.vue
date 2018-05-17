@@ -14,9 +14,9 @@
 <script type="text/babel">
   import maskMixin from './../../mixins/mask-mixins'
   import { animationFrame } from './../../utils/ml-utils'
-
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-i-view',
+    name: `${COMPONENT_PREFIX}i-view`,
     mixins: [maskMixin],
     props: {
       value: Boolean,

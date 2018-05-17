@@ -4,8 +4,9 @@
   </div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-checkbox',
+    name: `${COMPONENT_PREFIX}checkbox`,
     props: {
       value: [String, Array],
     },
