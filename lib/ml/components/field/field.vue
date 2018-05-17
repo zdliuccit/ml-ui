@@ -2,8 +2,9 @@
   <div class="ml-field"></div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-field',
+    name: `${COMPONENT_PREFIX}field`,
     props: {}
   }
 </script>

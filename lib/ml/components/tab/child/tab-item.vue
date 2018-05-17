@@ -4,7 +4,8 @@
   </div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../../constants/app';
   export default {
-    name: 'ml-tab-item',
+    name: `${COMPONENT_PREFIX}tab-item`,
   }
 </script>

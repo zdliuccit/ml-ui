@@ -11,8 +11,9 @@
   </div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-range',
+    name: `${COMPONENT_PREFIX}range`,
     props: {
       value: Number,
       min: {

@@ -4,8 +4,9 @@
   </div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-radio',
+    name: `${COMPONENT_PREFIX}radio`,
     props: {
       value: [String, Boolean, Number],
     },

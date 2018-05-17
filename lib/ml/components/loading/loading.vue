@@ -9,8 +9,9 @@
   </div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-loading',
+    name: `${COMPONENT_PREFIX}loading`,
     props: {
       value: Boolean,
       width: {

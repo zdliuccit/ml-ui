@@ -11,9 +11,9 @@
 </template>
 <script type="text/babel">
   import { addClass, removeClass, animationFrame } from './../../utils/ml-utils'
-
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-slide',
+    name: `${COMPONENT_PREFIX}slide`,
     props: {
       speed: {
         type: Number,

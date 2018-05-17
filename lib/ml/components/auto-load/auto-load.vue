@@ -19,9 +19,9 @@
 </template>
 <script type="text/babel">
   import { throttle, backToTop, animationFrame } from './../../utils/ml-utils'
-
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-auto-load',
+    name: `${COMPONENT_PREFIX}auto-load`,
     props: {
       loading: Function,
       value: {

@@ -11,8 +11,9 @@
   </div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-switch',
+    name: `${COMPONENT_PREFIX}switch`,
     props: {
       value: Boolean,
       disabled: Boolean,

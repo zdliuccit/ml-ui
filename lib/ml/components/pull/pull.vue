@@ -32,9 +32,9 @@
 </template>
 <script type="text/babel">
   import { throttle, backToTop, animationFrame } from './../../utils/ml-utils'
-
+  import { COMPONENT_PREFIX } from '../../constants/app';
   export default {
-    name: 'ml-pull',
+    name: `${COMPONENT_PREFIX}pull`,
     props: {
       pullUp: {
         type: Boolean,

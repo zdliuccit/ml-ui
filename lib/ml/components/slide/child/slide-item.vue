@@ -4,7 +4,8 @@
   </div>
 </template>
 <script type="text/babel">
+  import { COMPONENT_PREFIX } from '../../../constants/app';
   export default {
-    name: 'ml-slide-item',
+    name: `${COMPONENT_PREFIX}slide-item`,
   }
 </script>
