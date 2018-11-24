@@ -1,7 +1,7 @@
 <template>
   <div class="dd-layout">
     <div class="dd-layout-warp">
-    <div class="dd-layout-top">
+      <div class="dd-layout-top">
         <div class="ml-logo"></div>
         <a class="ml-git-link" href="https://github.com/zdliuccit/ml-ui" target="_blank">
           <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16"
@@ -47,6 +47,9 @@
         <span>QQ：<a href="javascript:;">335758663 秋风</a></span>
       </div>
     </div>
+    <div class="ml-record">
+      <a target="_blank" href="http://www.miitbeian.gov.cn/">浙ICP备18050190号</a>
+    </div>
   </div>
 </template>
 <script type="text/babel">
@@ -57,6 +60,17 @@
   }
 </script>
 <style lang="stylus" ref="stylesheet/stylus" scoped>
+  .ml-record {
+    position: absolute;
+    bottom: 12px;
+    text-align: center;
+    width: 100%;
+    left 0;
+    a {
+      color: #666;
+    }
+  }
+
   .author-msg {
     font-size: 12px;
     color: #777;

@@ -4,6 +4,6 @@
 const constants = require('./constants')
 const common = 'test'
 module.exports = {
-  appPort: 9009,
+  appPort: 9099,
   proxy: {},
 }
